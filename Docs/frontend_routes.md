@@ -1,4 +1,4 @@
-# User-facing routes
+# User-facing routes (frontend routes)
 
 ## `/login`
 

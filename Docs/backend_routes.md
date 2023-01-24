@@ -6,7 +6,7 @@ This web app uses the following API routes to dynamically update the page to cre
 
 - A logged in user may delete one of their own FauxComments, removing it from the list of visible FauxComments without causing a refresh/redirect.
 
-  - `DELETE /api/fauxcomments/:id`
+  - `DELETE /api/questions/:id`
 
 ## FauxLikes
 
