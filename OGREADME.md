@@ -4,38 +4,34 @@
 
 FauxTwitterClone, a Twitter clone, is a website for users to share brief thoughts, engage in light discussion, post memes, and spread propaganda.
 
-## 1. New account creation, log in, log out, and guest/demo login
+## 1. Questions
 
-* Users can sign up, log in, and log out.
-* Users can use a demo log in to try the site.
-* Users can't use certain features without logging in (like fauxtweeting and fauxliking posts).
-* Logged in users are directed to their profile page which displays their fauxtweets.
-* Logged out users are directed to a page displaying several recent fauxtweets.
+- Logged in users can post questions.
+- Logged in users can edit and delete their own questions.
+- All users can view a sampling of the most recent questions.
 
-## 2. FauxTweets
+## 2. Answers
 
-* Logged in users can post fauxtweets.
-* Logged in users can edit and delete their own fauxtweets.
-* All users can view a sampling of the most recent fauxtweets.
+- Logged in users can post answers to questions.
+- Logged in users can edit and delete their own answers.
+- All users can view a sampling of the most recent answers to questions.
 
-## 3. FauxComments
+## 3. Search for Questions
 
-* Logged in users can post fauxcomments on fauxtweets.
-* Logged in users can edit and delete their own fauxcomments.
-* All users can view fauxcomments on fauxtweets.
+- All users can search for questions
 
-## 4. FauxLikes
+## 4. Up-votes / Down-votes to Answers
 
-* Logged in users can fauxlike fauxtweets and fauxcomments.
-* Logged in users can remove their own fauxlike from fauxtweets and fauxcomments.
-* All users can see how many users have fauxliked a fauxtweet or fauxcomment.
+- Logged in users can up-vote and down-vote an answer.
+- Logged in users can remove their own up-vote and down-vote an answer.
+- All users can see how many up-votes and down-votes an answer has.
 
-## 5. FauxTags
+## 5. Categories for Questions
 
-* Logged in users can add fauxtags to their fauxtweets.
-* All users can click on fauxtags to view a list of recent fauxtweets that contain that fauxtag.
+- Logged in users can create categories for questions.
+- Logged in users can edit and delete their own categories
 
-## 6. Bonus Features
+## 6. Comments on Questions and Answers
 
-* Display a list of recent commonly used fauxtags.
-* Users can search for other users to view all of their fauxtweets.
+- Logged in users can create comments on questions and answers.
+- Logged in users can edit and delete their own comments
