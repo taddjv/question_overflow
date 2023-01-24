@@ -26,12 +26,12 @@ Question Overflow, a StackOverflow clone, is a website for users to share brief 
 - Logged in users can remove their own up-vote and down-vote an answer.
 - All users can see how many up-votes and down-votes an answer has.
 
-## 5. Categories for Questions
+## 5. Bonus - Categories for Questions
 
 - Logged in users can create categories for questions.
 - Logged in users can edit and delete their own categories
 
-## 6. Comments on Questions and Answers
+## 6. Bonus - Comments on Questions and Answers
 
 - Logged in users can create comments on questions and answers.
 - Logged in users can edit and delete their own comments
