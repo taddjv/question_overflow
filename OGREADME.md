@@ -2,7 +2,7 @@
 
 # MVP List
 
-FauxTwitterClone, a Twitter clone, is a website for users to share brief thoughts, engage in light discussion, post memes, and spread propaganda.
+Question Overflow, a StackOverflow clone, is a website for users to share brief questions, engage in light discussion, and post answers.
 
 ## 1. Questions
 
