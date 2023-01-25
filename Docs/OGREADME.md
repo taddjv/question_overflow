@@ -18,7 +18,7 @@ Question Overflow, a StackOverflow clone, is a website for users to share brief 
 
 ## 3. Search for Questions
 
-- All users can search for questions
+- All users can search for questions.
 
 ## 4. Up-votes / Down-votes to Answers
 
@@ -28,10 +28,12 @@ Question Overflow, a StackOverflow clone, is a website for users to share brief 
 
 ## 5. Bonus - Categories for Questions
 
+- Logged in users can view categories.
 - Logged in users can create categories for questions.
-- Logged in users can edit and delete their own categories
+- Logged in users can edit and delete their own categories.
 
 ## 6. Bonus - Comments on Questions and Answers
 
+- Logged in users can view comments on questions and answers.
 - Logged in users can create comments on questions and answers.
-- Logged in users can edit and delete their own comments
+- Logged in users can edit and delete their own comments.
