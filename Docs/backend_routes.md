@@ -30,9 +30,9 @@ This web app uses the following API routes to dynamically update the page to cre
 
 - `GET /api/questions/search`
 
-## Upvotes / Downvotes to an Answer
+## Up-votes / Down-votes to an Answer
 
-- A logged in user may upvote or downvote and delete the vote from an answer.
+- A logged in user may up-vote or down-vote and delete the vote from an answer.
 
 (use association table with answerId and userId)
 
