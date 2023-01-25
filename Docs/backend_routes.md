@@ -2,17 +2,34 @@
 
 This web app uses the following API routes to dynamically update the page to create a single-page-app-like feel for the user for specific features.
 
-## FauxComments
+## Questions
 
-- A logged in user may delete one of their own FauxComments, removing it from the list of visible FauxComments without causing a refresh/redirect.
+- A logged in user may delete, edit or create one of their own Question, however every users can view all questions or a specific question.
 
+  - `GET /api/questions/:id`
+  - `GET /api/questions`
+  - `POST /api/questions`
+  - `PUT /api/questions/:id`
   - `DELETE /api/questions/:id`
 
-## FauxLikes
+## Answers
 
-- A logged in user can FauxLike or FauxUnlike a FauxTweet or FauxComment with visible confirmation without causing a refresh/redirect.
+- A logged in user may delete, edit or create one of their own answer to a question, however every users can view all answers of a specific question.
 
-  - `POST /api/fauxtweets/:id/likes`
-  - `POST /api/fauxcomments/:id/likes`
-  - `DELETE /api/fauxtweets/:id/likes`
-  - `DELETE /api/fauxcomments/:id/likes`
+  - `GET /api/answers/:id`
+  - `GET /api/answers`
+  - `POST /api/answers`
+  - `PUT /api/answers/:id`
+  - `DELETE /api/answers/:id`
+
+## Search
+
+- A logged in user may search for questions through a search bar.
+
+(use .like to search for questions in database with keywords from the search bar, for those questions that includes the keywords, we'll return the question ids and render all the questions on browser.)
+
+  - `GET /api/questions/search`
+
+## Upvotes / Downvotes to an Answer
+
+- A logged in user may upvote or downvote an answer

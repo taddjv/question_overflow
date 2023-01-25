@@ -1,4 +1,4 @@
-![image](https://user-images.githubusercontent.com/99565823/213600372-56443332-2587-4809-8d92-107d6c0b6bb6.png)
+![image](https://cdn.discordapp.com/attachments/416616396378603522/1067622774157365248/image.png)
 
 # MVP List
 
@@ -18,7 +18,7 @@ Question Overflow, a StackOverflow clone, is a website for users to share brief 
 
 ## 3. Search for Questions
 
-- All users can search for questions.
+- All users can search for questions
 
 ## 4. Up-votes / Down-votes to Answers
 
