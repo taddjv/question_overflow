@@ -28,8 +28,30 @@ This web app uses the following API routes to dynamically update the page to cre
 
 (use .like to search for questions in database with keywords from the search bar, for those questions that includes the keywords, we'll return the question ids and render all the questions on browser.)
 
-  - `GET /api/questions/search`
+- `GET /api/questions/search`
 
 ## Upvotes / Downvotes to an Answer
 
-- A logged in user may upvote or downvote an answer
+- A logged in user may upvote or downvote and delete the vote from an answer.
+
+(use association table with answerId and userId)
+
+- `GET /api/votes/:id`
+- `POST /api/votes`
+- `DELETE /api/votes/:id`
+
+<!-- ## Bonus - Categories to Questions
+
+- A logged in user can post questions in different categories
+
+  - `GET /api/categories/:id`
+  - `GET /api/categories` -->
+
+<!-- ## Bonus - Comments to Questions and Answers
+
+- A logged in user may comment on questions and other users answers.
+
+  - `GET /api/answers/:id`
+  - `POST /api/answers`
+  - `PUT /api/answers/:id`
+  - `DELETE /api/answers/:id` -->
