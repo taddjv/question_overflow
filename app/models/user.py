@@ -15,6 +15,8 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     questions = db.relationship("Question", back_populates="user")
     answers = db.relationship("Answer", back_populates="user")
+    reactions = db.relationship("Reaction", back_populates="user")
+    searches = db.relationship("Search", back_populates="user")
 
 
 
