@@ -18,3 +18,14 @@ class Question(db.Model):
     user = db.relationship("User", back_populates="questions")
 
     answers = db.relationship("Answer", back_populates="question")
+
+    @property
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'question': self.question,
+            'detail': self.detail,
+            'url': self.url,
+            'dateCreated': self.dateCreated,
+            'user_id': self.user_id
+        }

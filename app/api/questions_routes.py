@@ -2,6 +2,7 @@ from flask import Blueprint,request
 from sqlalchemy import insert,update
 from app.models import Question
 
+
 questions_routes = Blueprint("questions", __name__)
 
 @questions_routes.route("/<int:id>", methods=["GET"])
@@ -17,6 +18,7 @@ def edit_question(id):
 @questions_routes.route("/", methods=["GET"])
 def get_all_questions():
     questions = Question.query.all()
+
     return {'questions': [question.to_dict() for question in questions]}
 
 
