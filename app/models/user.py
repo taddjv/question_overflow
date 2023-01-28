@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(40), nullable=False, unique=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
+
     questions = db.relationship("Question", back_populates="user")
     answers = db.relationship("Answer", back_populates="user")
     reactions = db.relationship("Reaction", back_populates="user")
