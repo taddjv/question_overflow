@@ -20,7 +20,7 @@ class Question(db.Model):
 
     answers = db.relationship("Answer", back_populates="question")
 
-    @property
+    # @property
     def to_dict(self):
         return {
             'id': self.id,
