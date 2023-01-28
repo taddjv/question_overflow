@@ -1,5 +1,6 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 from sqlalchemy.sql import func
+import json
 
 class Question(db.Model):
     __tablename__ = "questions"
@@ -29,3 +30,6 @@ class Question(db.Model):
             'dateCreated': self.dateCreated,
             'user_id': self.user_id
         }
+    # def toJSON(self):
+    #     return json.dumps(self, default=lambda o: o.__dict__,
+    #         sort_keys=True, indent=4)

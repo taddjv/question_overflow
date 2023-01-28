@@ -1,6 +1,7 @@
-from flask import Blueprint,request
+from flask import Blueprint,request,jsonify
 from sqlalchemy import insert,update
 from app.models import Question
+import json
 
 
 questions_routes = Blueprint("questions", __name__)
@@ -18,8 +19,8 @@ def edit_question(id):
 @questions_routes.route("/", methods=["GET"])
 def get_all_questions():
     questions = Question.query.all()
-
-    return {'questions': [question.to_dict() for question in questions]}
+    final = {'questions': [question.to_dict() for question in questions]}
+    return final
 
 
 @questions_routes.route("/", methods=["POST"])
