@@ -1,6 +1,7 @@
 from flask import Blueprint,request
 from app.models import Question,db
 from app.forms import QuestionForm
+from flask_login import current_user, login_user, logout_user, login_required
 
 
 questions_routes = Blueprint("questions", __name__)
@@ -54,14 +55,13 @@ def get_all_questions():
     return final
 
 
-#! We can't test this route yet
 @questions_routes.route("/", methods=["POST"])
 def post_question():
 
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        desired_question = Question(question=form.data['question'],detail=form.data['detail'],url=form.data["url"],user_id=None)
+        desired_question = Question(question=form.data['question'],detail=form.data['detail'],url=form.data["url"],user_id=current_user.id)
         db.session.add(desired_question)
         db.session.commit()
         return desired_question.to_dict()

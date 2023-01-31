@@ -7,8 +7,10 @@ from app.models import Question
 def valid_picture(form,field):
     #checks if the picture is a .png or .jpg
     picture_url = field.data
-    if ".jpg" not in picture_url or ".png" not in picture_url:
-        raise ValidationError("Not a valid image.")
+
+    if picture_url:
+        if ".jpg" not in picture_url or ".png" not in picture_url:
+            raise ValidationError("Not a valid image.")
 
 
 class QuestionForm(FlaskForm):

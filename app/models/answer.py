@@ -20,4 +20,4 @@ class Answer(db.Model):
     question_id = db.Column(db.Integer, db.ForeignKey("questions.id"), nullable=False)
     question = db.relationship("Question", back_populates="answers")
 
-    reactions = db.relationship("Reaction", back_populates="answer")
+    reactions = db.relationship("Reaction", back_populates="answer", cascade="all, delete-orphan")
