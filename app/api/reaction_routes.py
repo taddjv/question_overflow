@@ -26,6 +26,7 @@ def post_upvote_reaction(id):
         Reaction.answer_id.like(current_answer),
         Reaction.user_id.like(current_answer.id)
     )
+
     #check for user id in specific answers reaction, in reaction table
     # query = Reaction.query(User).filter(
     # User.firstname.like(search_var1),
@@ -34,5 +35,6 @@ def post_upvote_reaction(id):
 
 
     if reaction_check:
-        
+        reaction_check.upVote if True else False
+        reaction_check.downVote if True else False
         return
