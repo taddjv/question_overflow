@@ -21,3 +21,13 @@ class Answer(db.Model):
     question = db.relationship("Question", back_populates="answers")
 
     reactions = db.relationship("Reaction", back_populates="answer", cascade="all, delete-orphan")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'answer': self.answer,
+            'url': self.url,
+            'dateCreated': self.dateCreated,
+            'user_id': self.user_id,
+            'question_id': self.question_id
+        }

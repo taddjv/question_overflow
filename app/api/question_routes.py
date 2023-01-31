@@ -24,22 +24,23 @@ def get_question(id):
 
 @questions_routes.route("/<int:id>", methods=["PUT"])
 def edit_question(id):
-    desired_question_data = request.form
+
+    form=QuestionForm()
 
 
-    if (desired_question_data):
+    if (form.data):
         desired_question = Question.query.get(id)
 
-        desired_question.question =  desired_question_data.question or desired_question.question
-        desired_question.detail =  desired_question_data.detail or desired_question.detail
-        desired_question.url =  desired_question_data.url or desired_question.url
+        desired_question.question =  form.data["question"] or desired_question.question
+        desired_question.detail =  form.data["detail"] or desired_question.detail
+        desired_question.url =  form.data["url"] or desired_question.url
 
         db.session.commit()
 
         return desired_question.to_dict()
     return "no data (error)"
 
-#! this route gives us an issue with the answers model
+
 @questions_routes.route("/<int:id>", methods=["DELETE"])
 def delete_question(id):
     desired_question = Question.query.get(id)
