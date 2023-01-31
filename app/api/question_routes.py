@@ -23,6 +23,7 @@ def get_question(id):
 
 
 @questions_routes.route("/<int:id>", methods=["PUT"])
+@login_required
 def edit_question(id):
 
     form=QuestionForm()
@@ -42,6 +43,7 @@ def edit_question(id):
 
 
 @questions_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
 def delete_question(id):
     desired_question = Question.query.get(id)
     db.session.delete(desired_question)
@@ -57,6 +59,7 @@ def get_all_questions():
 
 
 @questions_routes.route("/", methods=["POST"])
+@login_required
 def post_question():
 
     form = QuestionForm()
@@ -67,9 +70,3 @@ def post_question():
         db.session.commit()
         return desired_question.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
-
-    # desired_question_data = request.form
-    # desired_question = Question(question=desired_question_data.question,detail=desired_question_data.detail,url=desired_question_data.url,user_id=desired_question_data.user_id)
-    # db.session.add(desired_question)
-    # db.session.commit()
-    # return desired_question.to_dict()

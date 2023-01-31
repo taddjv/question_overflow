@@ -34,6 +34,7 @@ def get_all_answers(id):
 
 
 @answer_routes.route("/<int:id>", methods=["PUT"])
+@login_required
 def edit_answer(id):
 
     form=AnswerForm()
@@ -52,6 +53,7 @@ def edit_answer(id):
 
 
 @answer_routes.route("/<int:id>", methods=["DELETE"])
+@login_required
 def delete_answer(id):
     desired_answer = Answer.query.get(id)
     db.session.delete(desired_answer)
@@ -60,6 +62,7 @@ def delete_answer(id):
 
 
 @answer_routes.route("/questions/<int:id>", methods=["POST"])
+@login_required
 def post_answer(id):
 
     selected_question=Question.query.get(id)
