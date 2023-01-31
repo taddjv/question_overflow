@@ -1,9 +1,10 @@
-from flask import Blueprint,request
+from flask import Blueprint, request
 from app.models import Answer, Question, Reaction, db
 from flask_login import current_user, login_user, logout_user, login_required
 
 
 reaction_routes = Blueprint("reactions", __name__)
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -16,25 +17,45 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-
 @reaction_routes.route("/answers/<int:id>", methods=["POST"])
 @login_required
 def post_upvote_reaction(id):
 
-    current_answer=Answer.query.get(id)
-    reaction_check=Reaction.query.filter(
+    current_answer = Answer.query.get(id)
+    reaction_check = Reaction.query.filter(
         Reaction.answer_id.like(current_answer),
         Reaction.user_id.like(current_answer.id)
     )
 
-    #check for user id in specific answers reaction, in reaction table
+    # check for user id in specific answers reaction, in reaction table
     # query = Reaction.query(User).filter(
     # User.firstname.like(search_var1),
     # User.lastname.like(search_var2)
     # )
 
+    if reaction_check:
+        reaction_check.upVote = False if True else True
+        reaction_check.downVote = True if True else False
+        return "You have upVoted"
+
+
+@reaction_routes.route("/answers/<int:id>", methods=["POST"])
+@login_required
+def post_downvote_reaction(id):
+
+    current_answer = Answer.query.get(id)
+    reaction_check = Reaction.query.filter(
+        Reaction.answer_id.like(current_answer),
+        Reaction.user_id.like(current_answer.id)
+    )
+
+    # check for user id in specific answers reaction, in reaction table
+    # query = Reaction.query(User).filter(
+    # User.firstname.like(search_var1),
+    # User.lastname.like(search_var2)
+    # )
 
     if reaction_check:
-        reaction_check.upVote if True else False
-        reaction_check.downVote if True else False
-        return
+        reaction_check.upVote = True if True else False
+        reaction_check.downVote = False if True else True
+        return "You have downVoted"
