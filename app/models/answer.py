@@ -8,8 +8,6 @@ class Answer(db.Model):
         __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
-    up_votes = db.Column(db.Integer)
-    down_votes = db.Column(db.Integer)
     answer= db.Column(db.String(2000))
     url = db.Column(db.String(255))
     dateCreated = db.Column(db.DateTime(timezone=True), server_default=func.now())
