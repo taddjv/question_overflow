@@ -27,46 +27,63 @@ def post_upvote_reaction(id):
         # Reaction.user_id.like(current_answer.user_id)
 
         Reaction.answer_id == current_answer.id,
-        Reaction.user_id == 1
-    )
+        Reaction.user_id == current_answer.user_id
+    ).one()
 
-    # reaction_check = Reaction.query.all()
-    final = {'reactions': [reaction.to_dict() for reaction in reaction_check]}
-    # print(final['reactions'][0]['up_vote'], ' <-------')
-    # return final['reactions'][0]
-    # return final
-    # print(current_answer.user_id, '<------')
-    # print(final.reactions, ' <-------')
-    # return type(final)
-
-    up_vote_value = final['reactions'][0]['up_vote']
-
-    if len(final['reactions']):
-        if final['reactions'][0]['up_vote'] == True:
-            final['reactions'][0]['up_vote'] = False
+    if reaction_check:
+        if reaction_check.up_vote == True:
+            reaction_check.up_vote = False
+            db.session.commit()
             return "upVote removed"
         else:
-            final['reactions'][0]['up_vote'] = True
+            reaction_check.up_vote = True
+            db.session.commit()
             return "upVoted"
 
 
-@reaction_routes.route("/answers/<int:id>", methods=["POST"])
+@reaction_routes.route("/answers/<int:id>/down-vote", methods=["POST"])
 @login_required
 def post_downvote_reaction(id):
 
     current_answer = Answer.query.get(id)
     reaction_check = Reaction.query.filter(
-        Reaction.answer_id.like(current_answer),
-        Reaction.user_id.like(current_answer.id)
-    )
+        # Reaction.answer_id.like(current_answer.id),
+        # Reaction.user_id.like(current_answer.user_id)
 
-    # check for user id in specific answers reaction, in reaction table
-    # query = Reaction.query(User).filter(
-    # User.firstname.like(search_var1),
-    # User.lastname.like(search_var2)
-    # )
+        Reaction.answer_id == current_answer.id,
+        Reaction.user_id == current_answer.user_id
+    ).one()
 
     if reaction_check:
-        reaction_check.upVote = True if True else False
-        reaction_check.downVote = False if True else True
-        return "You have downVoted"
+        if reaction_check.up_vote == True:
+            reaction_check.up_vote = False
+            db.session.commit()
+            return "downVote removed"
+        else:
+            reaction_check.up_vote = True
+            db.session.commit()
+            return "downVoted"
+
+
+@reaction_routes.route('/answers/<int:id>/up-votes')
+@login_required
+def get_all_up_votes(id):
+    current_answer = Answer.query.get(id)
+    reaction_check = Reaction.query.filter(
+        Reaction.answer_id == current_answer.id,
+        Reaction.up_vote == True
+    ).count()
+
+    return str(reaction_check)
+
+
+@reaction_routes.route('/answers/<int:id>/down-votes')
+@login_required
+def get_all_down_votes(id):
+    current_answer = Answer.query.get(id)
+    reaction_check = Reaction.query.filter(
+        Reaction.answer_id == current_answer.id,
+        Reaction.down_vote == True
+    ).count()
+
+    return str(reaction_check)
