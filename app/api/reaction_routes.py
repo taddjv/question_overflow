@@ -27,8 +27,18 @@ def post_upvote_reaction(id):
         # Reaction.user_id.like(current_answer.user_id)
 
         Reaction.answer_id == current_answer.id,
-        Reaction.user_id == current_answer.user_id
+        Reaction.user_id == current_answer.user_id,
+        # Reaction.user_id == 1,
     ).one()
+
+    # print(type(reaction_check.user_id), 'HELLLLOOOOOOOO')
+
+    if reaction_check == None:
+        new_vote = Reaction(answer_id = current_answer.id, user_id = current_answer.user_id, up_vote = True, down_vote = False)
+        db.session.add(new_vote)
+        db.session.commit()
+        return "added reaction to db"
+
 
     if reaction_check:
         if reaction_check.up_vote == True:
@@ -39,6 +49,11 @@ def post_upvote_reaction(id):
             reaction_check.up_vote = True
             db.session.commit()
             return "upVoted"
+    # else:
+    #     new_vote = Reaction(answer_id = current_answer.id, user_id = current_answer.user_id, up_vote = True, down_vote = False)
+    #     db.session.add(new_vote)
+    #     db.session.commit()
+    #     return "added reaction to db"
 
 
 @reaction_routes.route("/answers/<int:id>/down-vote", methods=["POST"])
