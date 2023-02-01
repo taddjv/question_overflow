@@ -35,4 +35,5 @@ def post_search():
     new_search = Search(user_id=current_user.id, search=form.data['search'])
     db.session.add(new_search)
     db.session.commit()
+    
     return "added search to db"
