@@ -84,9 +84,9 @@ def post_downvote_reaction(id):
 @reaction_routes.route('/answers/<int:id>/up-votes')
 @login_required
 def get_all_up_votes(id):
-    current_answer = Answer.query.get(id)
+
     reaction_check = Reaction.query.filter(
-        Reaction.answer_id == current_answer.id,
+        Reaction.answer_id == id,
         Reaction.up_vote == True
     ).count()
 
@@ -96,9 +96,9 @@ def get_all_up_votes(id):
 @reaction_routes.route('/answers/<int:id>/down-votes')
 @login_required
 def get_all_down_votes(id):
-    current_answer = Answer.query.get(id)
+
     reaction_check = Reaction.query.filter(
-        Reaction.answer_id == current_answer.id,
+        Reaction.answer_id == id,
         Reaction.down_vote == True
     ).count()
 
