@@ -32,8 +32,15 @@ def get_search_history():
 @login_required
 def post_search():
     form = SearchForm()
-    new_search = Search(user_id=current_user.id, search=form.data['search'])
-    db.session.add(new_search)
-    db.session.commit()
-    
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
+        new_search = Search(user_id=current_user.id,
+                            search=form.data['search'])
+        db.session.add(new_search)
+        db.session.commit()
+
+        questions = Question.query.like(f'%{form.data['search']}%')
+        final = {'questions': [question.to_dict() for question in questions]}
+        return final
+
     return "added search to db"
