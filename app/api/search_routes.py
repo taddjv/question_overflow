@@ -25,3 +25,14 @@ def get_search_history():
     )
     final = {'searches': [search.to_dict() for search in searches]}
     return final
+
+
+#! need to clarify what type of data is coming in to search (from form etc...)
+@search_routes.route('/', methods=["POST"])
+@login_required
+def post_search():
+    form = SearchForm()
+    new_search = Search(user_id=current_user.id, search=form.data['search'])
+    db.session.add(new_search)
+    db.session.commit()
+    return "added search to db"
