@@ -17,18 +17,19 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@reaction_routes.route("/answers/<int:id>/vote", methods=["POST"])
+@reaction_routes.route("/answers/<int:id>/up-vote", methods=["POST"])
 @login_required
 def post_upvote_reaction(id):
 
     # current_answer = Answer.query.get(id)
     reaction_check = Reaction.query.filter(
-        # Reaction.answer_id.like(current_answer.id),
-        # Reaction.user_id.like(current_answer.user_id)
-
         Reaction.answer_id == id,
         Reaction.user_id == current_user.id
-        # Reaction.user_id == 1,
+
+        #! testing variables
+        # Reaction.answer_id == 3,
+        # Reaction.user_id == 1
+
     ).first()
     # print(reaction_check, ' <------')
     # print(current_user.id, ' <-----')
@@ -49,29 +50,35 @@ def post_upvote_reaction(id):
                             user_id=current_user.id, up_vote=True, down_vote=False)
         db.session.add(new_vote)
         db.session.commit()
-        return "added reaction to db"
+        return "added upVote reaction to db"
 
-#! not sure if we need this route anymore, 1 route does everything
-# @reaction_routes.route("/answers/<int:id>/down-vote", methods=["POST"])
-# @login_required
-# def post_downvote_reaction(id):
 
-#     reaction_check = Reaction.query.filter(
-#         Reaction.answer_id == id,
-#         Reaction.user_id == current_user.id
-#     ).first()
+@reaction_routes.route("/answers/<int:id>/down-vote", methods=["POST"])
+@login_required
+def post_downvote_reaction(id):
 
-#     if reaction_check:
-#         if reaction_check.down_vote == True:
-#             reaction_check.down_vote = False
-#             reaction_check.up_vote = True
-#             db.session.commit()
-#             return "upVoted"
-#         else:
-#             reaction_check.down_vote = True
-#             reaction_check.up_vote = False
-#             db.session.commit()
-#             return "downVoted"
+    reaction_check = Reaction.query.filter(
+        Reaction.answer_id == id,
+        Reaction.user_id == current_user.id
+    ).first()
+
+    if reaction_check:
+        if reaction_check.down_vote == True:
+            reaction_check.down_vote = False
+            reaction_check.up_vote = True
+            db.session.commit()
+            return "upVoted"
+        else:
+            reaction_check.down_vote = True
+            reaction_check.up_vote = False
+            db.session.commit()
+            return "downVoted"
+    else:
+        new_vote = Reaction(answer_id=id,
+                            user_id=current_user.id, up_vote=False, down_vote=True)
+        db.session.add(new_vote)
+        db.session.commit()
+        return "added downVote reaction to db"
 
 
 @reaction_routes.route('/answers/<int:id>/up-votes')
