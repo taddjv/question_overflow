@@ -29,7 +29,7 @@ def edit_question(id):
     form=QuestionForm()
 
 
-    if (form.data):
+    if form.data:
         desired_question = Question.query.get(id)
 
         desired_question.question =  form.data["question"] or desired_question.question
