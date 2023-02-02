@@ -50,7 +50,7 @@ export const deleteTheSearches = () => async (dispatch) => {
   }
 };
 
-const initialState = {};
+ initialState = {};
 
 const searchReducer = (state = initialState, action) => {
   let newState;
