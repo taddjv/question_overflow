@@ -1,10 +1,12 @@
 .header{
-align-items: center;
 display:flex;
+align-items: center;
 justify-content: space-between;
 border-top: 3px solid rgba(64, 174, 14, 0.564);
 border-bottom: 1px solid lightgray;
-height: 50px;
+z-index: 100;
+width: 100%;
+/* height: 50px; */
 position: sticky;
 top:0;
 }
@@ -14,8 +16,21 @@ top:0;
 }
 
 .header_center{
-  z-index: 1;
-  width: 200px;
+display: flex;
+flex:1;
+align-items: center;
+max-width: fit-content;
+padding: 10px;
+height: 20px;
+border: 1px solid lightgray;
+border-radius: 99px;
+}
+
+.header_center > input{
+border:none;
+padding: 10px;
+outline-width: 0;
+width: 250px;
 }
 
 .header_left{

@@ -35,7 +35,7 @@ export const getTheUser = (id) => async (dispatch) => {
   }
 };
 
-initialState = {};
+let initialState = {};
 const usersReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
