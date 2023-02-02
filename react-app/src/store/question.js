@@ -96,7 +96,7 @@ export const deleteTheQuestion = (id) => async (dispatch) => {
   }
 };
 
-initialState = {};
+const initialState = {};
 const questionsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
