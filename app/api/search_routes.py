@@ -1,9 +1,10 @@
-from flask import Blueprint,request
-from app.models import Question,Search,db
+from flask import Blueprint, request
+from app.models import Question, Search, db
 from app.forms import SearchForm
 from flask_login import current_user, login_required
 
 search_routes = Blueprint("searches", __name__)
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -20,12 +21,13 @@ def validation_errors_to_error_messages(validation_errors):
 @search_routes.route("/questions/<query>", methods=["GET"])
 def get_results(query):
     if (current_user.is_authenticated):
-        desired_search = Search(Search=query,user_id=current_user.id)
+        desired_search = Search(search=query, user_id=current_user.id)
         db.session.add(desired_search)
         db.session.commit()
     results = Question.query.filter(Question.question.contains(query))
     final = {"results": [result.to_dict() for result in results]}
     return final
+
 
 @search_routes.route("/user/<int:id>", methods=["GET"])
 def get_user_searches(id):
@@ -33,10 +35,11 @@ def get_user_searches(id):
     final = {"results": [result.to_dict() for result in results]}
     return final
 
+
 @search_routes.route('/', methods=["DELETE"])
 def clear_search():
-    history = Search.query.filter(Search.user_id == current_user.id)
-    for search in history:
+    searches = Search.query.filter(Search.user_id == current_user.id)
+    for search in searches:
         db.session.delete(search)
         db.session.commit()
     return {"message": "Search History Cleared"}
