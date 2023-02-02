@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA
 from sqlalchemy.sql import func
 
+
 class Search(db.Model):
     __tablename__ = "searches"
 
@@ -9,6 +10,7 @@ class Search(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
     search = db.Column(db.String(255), nullable=False)
+    dateCreated = db.Column(db.DateTime(timezone=True), server_default=func.now())
 
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="searches")

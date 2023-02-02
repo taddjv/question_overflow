@@ -14,6 +14,8 @@ class Reaction(db.Model):
 
     down_vote = db.Column(db.Boolean, default=False)
 
+    dateCreated = db.Column(db.DateTime(timezone=True), server_default=func.now())
+
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="reactions")
 

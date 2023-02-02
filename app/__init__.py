@@ -4,13 +4,15 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flask_wtf.csrf import CSRFProtect, generate_csrf
 from flask_login import LoginManager
-from .models import db, User,Answer,Question,Reaction,Search
+from .models import db, User, Answer, Question, Reaction, Search
 from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.question_routes import questions_routes
 from .api.answer_routes import answer_routes
 from .api.search_routes import search_routes
 from .api.reaction_routes import reaction_routes
+from .api.search_routes import search_routes
+
 
 from .seeds import seed_commands
 from .config import Config
@@ -78,9 +80,9 @@ def api_help():
     Returns all API routes and their doc strings
     """
     acceptable_methods = ['GET', 'POST', 'PUT', 'PATCH', 'DELETE']
-    route_list = { rule.rule: [[ method for method in rule.methods if method in acceptable_methods ],
-                    app.view_functions[rule.endpoint].__doc__ ]
-                    for rule in app.url_map.iter_rules() if rule.endpoint != 'static' }
+    route_list = {rule.rule: [[method for method in rule.methods if method in acceptable_methods],
+                              app.view_functions[rule.endpoint].__doc__]
+                  for rule in app.url_map.iter_rules() if rule.endpoint != 'static'}
     return route_list
 
 

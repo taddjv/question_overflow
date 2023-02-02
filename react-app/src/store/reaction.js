@@ -75,7 +75,7 @@ export const postTheDownvote = (id) => async (dispatch) => {
   }
 };
 
-initialState = {};
+let initialState = {};
 const reactionsReducer = (state = initialState, action) => {
   let newState;
 
