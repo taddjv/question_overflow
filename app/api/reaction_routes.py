@@ -37,12 +37,11 @@ def post_upvote_reaction(id):
     if reaction_check:
         if reaction_check.up_vote == True:
             reaction_check.up_vote = False
-            reaction_check.down_vote = True
+            # reaction_check.down_vote = True
             db.session.commit()
-            return "downVoted"
-        else:
+            return "cleared upVote"
+        elif reaction_check.up_vote == False:
             reaction_check.up_vote = True
-            reaction_check.down_vote = False
             db.session.commit()
             return "upVoted"
     else:
@@ -65,12 +64,11 @@ def post_downvote_reaction(id):
     if reaction_check:
         if reaction_check.down_vote == True:
             reaction_check.down_vote = False
-            reaction_check.up_vote = True
+            # reaction_check.up_vote = True
             db.session.commit()
-            return "upVoted"
-        else:
+            return "cleared downVote"
+        elif reaction_check.down_vote == False:
             reaction_check.down_vote = True
-            reaction_check.up_vote = False
             db.session.commit()
             return "downVoted"
     else:

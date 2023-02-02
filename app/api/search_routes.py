@@ -32,3 +32,11 @@ def get_user_searches(id):
     results = Search.query.filter(Search.user_id == id)
     final = {"results": [result.to_dict() for result in results]}
     return final
+
+@search_routes.route('/', methods=["DELETE"])
+def clear_search():
+    history = Search.query.filter(Search.user_id == current_user.id)
+    for search in history:
+        db.session.delete(search)
+        db.session.commit()
+    return {"message": "Search History Cleared"}
