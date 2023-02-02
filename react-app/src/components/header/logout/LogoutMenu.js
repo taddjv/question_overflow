@@ -2,8 +2,12 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import Avatar from '@mui/material/Avatar';
+import { useDispatch } from 'react-redux';
+import {useHistory} from 'react-router-dom'
 
 export default function LogoutMenu() {
+  const history = useHistory()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -14,6 +18,19 @@ export default function LogoutMenu() {
   };
 
 
+  const signUp = (e) =>{
+    e.preventDefault()
+    handleClose()
+    history.push('/sign-up')
+  }
+
+  const login = (e) =>{
+    e.preventDefault()
+    handleClose()
+    history.push('/login')
+
+  }
+
   return (
     <div>
       <Button
@@ -23,8 +40,7 @@ export default function LogoutMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dash
-        {/* <i class="fa-solid fa-bars"></i> */}
+        <Avatar/>
       </Button>
       <Menu
         id="basic-menu"
@@ -35,9 +51,8 @@ export default function LogoutMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>My account</MenuItem>
-        <MenuItem onClick={handleClose}>Logout</MenuItem>
+        <MenuItem onClick={login}>Login</MenuItem>
+        <MenuItem onClick={signUp}>Signup</MenuItem>
       </Menu>
     </div>
   );

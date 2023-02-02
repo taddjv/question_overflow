@@ -2,8 +2,9 @@ import * as React from 'react';
 import Button from '@mui/material/Button';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
+import { Avatar } from '@mui/material';
 
-export default function BasicMenu() {
+export default function LoginMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -12,6 +13,8 @@ export default function BasicMenu() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+
 
   return (
     <div>
@@ -22,7 +25,7 @@ export default function BasicMenu() {
         aria-expanded={open ? 'true' : undefined}
         onClick={handleClick}
       >
-        Dashboard
+        <Avatar/>
       </Button>
       <Menu
         id="basic-menu"
@@ -33,7 +36,7 @@ export default function BasicMenu() {
           'aria-labelledby': 'basic-button',
         }}
       >
-        <MenuItem onClick={handleClose}>Signup</MenuItem>
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
         <MenuItem onClick={handleClose}>Login</MenuItem>
       </Menu>
     </div>
