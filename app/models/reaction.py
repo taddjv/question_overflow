@@ -1,6 +1,7 @@
 from .db import db, environment, SCHEMA
 from sqlalchemy.sql import func
 
+
 class Reaction(db.Model):
     __tablename__ = "reactions"
 
@@ -9,8 +10,22 @@ class Reaction(db.Model):
 
     id = db.Column(db.Integer, primary_key=True)
 
+    up_vote = db.Column(db.Boolean, default=False)
+
+    down_vote = db.Column(db.Boolean, default=False)
+
     user_id = db.Column(db.Integer, db.ForeignKey("users.id"), nullable=False)
     user = db.relationship("User", back_populates="reactions")
 
-    answer_id = db.Column(db.Integer, db.ForeignKey("answers.id"), nullable=False)
+    answer_id = db.Column(db.Integer, db.ForeignKey(
+        "answers.id"), nullable=False)
     answer = db.relationship("Answer", back_populates="reactions")
+
+    def to_dict(self):
+        return {
+            'id': self.id,
+            'answer_id': self.answer_id,
+            'user_id': self.user_id,
+            'up_vote': self.up_vote,
+            'down_vote': self.down_vote,
+        }

@@ -1,6 +1,4 @@
-<!-- ![image](https://cdn.discordapp.com/attachments/416616396378603522/1067627217254887616/image.png) -->
-
-![image](https://files.slack.com/files-pri/T03GU501J-F04LKTET83G/image.png)
+![image](https://cdn.discordapp.com/attachments/416616396378603522/1070224025730687027/image.png)
 
 # MVP List
 
