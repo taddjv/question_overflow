@@ -1,10 +1,9 @@
-from flask import Blueprint, request
-from app.models import Answer, Question, Reaction, db, Search
-from flask_login import current_user, login_user, logout_user, login_required
-
+from flask import Blueprint,request
+from app.models import Question,Search,db
+from app.forms import SearchForm
+from flask_login import current_user, login_required
 
 search_routes = Blueprint("searches", __name__)
-
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -17,30 +16,27 @@ def validation_errors_to_error_messages(validation_errors):
     return errorMessages
 
 
-@search_routes.route('/', methods=["GET"])
-@login_required
-def get_search_history():
-    searches = Search.query.filter(
-        Search.user_id == current_user.id
-    )
-    final = {'searches': [search.to_dict() for search in searches]}
+#!didn't test this route because i'm not sure how to login on postman
+@search_routes.route("/questions/<query>", methods=["GET"])
+def get_results(query):
+    if (current_user.is_authenticated):
+        desired_search = Search(Search=query,user_id=current_user.id)
+        db.session.add(desired_search)
+        db.session.commit()
+    results = Question.query.filter(Question.question.contains(query))
+    final = {"results": [result.to_dict() for result in results]}
     return final
 
+@search_routes.route("/user/<int:id>", methods=["GET"])
+def get_user_searches(id):
+    results = Search.query.filter(Search.user_id == id)
+    final = {"results": [result.to_dict() for result in results]}
+    return final
 
-#! need to clarify what type of data is coming in to search (from form etc...)
-@search_routes.route('/', methods=["POST"])
-@login_required
-def post_search():
-    form = SearchForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
-    if form.validate_on_submit():
-        new_search = Search(user_id=current_user.id,
-                            search=form.data['search'])
-        db.session.add(new_search)
+@search_routes.route('/', methods=["DELETE"])
+def clear_search():
+    history = Search.query.filter(Search.user_id == current_user.id)
+    for search in history:
+        db.session.delete(search)
         db.session.commit()
-
-        questions = Question.query.like(f'%{form.data['search']}%')
-        final = {'questions': [question.to_dict() for question in questions]}
-        return final
-
-    return "added search to db"
+    return {"message": "Search History Cleared"}

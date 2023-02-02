@@ -9,6 +9,7 @@ from .api.user_routes import user_routes
 from .api.auth_routes import auth_routes
 from .api.question_routes import questions_routes
 from .api.answer_routes import answer_routes
+from .api.search_routes import search_routes
 from .api.reaction_routes import reaction_routes
 from .api.search_routes import search_routes
 
@@ -37,7 +38,8 @@ app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(questions_routes, url_prefix='/api/questions')
 app.register_blueprint(answer_routes, url_prefix='/api/answers')
 app.register_blueprint(reaction_routes, url_prefix='/api/reactions')
-app.register_blueprint(search_routes, url_prefix='/api/searches')
+app.register_blueprint(search_routes, url_prefix='/api/search')
+
 
 db.init_app(app)
 Migrate(app, db)
