@@ -1,0 +1,23 @@
+.header{
+align-items: center;
+display:flex;
+justify-content: space-between;
+border-top: 3px solid rgba(64, 174, 14, 0.564);
+border-bottom: 1px solid lightgray;
+height: 50px;
+position: sticky;
+top:0;
+}
+
+.header_question{
+  color:rgba(64, 174, 14, 0.564);
+}
+
+.header_center{
+  z-index: 1;
+  width: 200px;
+}
+
+.header_left{
+  display: flex;
+}
