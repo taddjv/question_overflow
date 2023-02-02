@@ -27,8 +27,7 @@ def get_results(query):
         db.session.commit()
     results = Question.query.filter(Question.question.contains(query))
     final = {"results": [result.to_dict() for result in results]}
-    if final == None:
-        return {"message": "Added query to search history"}
+    return final
 
 
 @search_routes.route("/user/<int:id>", methods=["GET"])
