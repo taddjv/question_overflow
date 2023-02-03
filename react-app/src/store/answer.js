@@ -35,7 +35,7 @@ const deleteAnswer = () => {
 };
 
 export const getTheAnswers = () => async (dispatch) => {
-  const response = await fetch("/api/answers");
+  const response = await fetch("/api/answers/");
 
   if (response.ok) {
     const data = await response.json();
@@ -44,7 +44,7 @@ export const getTheAnswers = () => async (dispatch) => {
   }
 };
 export const getTheAnswer = (id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}`);
+  const response = await fetch(`/api/answers/${id}/`);
 
   if (response.ok) {
     const data = await response.json();
@@ -53,7 +53,7 @@ export const getTheAnswer = (id) => async (dispatch) => {
   }
 };
 export const postTheAnswer = (answerData) => async (dispatch) => {
-  const response = await fetch("/api/answers", {
+  const response = await fetch("/api/answers/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -69,7 +69,7 @@ export const postTheAnswer = (answerData) => async (dispatch) => {
   }
 };
 export const putTheAnswer = (answerData, id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}`, {
+  const response = await fetch(`/api/answers/${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

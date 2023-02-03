@@ -1,5 +1,6 @@
 from flask import Blueprint,request
 from app.models import Question,db
+
 from app.forms import QuestionForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -52,6 +53,7 @@ def delete_question(id):
 
 
 @questions_routes.route("/", methods=["GET"])
+
 def get_all_questions():
     questions = Question.query.all()
     final = {'questions': [question.to_dict() for question in questions]}

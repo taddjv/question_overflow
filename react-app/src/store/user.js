@@ -16,11 +16,11 @@ const getUser = (user) => {
 };
 
 export const getTheUsers = () => async (dispatch) => {
-  const response = await fetch("/api/users");
+  const response = await fetch("/api/users/");
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getUsers);
+    dispatch(getUsers(data));
     return data;
   }
 };
@@ -30,7 +30,7 @@ export const getTheUser = (id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getUser);
+    dispatch(getUser(data));
     return data;
   }
 };

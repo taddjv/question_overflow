@@ -32,6 +32,11 @@ def get_all_answers(id):
     return final
 
 
+@answer_routes.route("/count", methods=["GET"])
+def answer_count():
+    count = Answer.query.count()
+    return str(count)
+
 
 @answer_routes.route("/<int:id>", methods=["PUT"])
 @login_required
