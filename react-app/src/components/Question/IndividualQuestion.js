@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../store/user";
 
-import DeleteIcon from "@mui/icons-material/Delete";
+import QuizIcon from "@mui/icons-material/Quiz";
 
 function IndividualQuestion({
   questionTitle,
@@ -32,13 +32,15 @@ function IndividualQuestion({
     <>
       <div className="question-content">
         <div className="q-c-logo">
-          <svg data-testid="DeleteIcon"></svg>
+          <QuizIcon className="q-c-logo-icon"></QuizIcon>
         </div>
-        <div className="q-c-title-">
+        <div className="q-c-title">
           <div className="q-c-t-q">{questionTitle}</div>
           <div className="q-c-t-d">{detail}</div>
         </div>
-        <div className="q-c-answers">0</div>
+        <div className="q-c-answers">
+          <span>0</span>
+        </div>
         <div className="q-c-author">{userContent}</div>
         <div className="q-c-latest-answer">Latest Answer</div>
       </div>
