@@ -10,12 +10,11 @@ import { NavLink } from 'react-router-dom'
 // New Questions (sorted by date)
 // Most Hated (sorted by most :arrow_down:votes)
 
-function SideBarComponent() {
+function SideBarComponent({title,icon}) {
   return (
     <div className='sidebar_container'>
-      <NavLink className='sidebar_link' to='/'>
-        Home
-      </NavLink>
+      
+      <h4 className='row_title'>{title}</h4>
     </div>
   )
 }

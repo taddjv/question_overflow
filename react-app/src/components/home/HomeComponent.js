@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getTheQuestions } from "../../store/question";
 import Question from "../Question";
 import SideBarComponent from "../sideBar/SideBarComponent";
+import SideBar from "../sideBar/SideBar";
 
 function HomeComponent() {
   // const history = useHistory()
@@ -19,7 +20,7 @@ function HomeComponent() {
   return (
     <div className="home_container">
       <div className="home">
-      <SideBarComponent/>
+        <SideBar/>
       <Question />
       </div>
     </div>
