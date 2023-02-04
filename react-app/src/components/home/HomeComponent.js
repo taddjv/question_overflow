@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import { getTheQuestions } from "../../store/question";
 import Question from "../Question";
+import SideBarComponent from "../sideBar/SideBarComponent";
 
 function HomeComponent() {
   // const history = useHistory()
@@ -16,8 +17,11 @@ function HomeComponent() {
   // },[dispatch])
 
   return (
-    <div>
+    <div className="home_container">
+      <div className="home">
+      <SideBarComponent/>
       <Question />
+      </div>
     </div>
   );
 }
