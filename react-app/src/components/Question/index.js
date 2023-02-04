@@ -2,11 +2,7 @@ import React, { useState, useEffect } from "react";
 import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import * as questionActions from "../../store/question";
-<<<<<<< HEAD
-import './index.css'
-=======
 import "./Question.css";
->>>>>>> b4518453efb7a766f6a47f02fbf58c654a6263d4
 
 function Question() {
   const dispatch = useDispatch();
