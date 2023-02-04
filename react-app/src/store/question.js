@@ -35,25 +35,26 @@ const deleteQuestion = () => {
 };
 
 export const getTheQuestions = () => async (dispatch) => {
-  const response = await fetch("/api/questions");
+  const response = await fetch("/api/questions/");
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getQuestions);
+
+    dispatch(getQuestions(data));
     return data;
   }
 };
 export const getTheQuestion = (id) => async (dispatch) => {
-  const response = await fetch(`/api/questions/${id}`);
+  const response = await fetch(`/api/questions/${id}/`);
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getQuestion);
+    dispatch(getQuestion(data));
     return data;
   }
 };
 export const postTheQuestion = (questionData) => async (dispatch) => {
-  const response = await fetch("/api/questions", {
+  const response = await fetch("/api/questions/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -64,12 +65,12 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(postQuestion);
+    dispatch(postQuestion(data));
     return data;
   }
 };
 export const putTheQuestion = (questionData, id) => async (dispatch) => {
-  const response = await fetch(`/api/questions/${id}`, {
+  const response = await fetch(`/api/questions/${id}/`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -80,12 +81,12 @@ export const putTheQuestion = (questionData, id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(putQuestion);
+    dispatch(putQuestion(data));
     return data;
   }
 };
 export const deleteTheQuestion = (id) => async (dispatch) => {
-  const response = await fetch(`/api/questions/${id}`, {
+  const response = await fetch(`/api/questions/${id}/`, {
     method: "DELETE",
   });
 
@@ -95,7 +96,6 @@ export const deleteTheQuestion = (id) => async (dispatch) => {
     return data;
   }
 };
-
 
 let initialState = {};
 

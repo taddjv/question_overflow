@@ -1,5 +1,6 @@
 from flask import Blueprint,request
-from app.models import Question,db
+from app.models import Question,db,User
+
 from app.forms import QuestionForm
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -16,10 +17,18 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+#* added a user query and merged it with
 @questions_routes.route("/<int:id>", methods=["GET"])
 def get_question(id):
     desired_question = Question.query.get(id)
+    # user = User.query.get(desired_question.user_id)
+
     return desired_question.to_dict()
+
+    # desired_question = desired_question.to_dict()
+    # desired_question["user_id"] = user.to_dict()
+    # desired_question["user"] =desired_question.pop("user_id")
+    # return desired_question
 
 
 @questions_routes.route("/<int:id>", methods=["PUT"])
