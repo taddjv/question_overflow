@@ -3,7 +3,7 @@
   place-items: center;
   height: 100vh;
   color: white;
-  background: linear-gradient(to bottom, white,  rgba(64, 174, 14, 0.564), rgba(0, 0, 0, 0.568));
+  background: linear-gradient(to bottom, white,  rgba(66, 194, 7, 0.564), rgba(0, 0, 0, 0.568));
 }
 
 .email{
@@ -31,7 +31,7 @@
 }
 
 .login_question{
-  color: rgba(64, 174, 14, 0.564);
+  color: rgb(57, 138, 19);
 }
 
 .login_overflow{
@@ -81,4 +81,5 @@ width:250px;
   padding-top:10px;
   padding-bottom: 20px;
   padding-left: 70px;
+  color:black;
  }

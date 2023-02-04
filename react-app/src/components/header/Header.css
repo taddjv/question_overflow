@@ -13,7 +13,7 @@ top:0;
 }
 
 .header_question{
-  color:rgba(64, 174, 14, 0.564);
+  color:rgb(57, 138, 19);
 }
 
 .header_center{
@@ -25,6 +25,7 @@ padding: 10px;
 height: 20px;
 border: 1px solid lightgray;
 border-radius: 99px;
+background-color: rgba(194, 255, 166, 0.47);
 }
 
 .header_center > input{
@@ -32,6 +33,7 @@ border:none;
 padding: 10px;
 outline-width: 0;
 width: 250px;
+background-color: rgba(194, 255, 166, 0.47);
 }
 
 .header_left{

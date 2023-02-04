@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import * as questionActions from "../../store/question";
+import './index.css'
 
 function Question() {
   const dispatch = useDispatch();
