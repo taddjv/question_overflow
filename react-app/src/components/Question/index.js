@@ -23,7 +23,6 @@ function Question() {
               dateCreated={ele.dateCreated}
               user_id={ele.user_id}
             />
-            <div className="username-test">{ele.username}</div>
           </>
         );
       })
