@@ -20,7 +20,6 @@ function HomeComponent() {
   return (
     <div className="home_container">
       <div className="home">
-        <SideBar/>
       <Question />
       </div>
     </div>

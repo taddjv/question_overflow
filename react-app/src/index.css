@@ -14,3 +14,12 @@
   width: 100vw;
   overflow: scroll;
 }
+
+:root{
+  --theme:rgba(64, 174, 14, 0.564);
+  --theme2:rgba(65, 174, 14, 0.171);
+}
+
+body{
+  background-color: white;
+}

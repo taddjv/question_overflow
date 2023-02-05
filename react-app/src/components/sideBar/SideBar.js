@@ -1,19 +1,46 @@
 import React from 'react'
-import { NavLink } from 'react-router-dom'
+import {NavLink} from 'react-router-dom'
 import './Sidebar.css'
 import SideBarComponent from './SideBarComponent'
 
 function SideBar() {
   return (
     <div className='sidebar'>
-      <NavLink to='/'>
-      <SideBarComponent title={'Home'}/>
+
+      <NavLink className='sidebar_link' to='/'>
+
+        <div className='icon'>
+          <i className="fa-solid fa-house"/>
+        </div>
+
+        <SideBarComponent title={'Home'}/>
       </NavLink>
-      <SideBarComponent title={'Questions'}/>
-      <SideBarComponent title={'Categories'}/>
-      <SideBarComponent title={'Top Questions'}/>
-       <SideBarComponent title={'New Questions'}/>
-       <SideBarComponent title={'Most Hated'}/>
+      <hr/>
+
+      <div className='sidebar_items'>
+        <div className='icon'>
+          <i className="fa-solid fa-thumbs-up"/>
+        </div>
+        <SideBarComponent title={'Popular Questions'}/>
+      </div>
+      <hr/>
+
+      <div className='sidebar_items'>
+        <div className='icon'>
+          <i className="fa-solid fa-clock"/>
+        </div>
+        <SideBarComponent title={'Newest Questions'}/>
+      </div>
+      <hr/>
+
+      <div className='sidebar_items'>
+
+        <div className='icon'>
+          <i className="fa-solid fa-thumbs-down"/>
+        </div>
+        <SideBarComponent title={'Most Hated'}/>
+      </div>
+
     </div>
   )
 }

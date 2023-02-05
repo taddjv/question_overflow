@@ -10,6 +10,8 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Header from "./components/header/Header";
 import HomeComponent from "./components/home/HomeComponent";
+import SideBar from "./components/sideBar/SideBar";
+import './App.css'
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -33,6 +35,14 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
+
+      <div className="app_body">
+        <div className="sidebar_body">
+            <SideBar/>
+        </div>
+
+        <div className="inner_body">
+
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
@@ -45,6 +55,8 @@ function App() {
         <Route path="/" exact={true}>
           <HomeComponent />
         </Route>
+        </div>
+      </div>
       </Switch>
     </BrowserRouter>
   );
