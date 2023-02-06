@@ -4,8 +4,8 @@
 
 * {
   margin: 0;
-  box-sizing: border-box;
-  font-family: "Montserrat", sans-serif;
+  /* box-sizing: border-box; */
+  /* font-family: "Montserrat", sans-serif; */
 }
 
 .home_container {
@@ -13,4 +13,13 @@
   height: 100vh;
   width: 100vw;
   overflow: scroll;
+}
+
+:root{
+  --theme:rgba(64, 174, 14, 0.564);
+  --theme2:rgba(65, 174, 14, 0.171);
+}
+
+body{
+  background-color: white;
 }
