@@ -2,6 +2,7 @@ from flask import Blueprint, request
 from app.models import Question, Search, db
 from app.forms import SearchForm
 from flask_login import current_user, login_required
+from sqlalchemy import inspect
 
 search_routes = Blueprint("searches", __name__)
 
@@ -16,8 +17,26 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+def object_as_dict(obj):
+    return {c.key: getattr(obj, c.key)
+        for c in inspect(obj).mapper.column_attrs}
 
-#!didn't test this route because i'm not sure how to login on postman
+
+def quest_ans_formatter(inputs):
+    final = {"questions":[]}
+    for input in inputs:
+        final_input = object_as_dict(input)
+        answers = []
+        user = object_as_dict(input.user)
+        for answer in input.answers:
+            answers.append(object_as_dict(answer))
+        final_input["answers"] = answers
+        final_input["user"] = user
+
+        final["questions"].append(final_input)
+    return final
+
+
 @search_routes.route("/questions/<query>", methods=["GET"])
 def get_results(query):
     # this is to store user's search into history
@@ -26,8 +45,7 @@ def get_results(query):
         db.session.add(desired_search)
         db.session.commit()
     results = Question.query.filter(Question.question.contains(query))
-    final = {"results": [result.to_dict() for result in results]}
-    return final
+    return quest_ans_formatter(results)
 
 
 @search_routes.route("/user/<int:id>", methods=["GET"])

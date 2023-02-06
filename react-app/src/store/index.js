@@ -5,6 +5,7 @@ import usersReducer from "./user";
 import questionsReducer from "./question";
 import answersReducer from "./answer";
 import reactionsReducer from "./reaction";
+import searchReducer from "./search";
 
 const rootReducer = combineReducers({
   session,
@@ -12,6 +13,7 @@ const rootReducer = combineReducers({
   questionsReducer,
   answersReducer,
   reactionsReducer,
+  searchReducer,
 });
 
 let enhancer;
