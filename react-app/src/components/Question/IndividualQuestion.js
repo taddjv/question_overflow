@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import * as userActions from "../../store/user";
 
 import QuizIcon from "@mui/icons-material/Quiz";
 
@@ -9,26 +7,11 @@ function IndividualQuestion({
   detail,
   url,
   dateCreated,
-  user_id,
+  user,
+  questionId,
+  answers,
 }) {
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.usersReducer);
-
-  useEffect(() => {
-    dispatch(userActions.getTheUser(user_id));
-  }, []);
-
-  const userContent = user.user ? (
-    <>
-      <div className="q-c-a-user">
-        by <span className="q-c-a-user1">{user.user.username}</span>
-      </div>
-      <div className="q-c-a-date">{dateCreated}</div>
-    </>
-  ) : null;
-
   return (
-    //!add new route to answers to count the answers per question
     <>
       <div className="question-content">
         <div className="q-c-logo">
@@ -39,10 +22,24 @@ function IndividualQuestion({
           <div className="q-c-t-d">{detail}</div>
         </div>
         <div className="q-c-answers">
-          <span>0</span>
+          <span>{answers.length}</span>
         </div>
-        <div className="q-c-author">{userContent}</div>
-        <div className="q-c-latest-answer">Latest Answer</div>
+        <div className="q-c-author">
+          <div className="q-c-a-user">
+            by <span className="q-c-a-user1">{user.username}</span>
+          </div>
+          <div className="q-c-a-date">{dateCreated}</div>
+        </div>
+        <div className="q-c-latest-answer">
+          {answers.length ? (
+            <>
+              <div className="q-c-a-user">
+                Re:<span className="q-c-a-user1">{answers[0].answer}</span>
+              </div>
+              <div className="q-c-a-date">{answers[0].dateCreated}</div>
+            </>
+          ) : null}
+        </div>
       </div>
     </>
   );

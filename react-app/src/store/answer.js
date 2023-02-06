@@ -34,12 +34,12 @@ const deleteAnswer = () => {
   };
 };
 
-export const getTheAnswers = () => async (dispatch) => {
-  const response = await fetch("/api/answers/");
+export const getTheAnswers = (id) => async (dispatch) => {
+  const response = await fetch(`/api/answers/questions/${id}`);
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAnswers);
+    dispatch(getAnswers(data));
     return data;
   }
 };

@@ -21,7 +21,9 @@ function Question() {
               detail={ele.detail}
               url={ele.url}
               dateCreated={ele.dateCreated}
-              user_id={ele.user_id}
+              user={ele.user}
+              questionId={ele.id}
+              answers={ele.answers}
             />
           </>
         );

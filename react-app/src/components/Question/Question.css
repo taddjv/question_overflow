@@ -58,6 +58,13 @@
 .q-c-a-user1 {
   color: #aa0200;
   font-weight: 600;
+  height: 20px;
+}
+.q-c-a-user {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: 20px;
 }
 
 .q-c-t-d {
