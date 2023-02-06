@@ -10,14 +10,19 @@ import User from "./components/User";
 import { authenticate } from "./store/session";
 import Header from "./components/header/Header";
 import HomeComponent from "./components/home/HomeComponent";
+import QuestionDetail from "./components/Question/QuestionDetail";
+import { useUser } from "./context/userContext";
+import IndividualAnswer from "./components/answer/IndividualAnswer";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
   const dispatch = useDispatch();
+  const { user, setUser } = useUser(); //global useState
 
   useEffect(() => {
     (async () => {
-      await dispatch(authenticate());
+      let loggedInUser = await dispatch(authenticate());
+      setUser(loggedInUser);
       setLoaded(true);
     })();
   }, [dispatch]);
@@ -30,6 +35,13 @@ function App() {
     <BrowserRouter>
       <Header />
       <Switch>
+        <Route path="/" exact={true}>
+          <HomeComponent />
+        </Route>
+        <Route path="/questions/:id">
+          <QuestionDetail />
+          <IndividualAnswer />
+        </Route>
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
@@ -42,9 +54,6 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
-        <Route path="/" exact={true}>
-          <HomeComponent />
-        </Route>
       </Switch>
     </BrowserRouter>
   );

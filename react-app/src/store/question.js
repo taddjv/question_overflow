@@ -101,26 +101,33 @@ let initialState = {};
 
 const questionsReducer = (state = initialState, action) => {
   let newState;
+  
   switch (action.type) {
+
     case GET_QUESTIONS:
       newState = Object.assign({}, state);
       newState.question = action.payload;
       return newState;
+
     case GET_QUESTION:
       newState = Object.assign({}, state);
       newState.question = action.payload;
       return newState;
+
     case POST_QUESTION:
       newState = Object.assign({}, state);
       newState.question = action.payload;
       return newState;
+
     case PUT_QUESTION:
       newState = Object.assign({}, state);
       newState.question = action.payload;
       return newState;
+
     case DELETE_QUESTION:
       newState = Object.assign({}, state);
       return newState;
+
     default:
       return state;
   }
