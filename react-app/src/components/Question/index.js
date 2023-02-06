@@ -13,10 +13,12 @@ function Question() {
   }, []);
 
   const content = allQuestions
-    ? allQuestions.questions.map((ele) => {
+
+    ? allQuestions.questions.map((ele, i) => {
         return (
           <>
             <IndividualQuestion
+              id={ele.id}
               questionTitle={ele.question}
               detail={ele.detail}
               url={ele.url}
@@ -29,6 +31,7 @@ function Question() {
         );
       })
     : null;
+
   return (
     <div className="question-container">
       <div className="question-title">
