@@ -1,5 +1,7 @@
 from flask import Blueprint,request
-from app.models import Question,db,User
+from app.models import Question,db,User,Answer
+from sqlalchemy import inspect
+from sqlalchemy.orm import joinedload
 
 from app.forms import QuestionForm
 from flask_login import current_user, login_user, logout_user, login_required
@@ -17,18 +19,32 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
-#* added a user query and merged it with
+
+def object_as_dict(obj):
+    return {c.key: getattr(obj, c.key)
+        for c in inspect(obj).mapper.column_attrs}
+
+
+def quest_ans_formatter(inputs):
+    final = {"questions":[]}
+    for input in inputs:
+        final_input = object_as_dict(input)
+        answers = []
+        user = object_as_dict(input.user)
+        for answer in input.answers:
+            answers.append(object_as_dict(answer))
+        final_input["answers"] = answers
+        final_input["user"] = user
+
+        final["questions"].append(final_input)
+    return final
+
+
 @questions_routes.route("/<int:id>", methods=["GET"])
 def get_question(id):
     desired_question = Question.query.get(id)
-    # user = User.query.get(desired_question.user_id)
+    return object_as_dict(desired_question)
 
-    return desired_question.to_dict()
-
-    # desired_question = desired_question.to_dict()
-    # desired_question["user_id"] = user.to_dict()
-    # desired_question["user"] =desired_question.pop("user_id")
-    # return desired_question
 
 
 @questions_routes.route("/<int:id>", methods=["PUT"])
@@ -36,7 +52,6 @@ def get_question(id):
 def edit_question(id):
 
     form=QuestionForm()
-
 
     if form.data:
         desired_question = Question.query.get(id)
@@ -62,9 +77,10 @@ def delete_question(id):
 
 @questions_routes.route("/", methods=["GET"])
 def get_all_questions():
-    questions = Question.query.all()
-    final = {'questions': [question.to_dict() for question in questions]}
-    return final
+    desired_question = db.session.query(Question).all()
+
+    return quest_ans_formatter(desired_question)
+
 
 
 @questions_routes.route("/", methods=["POST"])

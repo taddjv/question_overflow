@@ -47,7 +47,6 @@ export const getTheAnswers = (id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-
     dispatch(getAnswers(data));
     return data;
   }
@@ -64,7 +63,6 @@ export const getTheAnswer = (id) => async (dispatch) => {
 };
 export const getTheAnswersCount = () => async (dispatch) => {
   const response = await fetch("/api/answers/");
-
 
   if (response.ok) {
     const data = await response.json();
@@ -129,10 +127,10 @@ const answersReducer = (state = initialState, action) => {
       newState.answer = action.payload;
       return newState;
 
-      case GET_ANSWERS_COUNT:
-        newState = Object.assign({}, state);
-        // newState.answer = action.payload;
-        return newState;
+    case GET_ANSWERS_COUNT:
+      newState = Object.assign({}, state);
+      // newState.answer = action.payload;
+      return newState;
 
     case POST_ANSWER:
       newState = Object.assign({}, state);
