@@ -36,6 +36,7 @@ function IndividualQuestion({
   return (
     //!add new route to answers to count the answers per question
     <>
+    <NavLink>
       <div className="question-content">
         <div className="q-c-logo">
           <QuizIcon className="q-c-logo-icon"></QuizIcon>
@@ -49,6 +50,7 @@ function IndividualQuestion({
         </div>
         <div className="q-c-author">{userContent}</div>
         <div className="q-c-latest-answer">Latest Answer</div>
+        </div>
       </NavLink>
     </>
   );
