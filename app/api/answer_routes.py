@@ -1,6 +1,7 @@
 from flask import Blueprint,request
 from app.models import Answer, Question, db
 from app.forms import AnswerForm
+from sqlalchemy import inspect
 from flask_login import current_user, login_user, logout_user, login_required
 
 
@@ -16,6 +17,25 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+def object_as_dict(obj):
+    return {c.key: getattr(obj, c.key)
+        for c in inspect(obj).mapper.column_attrs}
+
+
+def ans_reactions_formatter(inputs):
+    final = {"answers":[]}
+    for input in inputs:
+        final_input = object_as_dict(input)
+        reactions = []
+        user = object_as_dict(input.user)
+        for reaction in input.reactions:
+            reactions.append(object_as_dict(reaction))
+        final_input["reactions"] = reactions
+        final_input["user"] = user
+
+        final["answers"].append(final_input)
+    return final
+
 
 @answer_routes.route("/<int:id>", methods=["GET"])
 def get_answer(id):
@@ -28,8 +48,8 @@ def get_all_answers(id):
 
     answers = Answer.query.filter(Answer.question_id==id)
 
-    final = {'answers': [answer.to_dict() for answer in answers]}
-    return final
+    # final = {'answers': [answer.to_dict() for answer in answers]}
+    return ans_reactions_formatter(answers)
 
 
 @answer_routes.route("/count", methods=["GET"])
