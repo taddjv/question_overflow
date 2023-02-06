@@ -2,9 +2,10 @@ const GET_SEARCHES = "search/GET_SEARCHES";
 const GET_USER_SEARCHES = "search/GET_USER_SEARCHES";
 const DELETE_SEARCHES = "search/DELETE_SEARCHES";
 
-const getSearch = () => {
+const getSearch = (searches) => {
   return {
     type: GET_SEARCHES,
+    payload: searches,
   };
 };
 
@@ -21,11 +22,11 @@ const removeSearches = () => {
   };
 };
 
-export const getTheSearch = () => async (dispatch) => {
-  const response = await fetch(`/api/search`);
+export const getTheSearch = (searchQuery) => async (dispatch) => {
+  const response = await fetch(`/api/search/questions/${searchQuery}`);
   if (response.ok) {
-    const data = response.json();
-    dispatch(getSearch);
+    const data = await response.json();
+    dispatch(getSearch(data));
     return data;
   }
 };
@@ -50,7 +51,7 @@ export const deleteTheSearches = () => async (dispatch) => {
   }
 };
 
- initialState = {};
+let initialState = {};
 
 const searchReducer = (state = initialState, action) => {
   let newState;
