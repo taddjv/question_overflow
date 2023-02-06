@@ -8,8 +8,20 @@ def seed_answers():
     demo1 = Answer(
         answer="yea ok. this is right", url="https://images.theconversation.com/files/333754/original/file-20200508-49546-dx6y3a.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop", user_id=1, question_id=2
     )
+    demo2 = Answer(
+        answer="iunno lol", url="https://images.theconversation.com/files/333754/original/file-20200508-49546-dx6y3a.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop", user_id=2, question_id=2
+    )
+    demo3= Answer(
+        answer="i came here to troll", url="https://images.theconversation.com/files/333754/original/file-20200508-49546-dx6y3a.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop", user_id=1, question_id=2
+    )
+    demo4= Answer(
+        answer="ask your mom", url="https://images.theconversation.com/files/333754/original/file-20200508-49546-dx6y3a.jpg?ixlib=rb-1.1.0&q=45&auto=format&w=1200&h=900.0&fit=crop", user_id=3, question_id=2
+    )
     db.session.add(demo)
     db.session.add(demo1)
+    db.session.add(demo2)
+    db.session.add(demo3)
+    db.session.add(demo4)
     db.session.commit()
 
 

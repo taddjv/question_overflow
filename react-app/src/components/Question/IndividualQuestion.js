@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as userActions from "../../store/user";
+import { NavLink } from "react-router-dom";
 
 import QuizIcon from "@mui/icons-material/Quiz";
 
 function IndividualQuestion({
+  id,
   questionTitle,
   detail,
   url,
@@ -27,6 +29,10 @@ function IndividualQuestion({
     </>
   ) : null;
 
+  // const handleClick= (e) => {
+  //   e.preventDefault()
+  // } use to prevent some rendering issue
+
   return (
     //!add new route to answers to count the answers per question
     <>
@@ -43,7 +49,7 @@ function IndividualQuestion({
         </div>
         <div className="q-c-author">{userContent}</div>
         <div className="q-c-latest-answer">Latest Answer</div>
-      </div>
+      </NavLink>
     </>
   );
 }

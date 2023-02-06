@@ -1,0 +1,10 @@
+.question-title {
+    display: grid;
+    grid-template-columns: 80px 370px 100px 200px 200px;
+    height: 50px;
+    width: 100%;
+    background: rgba(64, 174, 14, 0.564);
+    color: white;
+    font-size: 18px;
+    font-weight: 500;
+  }
