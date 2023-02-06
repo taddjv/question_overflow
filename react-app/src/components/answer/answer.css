@@ -1,10 +1,62 @@
 .question-title {
-    display: grid;
-    grid-template-columns: 80px 370px 100px 200px 200px;
-    height: 50px;
-    width: 100%;
-    background: rgba(64, 174, 14, 0.564);
-    color: white;
-    font-size: 18px;
-    font-weight: 500;
-  }
+  display: grid;
+  grid-template-columns: 80px 370px 100px 200px 200px;
+  height: 50px;
+  width: 100%;
+  background: rgba(64, 174, 14, 0.564);
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+}
+
+.ans-vote-container {
+  /* side by side */
+  display: flex;
+}
+
+.vote-container {
+  /* split horizontally */
+  display: flex;
+  flex-direction: column;
+}
+.upvote-con {
+
+}
+.thumbs-up-button{
+
+}
+.upvote-total{
+  color: green;
+}
+
+.downvote-con{
+
+}
+.thumbs-down-button{
+
+}
+.downvote-total{
+  color: red;
+}
+
+.ans-container {
+}
+.ans-detail{
+
+}
+.crud-options{
+
+}
+
+.ans-user-details{
+
+}
+.ans-timestamp {
+
+}
+.ans-user-pfp {
+
+}
+.ans-username {
+
+}

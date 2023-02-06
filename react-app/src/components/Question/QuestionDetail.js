@@ -11,13 +11,9 @@ function QuestionDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
 
-  const question = useSelector(
-    (state) => state.questionsReducer.question.questions[id - 1]
-  );
   const answers = useSelector((state) => state.answersReducer.answer);
-  const questionUser = useSelector((state) => state.usersReducer.user.username);
-  // const answersCount = useSelector((state) => state);
-  const { user, setUser } = useUser();
+  const question = useSelector((state) => state.questionsReducer.question);
+
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestion(id));
@@ -26,32 +22,15 @@ function QuestionDetail() {
     // dispatch(answerActions.getTheAnswersCount());
   }, []);
 
-  //todo ternary with user && answer ? render reaction voting : return non logged in default
-
-  // console.log(content, "+_+_+_+");
-  // if (question) {
-  //   content = (
-  //     question ?
-  //     <>
-  //     <div>hello</div>
-  //     <div>goodbye</div>
-  //     </>
-  //     :
-
-  //     <>
-
-  //     </>
-  //   )
-  // }
-
-  // return content
-
+//TODO IMPLEMENT JOIN TABLES QUESTIONID AND USER
   return (
-    //!add new route to answers to count the answers per question
     <>
+     { question &&
+      answers &&
+      <>
       <div className="question-container">
         <div className="question-title">
-          {question.question}
+         question title
           {/* <div className="q-t-title">Question</div> */}
           <div className="q-t-answers">
             Answers
@@ -59,7 +38,7 @@ function QuestionDetail() {
           </div>
           <div className="q-t-author">
             Author
-            <div className="q-t-author">{questionUser}</div>
+            <div className="q-t-author">question author</div>
           </div>
           <div className="q-t-latest-answer">
             Latest Answer
@@ -72,13 +51,14 @@ function QuestionDetail() {
         <div className="q-c-logo"></div>
         <div className="q-c-title-">
           {/* <div className="q-c-t-q">{question.question}</div> */}
-          <div className="q-c-t-d">{question.detail}</div>
+          <div className="q-c-t-d">detail</div>
         </div>
 
         {/* <div className="q-c-author">{user.username}</div> */}
         <div className="q-c-latest-answer">Latest Answer</div>
       </div>
       <div className="all-answer-container">
+        
         <div className="individual-answer">
           Mapped answer component
           {answers
@@ -100,7 +80,11 @@ function QuestionDetail() {
         </div>
       </div>
     </>
-  );
+    }
+    </>
+
+  )
+
 }
 
 export default QuestionDetail;

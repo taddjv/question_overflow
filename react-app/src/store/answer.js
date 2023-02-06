@@ -53,7 +53,7 @@ export const getTheAnswers = (id) => async (dispatch) => {
 };
 
 export const getTheAnswer = (id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}/`);
+  const response = await fetch(`/api/answers/${id}`);
 
   if (response.ok) {
     const data = await response.json();
@@ -87,7 +87,7 @@ export const postTheAnswer = (answerData) => async (dispatch) => {
   }
 };
 export const putTheAnswer = (answerData, id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}/`, {
+  const response = await fetch(`/api/answers/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",

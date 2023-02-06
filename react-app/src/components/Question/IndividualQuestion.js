@@ -41,8 +41,6 @@ function IndividualQuestion({
             ) : null}
           </div>
         </div>
-        <div className="q-c-author">{userContent}</div>
-        <div className="q-c-latest-answer">Latest Answer</div>
       </NavLink>
     </>
   );
