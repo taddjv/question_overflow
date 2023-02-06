@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import QuizIcon from "@mui/icons-material/Quiz";
 import { NavLink } from "react-router-dom";
 
 function IndividualQuestion({
@@ -14,10 +14,12 @@ function IndividualQuestion({
 }) {
   return (
     <>
-      <NavLink to={`/questions/${id}`}>
+      <NavLink className="question-nav" to={`/questions/${id}`}>
         <div className="question-content">
-          <div className="q-c-logo"></div>
-          <div className="q-c-title-">
+          <div className="q-c-logo">
+            <QuizIcon fontSize="large" className="q-c-logo-icon"></QuizIcon>
+          </div>
+          <div className="q-c-title">
             <div className="q-c-t-q">{questionTitle}</div>
             <div className="q-c-t-d">{detail}</div>
           </div>

@@ -13,6 +13,7 @@ import HomeComponent from "./components/home/HomeComponent";
 import QuestionDetail from "./components/Question/QuestionDetail";
 import { useUser } from "./context/userContext";
 import IndividualAnswer from "./components/answer/IndividualAnswer";
+import Search from "./components/Search";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -36,7 +37,7 @@ function App() {
       <Header />
       <Switch>
         <Route path="/" exact={true}>
-          <HomeComponent />
+          <HomeComponent type="home" />
         </Route>
         <Route path="/questions/:id">
           <QuestionDetail />
@@ -54,6 +55,9 @@ function App() {
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User />
         </ProtectedRoute>
+        <Route path="/search/questions/:searchQuery" exact={true}>
+          <HomeComponent type="search" />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
