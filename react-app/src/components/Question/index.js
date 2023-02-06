@@ -13,21 +13,24 @@ function Question() {
   }, []);
 
   const content = allQuestions
-    ? allQuestions.questions.map((ele) => {
+
+    ? allQuestions.questions.map((ele, i) => {
         return (
           <>
             <IndividualQuestion
+              id={ele.id}
               questionTitle={ele.question}
               detail={ele.detail}
               url={ele.url}
               dateCreated={ele.dateCreated}
               user_id={ele.user_id}
             />
-            <div className="username-test">{ele.username}</div>
+            {/* <div className="username-test">{ele.id}</div> */}
           </>
         );
       })
     : null;
+
   return (
     <div className="question-container">
       <div className="question-title">
