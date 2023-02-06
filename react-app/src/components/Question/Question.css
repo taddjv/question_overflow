@@ -1,3 +1,9 @@
+.question-nav {
+  text-decoration: none;
+  cursor: pointer;
+  color: inherit;
+}
+
 .question-container {
   width: 950px;
   margin: 0 auto;
@@ -29,7 +35,7 @@
   grid-template-rows: 80px;
   background: white;
 }
-.question-content:last-child {
+.question-body > a:last-child > div {
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
 }
@@ -40,8 +46,6 @@
   position: relative;
 }
 .q-c-logo-icon {
-  height: 60px;
-  width: 60px;
   position: absolute;
   top: 50%;
   left: 50%;
