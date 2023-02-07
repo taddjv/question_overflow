@@ -14,7 +14,6 @@ import SideBar from "./components/sideBar/SideBar";
 import './App.css'
 import QuestionDetail from "./components/Question/QuestionDetail";
 import {useUser} from "./context/userContext";
-import IndividualAnswer from "./components/answer/IndividualAnswer";
 import Search from "./components/Search";
 
 
@@ -57,7 +56,6 @@ function App() {
           </div>
         <Route path="/questions/:id">
           <QuestionDetail/>
-          <IndividualAnswer/>
         </Route>
 
           <div className="inner_body">

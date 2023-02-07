@@ -45,7 +45,7 @@ export const getTheQuestions = () => async (dispatch) => {
   }
 };
 export const getTheQuestion = (id) => async (dispatch) => {
-  const response = await fetch(`/api/questions/${id}/`);
+  const response = await fetch(`/api/questions/${id}`);
 
   if (response.ok) {
     const data = await response.json();
@@ -70,7 +70,7 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
   }
 };
 export const putTheQuestion = (questionData, id) => async (dispatch) => {
-  const response = await fetch(`/api/questions/${id}/`, {
+  const response = await fetch(`/api/questions/${id}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -86,7 +86,7 @@ export const putTheQuestion = (questionData, id) => async (dispatch) => {
   }
 };
 export const deleteTheQuestion = (id) => async (dispatch) => {
-  const response = await fetch(`/api/questions/${id}/`, {
+  const response = await fetch(`/api/questions/${id}`, {
     method: "DELETE",
   });
 
@@ -101,7 +101,7 @@ let initialState = {};
 
 const questionsReducer = (state = initialState, action) => {
   let newState;
-  
+
   switch (action.type) {
 
     case GET_QUESTIONS:
