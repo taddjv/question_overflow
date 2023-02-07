@@ -22,7 +22,7 @@ function Header() {
   };
   let currentSession;
 
-if (sessionUser){
+if (user){
   currentSession = (
     <div className='header'>
 

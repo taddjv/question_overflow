@@ -38,6 +38,7 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
+        <SideBar/>
       <Switch>
         <Route path="/"
           exact={true}>
@@ -53,9 +54,9 @@ function App() {
         </Route>
 
         <div className="app_body">
-          <div className="sidebar_body">
-            <SideBar/>
-          </div>
+
+
+
 
           <div className="inner_body">
 
