@@ -6,6 +6,7 @@ import { getTheQuestions } from "../../store/question";
 import Question from "../Question";
 import Search from "../Search";
 import SideBarComponent from "../sideBar/SideBarComponent";
+import SideBar from "../sideBar/SideBar";
 
 function HomeComponent({ type }) {
   // const history = useHistory()
