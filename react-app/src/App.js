@@ -37,24 +37,26 @@ function App() {
   return (
     <BrowserRouter>
       <Header/>
-        <SideBar/>
+
+
       <Switch>
-        <Route path="/"
-          exact={true}>
-          <HomeComponent type="home"/>
-        </Route>
-        <Route path="/questions/:id">
-          <QuestionDetail/>
-        </Route>
         <Route path="/login"
           exact={true}>
           <LoginForm/>
         </Route>
 
+
         <div className="app_body">
-
-
-
+        <Route path="/"
+          exact={true}>
+          <HomeComponent type="home"/>
+        </Route>
+          <div className="sidebar_body">
+          <SideBar/>
+          </div>
+        <Route path="/questions/:id">
+          <QuestionDetail/>
+        </Route>
 
           <div className="inner_body">
 

@@ -1,4 +1,4 @@
-from flask import Blueprint,request
+from flask import Blueprint, request
 from app.models import Answer, Question, db
 from app.forms import AnswerForm
 from sqlalchemy import inspect
@@ -6,6 +6,7 @@ from flask_login import current_user, login_user, logout_user, login_required
 
 
 answer_routes = Blueprint("answers", __name__)
+
 
 def validation_errors_to_error_messages(validation_errors):
     """
@@ -17,13 +18,14 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+
 def object_as_dict(obj):
     return {c.key: getattr(obj, c.key)
-        for c in inspect(obj).mapper.column_attrs}
+            for c in inspect(obj).mapper.column_attrs}
 
 
 def ans_reactions_formatter(inputs):
-    final = {"answers":[]}
+    final = {"answers": []}
     for input in inputs:
         final_input = object_as_dict(input)
         reactions = []
@@ -46,7 +48,7 @@ def get_answer(id):
 @answer_routes.route("/questions/<int:id>", methods=["GET"])
 def get_all_answers(id):
 
-    answers = Answer.query.filter(Answer.question_id==id)
+    answers = Answer.query.filter(Answer.question_id == id)
 
     # final = {'answers': [answer.to_dict() for answer in answers]}
     return ans_reactions_formatter(answers)
@@ -62,18 +64,19 @@ def answer_count():
 @login_required
 def edit_answer(id):
 
-    form=AnswerForm()
-
+    form = AnswerForm()
 
     if (form.data):
         desired_answer = Answer.query.get(id)
+        if desired_answer.user_id == current_user.id:
+            desired_answer.answer = form.data["answer"] or desired_answer.answer
+            desired_answer.url = form.data["url"] or desired_answer.url
 
-        desired_answer.answer =  form.data["answer"] or desired_answer.answer
-        desired_answer.url =  form.data["url"] or desired_answer.url
+            db.session.commit()
 
-        db.session.commit()
-
-        return desired_answer.to_dict()
+            return desired_answer.to_dict()
+        else:
+            return {"message": "You are not the author of this answer"}
     return "no data (error)"
 
 
@@ -81,21 +84,25 @@ def edit_answer(id):
 @login_required
 def delete_answer(id):
     desired_answer = Answer.query.get(id)
-    db.session.delete(desired_answer)
-    db.session.commit()
-    return {"message":"answer successfully deleted"}
+    if desired_answer.user_id == current_user.id:
+        db.session.delete(desired_answer)
+        db.session.commit()
+        return {"message": "answer successfully deleted"}
+    else:
+        return {"message": "You are not allow to delete this answer"}
 
 
 @answer_routes.route("/questions/<int:id>", methods=["POST"])
 @login_required
 def post_answer(id):
 
-    selected_question=Question.query.get(id)
+    selected_question = Question.query.get(id)
 
     form = AnswerForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     if form.validate_on_submit():
-        desired_answer = Answer(answer=form.data['answer'],url=form.data["url"],user_id=current_user.id, question_id=selected_question.id)
+        desired_answer = Answer(answer=form.data['answer'], url=form.data["url"],
+                                user_id=current_user.id, question_id=selected_question.id)
         db.session.add(desired_answer)
         db.session.commit()
         return desired_answer.to_dict()
