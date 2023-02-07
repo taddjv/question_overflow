@@ -58,7 +58,7 @@ function QuestionDetail() {
       <div className="all-answer-container">
 
         <div className="individual-answer">
-          REPLIES
+          <div className="replies-banner">replies</div>
           {answers
         ? answers.answers.map((ele, i) => {
             return (

@@ -82,6 +82,20 @@
 .all-answer-container {
   background: #f1ecea;
   width: 950px;
-  border: 1px solid black;
+  /* border: 1px solid black; */
   margin: 0 auto;
+}
+
+.replies-banner{
+  background: #e51613;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+  height: 35px;
+  font-size: large;
+  font-weight: 600;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px;
 }

@@ -4,7 +4,7 @@ import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
 import * as answerActions from "../../store/answer";
 import * as reactionActions from "../../store/reaction";
 import usersReducer, * as userActions from "../../store/user";
-import "./answer.css"
+import "./IndividualAnswer.css"
 
 function IndividualAnswers({
   id,
@@ -28,8 +28,8 @@ function IndividualAnswers({
         <div className="ans-vote-container">
           <div className="vote-container">
             <div className="upvote-con">
-              <div className="thumbs-up-button">upvote button</div>
               <div className="upvote-total"> upvote total here</div>
+              <div className="thumbs-up-button">upvote button</div>
             </div>
             <div className="downvote-con">
             <div className="thumbs-down-button">downvote button</div>
@@ -54,7 +54,6 @@ function IndividualAnswers({
           </div>
 
         </div>
-      <div className="title">answer author</div>
 
       </>
       )
