@@ -44,8 +44,9 @@
 .ans-detail{
 
 }
-.crud-options{
-
+.ans-crud-options{
+  display: flex;
+  justify-content: flex-end;
 }
 
 .ans-user-details{

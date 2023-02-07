@@ -39,14 +39,16 @@ function IndividualAnswers({
 
           <div className="ans-container">
             <div className="ans-detail-con">{answer}</div>
-            <div className="crud-options">
-              <button> edit </button>
-              <button> delete </button>
-            </div>
+
             <div className="ans-user-details">
               <div className="ans-timestamp">Posted on</div>
               <div className="ans-user-pfp">profile pic</div>
               <div className="ans-username"> by username </div>
+            </div>
+
+            <div className="ans-crud-options">
+              <button className="edit-button">edit</button>
+              <button className="delete-button">delete</button>
             </div>
 
           </div>
