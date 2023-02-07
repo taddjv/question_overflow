@@ -81,8 +81,8 @@ def edit_question(id):
 @questions_routes.route("/<int:id>", methods=["DELETE"])
 @login_required
 def delete_question(id):
+    desired_question = Question.query.get(id)
     if desired_question.user_id == current_user.id:
-        desired_question = Question.query.get(id)
         db.session.delete(desired_question)
         db.session.commit()
         return {"message": "question successfully deleted"}
