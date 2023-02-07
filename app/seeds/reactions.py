@@ -6,7 +6,7 @@ def seed_reactions():
         answer_id=1, user_id=2, up_vote=True
     )
     demo1 = Reaction(
-        answer_id=1, user_id=2, down_vote=True
+        answer_id=2, user_id=2, down_vote=True
     )
     demo2 = Reaction(
         answer_id=2, user_id=1, down_vote=True
