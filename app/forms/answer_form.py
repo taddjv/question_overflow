@@ -8,7 +8,7 @@ def valid_picture(form, field):
     # checks if the picture is a .png or .jpg
     picture_url = field.data
     # print(picture_url, " <-----")
-    if picture_url.lower().endswith(('.png', '.jpg', '.jpeg')):
+    if picture_url.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tif', '.tiff')):
         return {'message': 'image added successfully'}
     else:
         raise ValidationError("Not a valid image.")
