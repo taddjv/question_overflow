@@ -5,7 +5,9 @@ import { useUser } from "../../context/userContext";
 import * as answerActions from "../../store/answer";
 import * as reactionActions from "../../store/reaction";
 import usersReducer, * as userActions from "../../store/user";
+import "./IndividualAnswer.css"
 import "./answer.css";
+
 
 function IndividualAnswers({
   id,
@@ -53,6 +55,7 @@ function IndividualAnswers({
       <div className="title">answer author</div>
     </>
   );
+
 }
 
 export default IndividualAnswers;
