@@ -44,12 +44,22 @@ def quest_ans_formatter(inputs):
 @questions_routes.route("/<int:id>", methods=["GET"])
 def get_question(id):
     desired_question = Question.query.get(id)
-    return object_as_dict(desired_question)
+    final_input = object_as_dict(desired_question)
+    answers = []
+    user = object_as_dict(desired_question.user)
+    for answer in desired_question.answers:
+        answers.append(object_as_dict(answer))
+    final_input["answers"] = answers
+    final_input["user"] = user
+
+    #     final["questions"].append(final_input)
+    return final_input
 
 
 @questions_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_question(id):
+    print(",----------------")
 
     form = QuestionForm()
 
