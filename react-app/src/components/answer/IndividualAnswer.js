@@ -6,6 +6,8 @@ import * as answerActions from "../../store/answer";
 import * as reactionActions from "../../store/reaction";
 import usersReducer, * as userActions from "../../store/user";
 import "./IndividualAnswer.css"
+import "./answer.css";
+
 
 function IndividualAnswers({
   id,
@@ -21,15 +23,31 @@ function IndividualAnswers({
   //!set logic for user login
   //! create a function for reactions (upvotes downvotes etc)
 
+<<<<<<<<< Temporary merge branch 1
+  return (
+    <>
+      <div className="ans-vote-container">
+        <div className="vote-container">
+          <div className="upvote-con">
+            <div className="thumbs-up-button">upvote button</div>
+            <div className="upvote-total"> upvote total here</div>
+          </div>
+          <div className="downvote-con">
+=========
+  // }, []);
+
+
+
       return (
         <>
         <div className="ans-vote-container">
           <div className="vote-container">
             <div className="upvote-con">
-              <div className="thumbs-up-button">upvote button</div>
               <div className="upvote-total"> upvote total here</div>
+              <div className="thumbs-up-button">upvote button</div>
             </div>
             <div className="downvote-con">
+>>>>>>>>> Temporary merge branch 2
             <div className="thumbs-down-button">downvote button</div>
             <div className="downvote-total"> downvote total here</div>
           </div>
@@ -53,9 +71,8 @@ function IndividualAnswers({
 
         </div>
       <div className="title">answer author</div>
-
-      </>
-      )
+    </>
+  );
 }
 
 export default IndividualAnswers;
