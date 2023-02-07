@@ -4,13 +4,14 @@ from wtforms.validators import DataRequired, ValidationError
 from app.models import Answer
 
 
-def valid_picture(form,field):
-    #checks if the picture is a .png or .jpg
+def valid_picture(form, field):
+    # checks if the picture is a .png or .jpg
     picture_url = field.data
-
-    if picture_url:
-        if ".jpg" not in picture_url or ".png" not in picture_url:
-            raise ValidationError("Not a valid image.")
+    # print(picture_url, " <-----")
+    if picture_url.lower().endswith(('.png', '.jpg', '.jpeg')):
+        return {'message': 'image added successfully'}
+    else:
+        raise ValidationError("Not a valid image.")
 
 
 class AnswerForm(FlaskForm):
