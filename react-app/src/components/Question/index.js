@@ -1,36 +1,39 @@
 import React, { useState, useEffect } from "react";
 import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
+import { useUser } from "../../context/userContext";
 import * as questionActions from "../../store/question";
 import "./Question.css";
 
 function Question() {
   const dispatch = useDispatch();
   const allQuestions = useSelector((state) => state.questionsReducer.question);
+  const { user, setUser } = useUser();
+  console.log(user);
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestions());
   }, []);
 
-  const content = allQuestions
-
-    ? allQuestions.questions.map((ele, i) => {
-        return (
-          <>
-            <IndividualQuestion
-              id={ele.id}
-              questionTitle={ele.question}
-              detail={ele.detail}
-              url={ele.url}
-              dateCreated={ele.dateCreated}
-              user={ele.user}
-              questionId={ele.id}
-              answers={ele.answers}
-            />
-          </>
-        );
-      })
-    : null;
+  const content =
+    allQuestions && Array.isArray(allQuestions.questions)
+      ? allQuestions.questions.map((ele, i) => {
+          return (
+            <>
+              <IndividualQuestion
+                id={ele.id}
+                questionTitle={ele.question}
+                detail={ele.detail}
+                url={ele.url}
+                dateCreated={ele.dateCreated}
+                user={ele.user}
+                questionId={ele.id}
+                answers={ele.answers}
+              />
+            </>
+          );
+        })
+      : null;
 
   return (
     <div className="question-container">
