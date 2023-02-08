@@ -42,6 +42,7 @@ def quest_ans_formatter(inputs):
 def get_results(query):
     # this is to store user's search into history
     if (current_user.is_authenticated):
+        print(query, ' <----')
         desired_search = Search(search=query, user_id=current_user.id)
         db.session.add(desired_search)
         db.session.commit()
