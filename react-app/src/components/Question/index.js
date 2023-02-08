@@ -9,7 +9,6 @@ function Question() {
   const dispatch = useDispatch();
   const allQuestions = useSelector((state) => state.questionsReducer.question);
   const { user, setUser } = useUser();
-  console.log(user);
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestions());

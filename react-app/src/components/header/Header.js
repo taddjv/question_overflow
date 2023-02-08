@@ -4,25 +4,29 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import * as searchesActions from "../../store/search";
+import * as sessionActions from "../../store/session";
 
 import LogoutMenu from "./logout/LogoutMenu";
 import LoginMenu from "./login/LoginMenu";
 
 function Header() {
-  const { user, setUser } = useUser();
+  const user = useSelector((state) => state.session);
   const history = useHistory();
-  const [searchQuery, setSearchQuery] = useState("");
-
   const dispatch = useDispatch();
+  const [searchQuery, setSearchQuery] = useState("");
 
   const search = (e) => {
     e.preventDefault();
     setSearchQuery("");
     history.push(`/search/questions/${searchQuery}`);
   };
+  useEffect(() => {
+    dispatch(sessionActions.authenticate());
+  }, []);
+
   let currentSession;
 
-  if (user) {
+  if (user.user) {
     currentSession = (
       <div className="header">
         <div className="header_left">
@@ -40,7 +44,7 @@ function Header() {
         </div>
 
         <div className="header_right">
-          {user.username}
+          {user.user.username}
           <LoginMenu />
         </div>
       </div>
