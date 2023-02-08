@@ -36,7 +36,6 @@ export default function LoginMenu() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    sessionActions.logout();
     setAnchorEl(null);
   };
   const logout = (e) => {
