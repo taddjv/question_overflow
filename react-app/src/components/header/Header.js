@@ -16,8 +16,10 @@ function Header() {
   const [searchQuery, setSearchQuery] = useState("");
 
   const handleDemoLogin = (e) => {
+    let email = "demo@aa.io";
+    let password = "password";
     e.preventDefault();
-    dispatch(sessionActions.login());
+    dispatch(sessionActions.login(email, password));
   };
 
   const search = (e) => {
