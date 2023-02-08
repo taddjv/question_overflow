@@ -4,25 +4,42 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
 import { useUser } from "../../context/userContext";
 import * as searchesActions from "../../store/search";
+import * as sessionActions from "../../store/session";
+
+import AskQuestionModal from "../Question/AskQuestionModal/index";
 
 import LogoutMenu from "./logout/LogoutMenu";
 import LoginMenu from "./login/LoginMenu";
 
 function Header() {
-  const { user, setUser } = useUser();
+  const user = useSelector((state) => state.session);
   const history = useHistory();
+  const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
 
-  const dispatch = useDispatch();
+  const handleDemoLogin = (e) => {
+    let email = "demo@aa.io";
+    let password = "password";
+    e.preventDefault();
+    dispatch(sessionActions.login(email, password));
+    history.push("/");
+  };
 
   const search = (e) => {
     e.preventDefault();
+    dispatch(searchesActions.getTheSearch(searchQuery)).then(() =>
+      history.push(`/search/questions/${searchQuery}`)
+    );
     setSearchQuery("");
-    history.push(`/search/questions/${searchQuery}`);
   };
+
+  useEffect(() => {
+    dispatch(sessionActions.authenticate());
+  }, []);
+
   let currentSession;
 
-  if (user) {
+  if (user.user) {
     currentSession = (
       <div className="header">
         <div className="header_left">
@@ -36,11 +53,21 @@ function Header() {
 
         <div className="header_center">
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input className="search_input" type="text" placeholder="search..." />
+          <input
+            className="search_input"
+            type="search"
+            name="q"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search for questions ..."
+          />
+          <button onClick={search}>Search</button>
         </div>
+        
+        <AskQuestionModal />
 
         <div className="header_right">
-          {user.username}
+          {user.user.username}
           <LoginMenu />
         </div>
       </div>
@@ -57,10 +84,21 @@ function Header() {
           </NavLink>
         </div>
 
+        <button onClick={handleDemoLogin}>Demo Login</button>
+
         <div className="header_center">
           <i className="fa-solid fa-magnifying-glass"></i>
-          <input className="search_input" type="text" placeholder="search..." />
+          <input
+            className="search_input"
+            type="search"
+            name="q"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            placeholder="Search for questions ..."
+          />
+          <button onClick={search}>Search</button>
         </div>
+        {/* <AskQuestionModal /> */}
 
         <div className="header_right">
           <LogoutMenu />
