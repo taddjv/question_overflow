@@ -42,7 +42,15 @@
 
 .ans-container {
   width: 900px;
+  display: flex;
+
 }
+
+.ans-body-and-user-con{
+  display: flex;
+
+}
+
 .ans-detail{
 
 }
@@ -54,10 +62,13 @@
 .ans-crud-options {
   display: flex;
   justify-content: flex-end;
+  align-items: flex-end;
 }
 
 /* make height = to height of vote-container */
 .ans-user-details{
+  display: flex;
+  justify-content: flex-end;
 
 }
 .ans-timestamp {
