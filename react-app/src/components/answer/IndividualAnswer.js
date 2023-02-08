@@ -23,6 +23,8 @@ function IndividualAnswers({
   //! create a function for reactions (upvotes downvotes etc)
 
 
+
+
       return (
         <>
         <div className="ans-vote-container">
@@ -54,7 +56,6 @@ function IndividualAnswers({
           </div>
 
         </div>
-      <div className="title">answer author</div>
     </>
   );
 }
