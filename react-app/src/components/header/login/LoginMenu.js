@@ -39,8 +39,10 @@ export default function LoginMenu() {
     sessionActions.logout();
     setAnchorEl(null);
   };
-
-
+  const logout = (e) => {
+    handleClose();
+    dispatch(sessionActions.logout());
+  };
 
   return (
     <div>
