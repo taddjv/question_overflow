@@ -15,6 +15,11 @@ function Header() {
   const dispatch = useDispatch();
   const [searchQuery, setSearchQuery] = useState("");
 
+  const handleDemoLogin = (e) => {
+    e.preventDefault();
+    dispatch(sessionActions.login());
+  };
+
   const search = (e) => {
     e.preventDefault();
     setSearchQuery("");
@@ -60,6 +65,8 @@ function Header() {
             </h1>
           </NavLink>
         </div>
+
+        <button onClick={handleDemoLogin}>Demo Login</button>
 
         <div className="header_center">
           <i className="fa-solid fa-magnifying-glass"></i>
