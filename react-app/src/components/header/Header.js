@@ -6,6 +6,8 @@ import { useUser } from "../../context/userContext";
 import * as searchesActions from "../../store/search";
 import * as sessionActions from "../../store/session";
 
+import AskQuestionModal from "../Question/AskQuestionModal/index";
+
 import LogoutMenu from "./logout/LogoutMenu";
 import LoginMenu from "./login/LoginMenu";
 
@@ -61,6 +63,8 @@ function Header() {
           />
           <button onClick={search}>Search</button>
         </div>
+        
+        <AskQuestionModal />
 
         <div className="header_right">
           {user.user.username}
@@ -94,6 +98,7 @@ function Header() {
           />
           <button onClick={search}>Search</button>
         </div>
+        {/* <AskQuestionModal /> */}
 
         <div className="header_right">
           <LogoutMenu />
