@@ -49,15 +49,15 @@ function IndividualAnswers({
 
           <div className="ans-container">
             <div className="ans-body-and-user-con">
-              <div className="ans-detail-con">{answer.answer} </div>
+              <div className="ans-detail-con">{answer?.answer} </div>
 
               <div className="ans-user-details">
                 <div className="ans-timestamp">Posted on {dateCreated}</div>
                 <div className="ans-user-pfp">profile pic</div>
-                <div className="ans-username"> by {answer.user.username} </div>
+                <div className="ans-username"> by {answer?.user?.username} </div>
               </div>
             </div>
-            {answer.user.username === user.username && (
+            {answer?.user?.username === user?.username && (
               <div className="ans-crud-options">
                 <button
                   className="edit-button"

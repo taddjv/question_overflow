@@ -54,6 +54,7 @@ export default function LogoutMenu() {
         }}
       >
         <MenuItem onClick={login}>Log In</MenuItem>
+        <MenuItem onClick={signUp}>Sign Up</MenuItem>
       </Menu>
     </div>
   );

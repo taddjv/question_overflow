@@ -17,13 +17,14 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+
 def object_as_dict(obj):
     return {c.key: getattr(obj, c.key)
-        for c in inspect(obj).mapper.column_attrs}
+            for c in inspect(obj).mapper.column_attrs}
 
 
 def quest_ans_formatter(inputs):
-    final = {"questions":[]}
+    final = {"questions": []}
     for input in inputs:
         final_input = object_as_dict(input)
         answers = []
@@ -41,11 +42,15 @@ def quest_ans_formatter(inputs):
 def get_results(query):
     # this is to store user's search into history
     if (current_user.is_authenticated):
+        print(query, ' <----')
         desired_search = Search(search=query, user_id=current_user.id)
         db.session.add(desired_search)
         db.session.commit()
     results = Question.query.filter(Question.question.contains(query))
-    return quest_ans_formatter(results)
+    if results:
+        return quest_ans_formatter(results)
+    else:
+        return {"message": "No results found"}
 
 
 @search_routes.route("/user/<int:id>", methods=["GET"])

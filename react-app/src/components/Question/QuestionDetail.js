@@ -114,7 +114,7 @@ function QuestionDetail() {
                   <div className="user-timestamp-question-con">
                     <div className="username-timestamp">
                       <div className="ind-ques-username">
-                        {question.user.username} asks
+                        {question?.user?.username} asks
                       </div>
                       <div className="ind-ques-timestamp">
                         Posted on {question.dateCreated}
@@ -127,7 +127,7 @@ function QuestionDetail() {
                       {question?.url ? <img src={question.url} /> : null}
                     </div>
                   </div>
-                  {question?.user.username === user.username && (
+                  {question?.user?.username === user?.username && (
                     <>
                       <div className="ind-ques-cruds">
                         <button
