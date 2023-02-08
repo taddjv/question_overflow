@@ -59,7 +59,6 @@ def get_question(id):
 @questions_routes.route("/<int:id>", methods=["PUT"])
 @login_required
 def edit_question(id):
-    print(",----------------")
 
     form = QuestionForm()
 
