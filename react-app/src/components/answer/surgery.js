@@ -2,7 +2,8 @@ return (
     <>
       {question && question.user && answers && (
         <>
-         <div className="question-and-answers-body">
+          <div className="ans-vote-container">
+
          {editQuestion ? (
               <form
                 className="individual-question-container-edit"
@@ -18,14 +19,6 @@ return (
                   </div>
 
                   <div className="ques-input-con">
-                  <input
-                    className="edit-ques-title"
-                    type="text"
-                    value={questionTitle || question.question}
-                    onChange={(e) => {
-                      setQuestionTitle(e.target.value);
-                    }}
-                  ></input>
                   <textarea
                     className="edit-ques-body"
                     type="text"
@@ -64,21 +57,30 @@ return (
               </form>
 
           ) : (
-            <>
-              <div className="individual-question-container">
-                <div className="user-timestamp-question-con">
-                  <div className="username-timestamp">
-                    <div className="ind-ques-username">
-                      {question.user.username} asks
-                    </div>
-                    <div className="ind-ques-timestamp">
-                      Posted on {question.dateCreated}
-                    </div>
-                  </div>
+         <>
 
-                  <div className="ind-ques-title">{question.question}</div>
-                  <div className="ind-ques-body">{question.detail}</div>
-                  <div className="ind-ques-image">Optional image goes here</div>
+
+                <div className="vote-container">
+                    <div className="upvote-con">
+                    <div className="upvote-total"> upvote total here</div>
+                    <div className="thumbs-up-button">upvote button</div>
+                    </div>
+                    <div className="downvote-con">
+                    <div className="thumbs-down-button">downvote button</div>
+                    <div className="downvote-total"> downvote total here</div>
+                </div>
+                </div>
+
+                <div className="ans-container">
+                <div className="ans-body-and-user-con">
+                    <div className="ans-detail-con">{answer}  </div>
+
+                    <div className="ans-user-details">
+                    <div className="ans-timestamp">Posted on</div>
+                    <div className="ans-user-pfp">profile pic</div>
+                    <div className="ans-username"> by username </div>
+                    </div>
+
                 </div>
 
                 <div className="ind-ques-cruds">
@@ -110,28 +112,7 @@ return (
             </>
           )}
 
-          <div className="all-answer-container">
-            <div className="individual-answer">
-              <div className="replies-banner">replies</div>
-
-              {answers
-                ? answers.answers.map((ele, i) => {
-                    return (
-                      <>
-                        <IndividualAnswer
-                          id={ele.id}
-                          answer={ele.answer}
-                          question_id={ele.question_id}
-                          user_id={ele.user_id}
-                          url={ele.url}
-                          dateCreated={ele.dateCreated}
-                        />
-                      </>
-                    );
-                  })
-                : null}
-            </div>
-          </div>
+          {/* entire container */}
          </div>
         </>
       )}

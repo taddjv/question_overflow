@@ -57,10 +57,23 @@ function IndividualAnswers({
 
 
       return (
-
-      // ):( ORRRR
         <>
+
+{answer && answer.user_id === user_id && (
         <div className="ans-vote-container">
+
+          {editAnswer ? (
+
+          ): null }
+
+        </div>
+
+)}
+
+        {/* // ):( ORRRR */}
+        <>
+        <div className="ans-vote-container-REPLACE-LATER">
+
           <div className="vote-container">
             <div className="upvote-con">
               <div className="upvote-total"> upvote total here</div>
@@ -87,16 +100,29 @@ function IndividualAnswers({
             <div className="ans-crud-options">
               <button className="edit-button"
               onClick={() => {
-
+                setEditAnswer(true)
               }}
               >edit</button>
-              <button className="delete-button">delete</button>
+              <button className="delete-button"
+              onClick={() => {
+                dispatch(answerActions.deleteTheAnswer(id))
+                  .then(() => {
+                    console.log("worked, answer deleted");
+                  })
+                  .catch(async (res) => {
+                    console.log("unauthorized answer delete bro");
+                  });
+              }}
+              >delete</button>
             </div>
 
           </div>
 
+  {/* entire container */}
         </div>
     </>
+        </>
+
   );
 }
 
