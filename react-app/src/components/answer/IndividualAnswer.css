@@ -12,6 +12,7 @@
 .ans-vote-container {
   /* side by side */
   display: flex;
+  flex-direction: column;
 }
 
 .vote-container {
