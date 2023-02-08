@@ -6,7 +6,7 @@ import * as answerActions from "../../store/answer";
 import * as reactionActions from "../../store/reaction";
 import usersReducer, * as userActions from "../../store/user";
 import "./IndividualAnswer.css"
-import "./answer.css";
+// import "./answer.css";
 
 
 function IndividualAnswers({
