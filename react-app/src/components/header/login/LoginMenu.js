@@ -1,6 +1,6 @@
 import * as React from "react";
 import * as sessionActions from "../../../store/session";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../../context/userContext";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
@@ -20,16 +20,16 @@ export default function LoginMenu() {
     setShowMenu(true);
   };
 
-  useEffect(() => {
-    if (!showMenu) return;
+  // useEffect(() => {
+  //   if (!showMenu) return;
 
-    const closeMenu = () => {
-      setShowMenu(false);
-    };
+  //   const closeMenu = () => {
+  //     setShowMenu(false);
+  //   };
 
-    document.addEventListener("click", closeMenu);
-    return () => document.removeEventListener("click", closeMenu);
-  }, [showMenu]);
+  //   document.addEventListener("click", closeMenu);
+  //   return () => document.removeEventListener("click", closeMenu);
+  // }, [showMenu]);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -65,7 +65,12 @@ export default function LoginMenu() {
         }}
       >
         <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>Login</MenuItem>
+        <ul>
+          <li>{currUser.username}</li>
+          <li>{currUser.email}</li>
+        </ul>
+        {!currUser && <MenuItem onClick={handleClose}>Login</MenuItem>}
+        {currUser && <MenuItem onClick={logout}>Logout</MenuItem>}
       </Menu>
     </div>
   );
