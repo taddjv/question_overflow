@@ -65,7 +65,7 @@ const AskQuestionForm = ({ setShowModal }) => {
           />
         </label>
         <label>
-          URL
+          Profile-URL
           <input
             type="text"
             value={url}
