@@ -1,13 +1,15 @@
 import * as React from "react";
+import * as sessionActions from "../../../store/session";
+import { useDispatch } from "react-redux";
+import { useUser } from "../../../context/userContext";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Avatar } from "@mui/material";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
-import * as sessionActions from "../../../store/session.js";
 
 export default function LoginMenu() {
+  const dispatch = useDispatch();
+  const { user } = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [showMenu, setShowMenu] = React.useState(true);
 
@@ -38,6 +40,8 @@ export default function LoginMenu() {
     setAnchorEl(null);
   };
 
+
+
   return (
     <div>
       <Button
@@ -58,15 +62,8 @@ export default function LoginMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem>Profile</MenuItem>
-        {currUser && showMenu && (
-          <ul>
-            <li>{currUser.username}</li>
-            <li>{currUser.email}</li>
-          </ul>
-        )}
-        {!currUser && <MenuItem>Login</MenuItem>}
-        {currUser && <MenuItem onClick={handleClose}>Logout</MenuItem>}
+        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem onClick={handleClose}>Login</MenuItem>
       </Menu>
     </div>
   );

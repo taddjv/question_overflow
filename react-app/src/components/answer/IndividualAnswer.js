@@ -6,7 +6,6 @@ import * as answerActions from "../../store/answer";
 import * as reactionActions from "../../store/reaction";
 import usersReducer, * as userActions from "../../store/user";
 import "./IndividualAnswer.css"
-// import "./answer.css";
 
 
 function IndividualAnswers({
@@ -23,15 +22,16 @@ function IndividualAnswers({
   //!set logic for user login
   //! create a function for reactions (upvotes downvotes etc)
 
-  return (
-    <>
-      <div className="ans-vote-container">
-        <div className="vote-container">
-          <div className="upvote-con">
-            <div className="thumbs-up-button">upvote button</div>
-            <div className="upvote-total"> upvote total here</div>
-          </div>
-          <div className="downvote-con">
+
+      return (
+        <>
+        <div className="ans-vote-container">
+          <div className="vote-container">
+            <div className="upvote-con">
+              <div className="upvote-total"> upvote total here</div>
+              <div className="thumbs-up-button">upvote button</div>
+            </div>
+            <div className="downvote-con">
             <div className="thumbs-down-button">downvote button</div>
             <div className="downvote-total"> downvote total here</div>
           </div>
@@ -46,16 +46,17 @@ function IndividualAnswers({
             <div className="ans-username"> by username </div>
           </div>
 
-          <div className="ans-crud-options">
-            <button className="edit-button">edit</button>
-            <button className="delete-button">delete</button>
+            <div className="ans-crud-options">
+              <button className="edit-button">edit</button>
+              <button className="delete-button">delete</button>
+            </div>
+
           </div>
+
         </div>
-      </div>
       <div className="title">answer author</div>
     </>
   );
-
 }
 
 export default IndividualAnswers;
