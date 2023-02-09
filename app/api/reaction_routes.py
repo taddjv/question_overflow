@@ -31,8 +31,6 @@ def post_upvote_reaction(id):
         # Reaction.user_id == 1
 
     ).first()
-    # print(reaction_check, ' <------')
-    # print(current_user.id, ' <-----')
 
     if reaction_check:
         if reaction_check.up_vote == True:

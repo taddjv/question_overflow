@@ -12,7 +12,6 @@ function HomeComponent({ type }) {
   // const history = useHistory()
   // const dispatch = useDispatch()
   // const questions = useSelector(state => state.questions)
-  // console.log(questions)
 
   // useEffect(() => {
   //   dispatch(getTheQuestions())
