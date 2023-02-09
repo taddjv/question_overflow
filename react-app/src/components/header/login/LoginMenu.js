@@ -6,6 +6,7 @@ import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Avatar } from "@mui/material";
+import './LoginMenu.css'
 
 export default function LoginMenu() {
   const dispatch = useDispatch();
@@ -37,7 +38,8 @@ export default function LoginMenu() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Avatar />
+
+        <Avatar/>
       </Button>
       <Menu
         id="basic-menu"
@@ -48,13 +50,13 @@ export default function LoginMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
+        <MenuItem className='dropdown_item' onClick={handleClose}>Profile</MenuItem>
         <ul>
           <li>{currUser.username}</li>
           <li>{currUser.email}</li>
         </ul>
-        {!currUser && <MenuItem onClick={handleClose}>Login</MenuItem>}
-        {currUser && <MenuItem onClick={logout}>Logout</MenuItem>}
+        {!currUser && <MenuItem className='dropdown_item' onClick={handleClose}>Login</MenuItem>}
+        {currUser && <MenuItem className='dropdown_item' onClick={logout}>Logout</MenuItem>}
       </Menu>
     </div>
   );

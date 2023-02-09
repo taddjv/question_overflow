@@ -41,22 +41,22 @@ function App() {
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
+            <Route path="/sign-up" exact={true}>
+              <SignUpForm />
+            </Route>
 
         <div className="app_body">
-          <Route path="/" exact={true}>
-            <HomeComponent type="home" />
-          </Route>
           <div className="sidebar_body">
             <SideBar />
           </div>
+          <Route path="/" exact={true}>
+            <HomeComponent type="home" />
+          </Route>
           <Route path="/questions/:id">
             <QuestionDetail />
           </Route>
 
           <div className="inner_body">
-            <Route path="/sign-up" exact={true}>
-              <SignUpForm />
-            </Route>
             <ProtectedRoute path="/users" exact={true}>
               <UsersList />
             </ProtectedRoute>
