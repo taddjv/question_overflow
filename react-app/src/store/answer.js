@@ -5,10 +5,11 @@ const POST_ANSWER = "answers/POST_ANSWER";
 const PUT_ANSWER = "answers/PUT_ANSWER";
 const DELETE_ANSWER = "answers/DELETE_ANSWER";
 
-const getAnswers = (answers) => {
+const getAnswers = (answers, id) => {
   return {
     type: GET_ANSWERS,
     payload: answers,
+    id: id,
   };
 };
 const getAnswer = (answer) => {
@@ -24,21 +25,27 @@ const getAnswersCount = () => {
   };
 };
 
-const postAnswer = (answer) => {
+const postAnswer = (answer, id, questionId) => {
   return {
     type: POST_ANSWER,
     payload: answer,
+    id: id,
+    questionId: questionId,
   };
 };
-const putAnswer = (answer) => {
+const putAnswer = (answer, id, questionId) => {
   return {
     type: PUT_ANSWER,
     payload: answer,
+    id: id,
+    questionId: questionId,
   };
 };
-const deleteAnswer = () => {
+const deleteAnswer = (id, questionId) => {
   return {
     type: DELETE_ANSWER,
+    id: id,
+    questionId: questionId,
   };
 };
 
@@ -47,7 +54,7 @@ export const getTheAnswers = (id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(getAnswers(data));
+    dispatch(getAnswers(data, id));
     return data;
   }
 };
@@ -70,8 +77,8 @@ export const getTheAnswersCount = () => async (dispatch) => {
     return data;
   }
 };
-export const postTheAnswer = (answerData) => async (dispatch) => {
-  const response = await fetch("/api/answers/", {
+export const postTheAnswer = (answerData, questionId) => async (dispatch) => {
+  const response = await fetch(`/api/answers/questions/${questionId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -82,34 +89,36 @@ export const postTheAnswer = (answerData) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(postAnswer);
+    ///!need id and question Id
+    dispatch(postAnswer(data));
     return data;
   }
 };
-export const putTheAnswer = (answerData, id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const putTheAnswer =
+  (answerData, id, questionId) => async (dispatch) => {
+    const response = await fetch(`/api/answers/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    body: JSON.stringify(answerData),
-  });
+      body: JSON.stringify(answerData),
+    });
 
-  if (response.ok) {
-    const data = await response.json();
-    dispatch(putAnswer);
-    return data;
-  }
-};
-export const deleteTheAnswer = (id) => async (dispatch) => {
+    if (response.ok) {
+      const data = await response.json();
+      dispatch(putAnswer(data, id, questionId));
+      return data;
+    }
+  };
+export const deleteTheAnswer = (id, questionId) => async (dispatch) => {
   const response = await fetch(`/api/answers/${id}`, {
     method: "DELETE",
   });
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteAnswer);
+    dispatch(deleteAnswer(id, questionId));
     return data;
   }
 };
@@ -120,7 +129,11 @@ const answersReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ANSWERS:
       newState = Object.assign({}, state);
-      newState.answer = action.payload;
+      newState[`question-${action.id}`] = {};
+      action.payload.answers.forEach((ele) => {
+        newState[`question-${action.id}`][ele.id] = ele;
+      });
+
       return newState;
     case GET_ANSWER:
       newState = Object.assign({}, state);
@@ -134,14 +147,16 @@ const answersReducer = (state = initialState, action) => {
 
     case POST_ANSWER:
       newState = Object.assign({}, state);
-      newState.answer = action.payload;
+      //! newState[`question-${action.questionId}`][action.id] = payload.id
       return newState;
     case PUT_ANSWER:
       newState = Object.assign({}, state);
-      newState.answer = action.payload;
+      newState[`question-${action.questionId}`][action.id].answer =
+        action.payload.answer;
       return newState;
     case DELETE_ANSWER:
       newState = Object.assign({}, state);
+      delete newState[`question-${action.questionId}`][action.id];
       return newState;
     default:
       return state;

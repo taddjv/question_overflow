@@ -6,15 +6,17 @@ import * as answerActions from "../../store/answer";
 import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
 import IndividualAnswer from "../answer/IndividualAnswer";
+import { renderQuestions } from "../../helper/questionHelper";
 import "./QuestionDetail.css";
 
 function QuestionDetail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const history = useHistory();
-  //!set logic for user login
 
-  const answers = useSelector((state) => state.answersReducer.answer);
+  const answers = useSelector(
+    (state) => state.answersReducer[`question-${id}`]
+  );
   const question = useSelector((state) => state.questionsReducer.question);
   const user = useSelector((state) => state.session?.user);
 
@@ -22,6 +24,27 @@ function QuestionDetail() {
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionDetail, setQuestionDetail] = useState("");
   const [questionUrl, setQuestionUrl] = useState("");
+  const [newAnswer, setNewAnswer] = useState("");
+  const [newAnswerUrl, setNewAnswerUrl] = useState("");
+
+  const renderAnswers = (answerObj) => {
+    const answers = [];
+    for (let answer in answerObj) {
+      answers.push(
+        <IndividualAnswer
+          id={answerObj[answer].id}
+          answer={answerObj[answer]}
+          question_id={answerObj[answer].question_id}
+          user_id={answerObj[answer].user_id}
+          url={answerObj[answer].url}
+          dateCreated={answerObj[answer].dateCreated}
+          reactions={answerObj[answer].reactions}
+          user={user}
+        />
+      );
+    }
+    return answers;
+  };
 
   const editSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +59,25 @@ function QuestionDetail() {
       setQuestionUrl("");
       setEditQuestion(false);
     });
+  };
+
+  const addAnswer = (e) => {
+    e.preventDefault();
+
+    const data = {
+      answer: newAnswer,
+      url: newAnswerUrl,
+    };
+
+    dispatch(answerActions.postTheAnswer(data, id))
+      .then(() => {
+        setNewAnswer("");
+        setNewAnswerUrl("");
+        console.log("it works");
+      })
+      .catch(() => {
+        console.log("did not work");
+      });
   };
 
   useEffect(() => {
@@ -159,29 +201,29 @@ function QuestionDetail() {
                 </div>
               </>
             )}
-
+            <form onSubmit={addAnswer} className="add-answer">
+              <textarea
+                value={newAnswer}
+                onChange={(e) => {
+                  setNewAnswer(e.target.value);
+                }}
+                rows={2}
+                cols={3}
+              />
+              <input
+                value={newAnswerUrl}
+                onChange={(e) => {
+                  setNewAnswer(e.target.value);
+                  console.log("typing");
+                }}
+              />
+              <button type="submit">add answer</button>
+            </form>
             <div className="all-answer-container">
               <div className="individual-answer">
                 <div className="replies-banner">replies</div>
 
-                {answers
-                  ? answers.answers.map((ele, i) => {
-                      return (
-                        <>
-                          <IndividualAnswer
-                            id={ele.id}
-                            answer={ele}
-                            question_id={ele.question_id}
-                            user_id={ele.user_id}
-                            url={ele.url}
-                            dateCreated={ele.dateCreated}
-                            reactions={ele.reactions}
-                            user={user}
-                          />
-                        </>
-                      );
-                    })
-                  : null}
+                {answers && renderAnswers(answers)}
               </div>
             </div>
           </div>

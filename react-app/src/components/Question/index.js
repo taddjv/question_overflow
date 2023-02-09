@@ -2,37 +2,18 @@ import React, { useState, useEffect } from "react";
 import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../context/userContext";
+import { renderQuestions } from "../../helper/questionHelper";
 import * as questionActions from "../../store/question";
 import "./Question.css";
 
 function Question() {
   const dispatch = useDispatch();
-  const allQuestions = useSelector((state) => state.questionsReducer.question);
-  const { user, setUser } = useUser();
+
+  const allQuestion = useSelector((state) => state.questionsReducer);
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestions());
   }, []);
-
-  const content =
-    allQuestions && Array.isArray(allQuestions.questions)
-      ? allQuestions.questions.map((ele, i) => {
-          return (
-            <>
-              <IndividualQuestion
-                id={ele.id}
-                questionTitle={ele.question}
-                detail={ele.detail}
-                url={ele.url}
-                dateCreated={ele.dateCreated}
-                user={ele.user}
-                questionId={ele.id}
-                answers={ele.answers}
-              />
-            </>
-          );
-        })
-      : null;
 
   return (
     <div className="question-container">
@@ -43,7 +24,11 @@ function Question() {
         <div className="q-t-author">Author</div>
         <div className="q-t-latest-answer">Latest Answer</div>
       </div>
-      <div className="question-body">{content}</div>
+      <div className="question-body">
+        {allQuestion.allQuestions
+          ? renderQuestions(allQuestion.allQuestions)
+          : null}
+      </div>
     </div>
   );
 }
