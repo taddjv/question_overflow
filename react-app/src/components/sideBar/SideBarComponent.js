@@ -1,6 +1,6 @@
 import React from 'react'
 import './SideBarComponent.css'
-import {NavLink} from 'react-router-dom'
+// import {NavLink} from 'react-router-dom'
 
 // side bar:
 // Home

@@ -122,7 +122,7 @@
 }
 
 .replies-banner {
-  background: #e51613;
+  background: #618833;
   border-top-left-radius: 5px;
   border-top-right-radius: 5px;
   height: 35px;
@@ -141,5 +141,5 @@
 }
 .ques-edit-crud-buttons {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }

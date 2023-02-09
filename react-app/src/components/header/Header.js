@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
 import * as searchesActions from "../../store/search";
 import * as sessionActions from "../../store/session";
 
@@ -35,7 +35,7 @@ function Header() {
 
   useEffect(() => {
     dispatch(sessionActions.authenticate());
-  }, []);
+  }, [dispatch]);
 
   let currentSession;
 
@@ -61,9 +61,9 @@ function Header() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for questions ..."
           />
-          <button onClick={search}>Search</button>
+           <button className="header_search_button" onClick={search}>Search</button>
         </div>
-        
+
         <AskQuestionModal />
 
         <div className="header_right">
@@ -84,7 +84,8 @@ function Header() {
           </NavLink>
         </div>
 
-        <button onClick={handleDemoLogin}>Demo Login</button>
+
+        <button className='demo_login_button'onClick={handleDemoLogin}>Demo Login</button>
 
         <div className="header_center">
           <i className="fa-solid fa-magnifying-glass"></i>
@@ -96,7 +97,7 @@ function Header() {
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder="Search for questions ..."
           />
-          <button onClick={search}>Search</button>
+          <button className="header_search_button" onClick={search}>Search</button>
         </div>
         {/* <AskQuestionModal /> */}
 

@@ -1,7 +1,7 @@
 import * as React from "react";
-import { useDispatch } from "react-redux";
+// import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
-import * as sessionActions from "../../../store/session";
+// import * as sessionActions from "../../../store/session";
 
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
@@ -10,7 +10,7 @@ import Avatar from "@mui/material/Avatar";
 
 export default function LogoutMenu() {
   const history = useHistory();
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);

@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useState} from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as questionActions from "../../../store/question";
 
@@ -30,11 +30,6 @@ const AskQuestionForm = ({ setShowModal }) => {
         if (data && data.error) setErrors(data.errors);
       });
   };
-
-  // const handleCancelClick = (e) => {
-  //   e.preventDefault();
-  //   history.push("/");
-  // };
 
   return (
     <form className="ask-question-form" onSubmit={handleSubmit}>
