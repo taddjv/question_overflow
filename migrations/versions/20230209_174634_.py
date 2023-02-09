@@ -1,16 +1,17 @@
 """empty message
-
-Revision ID: db6b6ef20e2f
-Revises: 
-Create Date: 2023-02-09 17:46:34.917111
-
+Revision ID: 1d9b57198029
+Revises:
+Create Date: 2023-02-08 17:44:47.681460
 """
 from alembic import op
 import sqlalchemy as sa
 
+import os
+environment = os.getenv("FLASK_ENV")
+SCHEMA = os.environ.get("SCHEMA")
 
 # revision identifiers, used by Alembic.
-revision = 'db6b6ef20e2f'
+revision = '1d9b57198029'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -29,6 +30,9 @@ def upgrade():
     sa.UniqueConstraint('email'),
     sa.UniqueConstraint('username')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
+
     op.create_table('questions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('question', sa.String(length=1000), nullable=False),
@@ -39,6 +43,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE questions SET SCHEMA {SCHEMA};")
+
     op.create_table('searches',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('search', sa.String(length=255), nullable=False),
@@ -47,6 +54,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE searches SET SCHEMA {SCHEMA};")
+
     op.create_table('answers',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('answer', sa.String(length=2000), nullable=True),
@@ -58,6 +68,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE answers SET SCHEMA {SCHEMA};")
+
     op.create_table('reactions',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('up_vote', sa.Boolean(), nullable=True),
@@ -69,6 +82,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
+    if environment == "production":
+        op.execute(f"ALTER TABLE reactions SET SCHEMA {SCHEMA};")
+
     # ### end Alembic commands ###
 
 

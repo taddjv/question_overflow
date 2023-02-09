@@ -1,4 +1,4 @@
-import React, { useState} from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as questionActions from "../../../store/question";
@@ -24,11 +24,11 @@ const AskQuestionForm = ({ setShowModal }) => {
       })
     )
       .then(() => history.push("/"))
-      .then(() => setShowModal(false))
-      .catch(async (res) => {
-        const data = await res.json();
-        if (data && data.error) setErrors(data.errors);
-      });
+      .then(() => setShowModal(false));
+    // .catch(async (res) => {
+    //   const data = await res.json();
+    //   if (data && data.error) setErrors(data.errors);
+    // });
   };
 
   return (
