@@ -70,6 +70,7 @@
   padding: 15px;
   font-weight: 500;
   background: #f1ecea;
+  border-bottom: 1px black solid;
 }
 
 .edit-ques-title {

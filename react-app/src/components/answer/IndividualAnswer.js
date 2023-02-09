@@ -29,7 +29,7 @@ function IndividualAnswers({
   return (
     <>
       <>
-        <div className="ans-vote-container-REPLACE-LATER">
+        <div className="ans-vote-container">
           <div className="vote-container">
             <div className="upvote-con">
               <div className="upvote-total">{getVotes(reactions).up_votes}</div>
