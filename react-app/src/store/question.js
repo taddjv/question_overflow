@@ -54,15 +54,20 @@ export const getTheQuestion = (id) => async (dispatch) => {
   }
 };
 export const postTheQuestion = (questionData) => async (dispatch) => {
+  const { question, detail, url } = questionData;
   const response = await fetch("/api/questions/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
 
-    body: JSON.stringify(questionData),
+    body: JSON.stringify({
+      question,
+      detail,
+      url,
+    }),
   });
-
+  // console.log(response, ' <------');
   if (response.ok) {
     const data = await response.json();
     dispatch(postQuestion(data));
@@ -103,7 +108,6 @@ const questionsReducer = (state = initialState, action) => {
   let newState;
 
   switch (action.type) {
-
     case GET_QUESTIONS:
       newState = Object.assign({}, state);
       newState.question = action.payload;
@@ -116,7 +120,7 @@ const questionsReducer = (state = initialState, action) => {
 
     case POST_QUESTION:
       newState = Object.assign({}, state);
-      newState.question = action.payload;
+      newState.question.questions.push(action.payload);
       return newState;
 
     case PUT_QUESTION:

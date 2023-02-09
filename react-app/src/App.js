@@ -14,7 +14,7 @@ import SideBar from "./components/sideBar/SideBar";
 import "./App.css";
 import QuestionDetail from "./components/Question/QuestionDetail";
 import { useUser } from "./context/userContext";
-import Search from "./components/Search";
+// import Search from "./components/Search";
 
 function App() {
   const [loaded, setLoaded] = useState(false);
@@ -27,7 +27,7 @@ function App() {
       setUser(loggedInUser);
       setLoaded(true);
     })();
-  }, [dispatch]);
+  }, [dispatch, setUser]);
 
   if (!loaded) {
     return null;

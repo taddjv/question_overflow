@@ -1,7 +1,7 @@
 import * as React from "react";
 import * as sessionActions from "../../../store/session";
 import { useDispatch, useSelector } from "react-redux";
-import { useUser } from "../../../context/userContext";
+// import { useUser } from "../../../context/userContext";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
@@ -9,27 +9,12 @@ import { Avatar } from "@mui/material";
 
 export default function LoginMenu() {
   const dispatch = useDispatch();
-  const { user } = useUser();
+  // const { user } = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
-  const [showMenu, setShowMenu] = React.useState(true);
 
   const currUser = useSelector((state) => state.session.user);
 
-  const openMenu = () => {
-    if (showMenu) return;
-    setShowMenu(true);
-  };
 
-  // useEffect(() => {
-  //   if (!showMenu) return;
-
-  //   const closeMenu = () => {
-  //     setShowMenu(false);
-  //   };
-
-  //   document.addEventListener("click", closeMenu);
-  //   return () => document.removeEventListener("click", closeMenu);
-  // }, [showMenu]);
 
   const open = Boolean(anchorEl);
   const handleClick = (event) => {

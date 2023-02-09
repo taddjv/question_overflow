@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { UserContext, useUser } from "../../context/userContext";
+// import { UserContext, useUser } from "../../context/userContext";
 import * as answerActions from "../../store/answer";
 import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
@@ -42,7 +42,7 @@ function QuestionDetail() {
     dispatch(questionActions.getTheQuestion(id));
     dispatch(answerActions.getTheAnswers(id));
     dispatch(sessionActions.authenticate());
-  }, [questionTitle, questionUrl, questionDetail]);
+  }, [dispatch, questionTitle, questionUrl, questionDetail, id]);
 
   return (
     <>

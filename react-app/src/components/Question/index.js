@@ -1,18 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
 import * as questionActions from "../../store/question";
 import "./Question.css";
 
 function Question() {
   const dispatch = useDispatch();
   const allQuestions = useSelector((state) => state.questionsReducer.question);
-  const { user, setUser } = useUser();
+  // const { user, setUser } = useUser();
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestions());
-  }, []);
+  }, [dispatch]);
 
   const content =
     allQuestions && Array.isArray(allQuestions.questions)
@@ -28,6 +28,7 @@ function Question() {
                 user={ele.user}
                 questionId={ele.id}
                 answers={ele.answers}
+                key={ele.id}
               />
             </>
           );

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import IndividualQuestion from "../Question/IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -12,7 +12,7 @@ function Search() {
 
   useEffect(() => {
     dispatch(searchesActions.getTheSearch(searchQuery)).then(() => {});
-  }, []);
+  }, [dispatch, searchQuery]);
 
   const content =
     allSearches && allSearches.searches && allSearches.searches.questions.length

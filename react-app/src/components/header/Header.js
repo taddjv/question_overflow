@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Header.css";
 import { useSelector, useDispatch } from "react-redux";
 import { NavLink, useHistory } from "react-router-dom";
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
 import * as searchesActions from "../../store/search";
 import * as sessionActions from "../../store/session";
 
@@ -35,7 +35,7 @@ function Header() {
 
   useEffect(() => {
     dispatch(sessionActions.authenticate());
-  }, []);
+  }, [dispatch]);
 
   let currentSession;
 
@@ -63,7 +63,7 @@ function Header() {
           />
           <button onClick={search}>Search</button>
         </div>
-        
+
         <AskQuestionModal />
 
         <div className="header_right">
