@@ -16,7 +16,7 @@ const getQuestion = (question) => {
     payload: question,
   };
 };
-const postQuestion = (question) => {
+const postQuestion = (question, id) => {
   return {
     type: POST_QUESTION,
     payload: question,
@@ -72,8 +72,6 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
   // console.log(response, ' <------');
   if (response.ok) {
     const data = await response.json();
-    console.log(data);
-    //!need id
     dispatch(postQuestion(data));
     return data;
   }
@@ -128,7 +126,9 @@ const questionsReducer = (state = initialState, action) => {
 
     case POST_QUESTION:
       newState = Object.assign({}, state);
-      //! newState["allQuestions"][action.id] = action.payload
+      console.log(newState);
+      console.log(action.payload.id);
+      newState[action.payload.id] = action.payload;
       return newState;
 
     case PUT_QUESTION:
