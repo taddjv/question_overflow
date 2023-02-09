@@ -147,7 +147,9 @@ function QuestionDetail() {
                                 history.push("/");
                               })
                               .catch(async (res) => {
-                                console.log("unauthorized bro");
+
+
+
                               });
                           }}
                         >
