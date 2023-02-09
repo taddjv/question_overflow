@@ -75,3 +75,9 @@ background-color: rgba(194, 255, 166, 0.47);
   box-shadow: 0 0 11px rgba(0,0,0,.2);
   transform: scale(.95);
 }
+
+.header_right{
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+}

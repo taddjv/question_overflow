@@ -46,12 +46,12 @@ function App() {
             </Route>
 
         <div className="app_body">
+          <div className="sidebar_body">
             <SideBar />
+          </div>
           <Route path="/" exact={true}>
             <HomeComponent type="home" />
           </Route>
-          <div className="sidebar_body">
-          </div>
           <Route path="/questions/:id">
             <QuestionDetail />
           </Route>

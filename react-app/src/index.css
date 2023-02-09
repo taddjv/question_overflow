@@ -23,3 +23,21 @@
 body{
   background-color: white;
 }
+
+button{
+  color:white;
+  font-weight: bolder;
+  background-color: rgba(64, 174, 14, 0.564);
+  cursor: pointer;
+  border: 2px groove white;
+  border-radius: 10px;
+}
+
+button:hover{
+  box-shadow: 0 0 11px rgba(0,0,0,.2);
+  transform: scale(.95);
+}
+
+.MuiSvgIcon-root{
+  color: var(--theme);
+}
