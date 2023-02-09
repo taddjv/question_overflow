@@ -46,3 +46,38 @@ background-color: rgba(194, 255, 166, 0.47);
   color:black;
 }
 
+.demo_login_button{
+  color:white;
+  font-weight: bolder;
+  background-color: rgba(64, 174, 14, 0.564);
+  cursor: pointer;
+  border: 2px groove white;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.demo_login_button:hover{
+  box-shadow: 0 0 11px rgba(0,0,0,.2);
+  transform: scale(.95);
+}
+
+.header_search_button{
+  color:white;
+  font-weight: bolder;
+  background-color: rgba(64, 174, 14, 0.564);
+  cursor: pointer;
+  border: 2px groove white;
+  border-radius: 10px;
+  transition: all .2s ease-in-out;
+}
+
+.header_search_button:hover{
+  box-shadow: 0 0 11px rgba(0,0,0,.2);
+  transform: scale(.95);
+}
+
+.header_right{
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+}

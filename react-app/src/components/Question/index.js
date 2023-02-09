@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
 import { useUser } from "../../context/userContext";
@@ -13,7 +13,7 @@ function Question() {
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestions());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className="question-container">

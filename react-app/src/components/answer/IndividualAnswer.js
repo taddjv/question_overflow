@@ -10,6 +10,7 @@ import { getVotes } from "../../helper/questionHelper";
 import "./IndividualAnswer.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
+import { Avatar } from "@mui/material";
 
 function IndividualAnswers({
   id,
@@ -43,124 +44,55 @@ function IndividualAnswers({
   };
 
   return (
-    <>
-      {editAnswer ? (
-        <div className="ans-vote-container-REPLACE-LATER">
-          <div className="vote-container">
-            <div className="upvote-con">
-              <div className="upvote-total">{getVotes(reactions).up_votes}</div>
-              <div className="thumbs-up-button">
-                <ThumbUpIcon></ThumbUpIcon>
-              </div>
+    <div className="reply_container">
+      <div className="answer_user_info">
+        <Avatar />
+        <div className="ans-username">{answer?.user?.username} </div>
+      </div>
+
+      <div className="answer_and_vote">
+        <div className="vote_container">
+          <div className="upvotes">
+            {getVotes(reactions).up_votes}
+            <div className="up_icon">
+              <i class="fa-solid fa-thumbs-up" />
             </div>
-            <div className="downvote-con">
-              <div className="thumbs-down-button">
-                <ThumbDownIcon></ThumbDownIcon>
-              </div>
-              <div className="downvote-total">
-                {getVotes(reactions).down_votes}
-              </div>
-            </div>
+            {/* end of upvote div */}
           </div>
 
-          <div className="ans-container">
-            <div className="ans-body-and-user-con">
-              <div className="ans-detail-con">
-                <input
-                  className={null}
-                  type="text"
-                  value={answerDetail || answer.answer}
-                  onChange={(e) => {
-                    setAnswerDetail(e.target.value);
-                  }}
-                ></input>
-              </div>
-
-              <div className="ans-user-details">
-                <div className="ans-timestamp">Posted on {dateCreated}</div>
-                <div className="ans-user-pfp">profile pic</div>
-                <div className="ans-username"> by {answer.user.username} </div>
-              </div>
+          <div className="downvote">
+            {getVotes(reactions).down_votes}
+            <div className="down_icon">
+              <i class="fa-solid fa-thumbs-down" />
             </div>
-            {answer.user.username === user.username && (
-              <form onSubmit={editTheAnswer} className="ans-crud-options">
-                <button
-                  className="edit-button"
-                  onClick={() => {
-                    setEditAnswer(false);
-                  }}
-                >
-                  cancel
-                </button>
-                <button className="delete-button">Apply changes</button>
-              </form>
-            )}
           </div>
+          {/* end of downvote div */}
         </div>
-      ) : (
-        <div className="ans-vote-container-REPLACE-LATER">
-          <div className="vote-container">
-            <div className="upvote-con">
-              <div className="upvote-total">{getVotes(reactions).up_votes}</div>
-              <div className="thumbs-up-button">
-                <ThumbUpIcon></ThumbUpIcon>
-              </div>
-            </div>
-            <div className="downvote-con">
-              <div className="thumbs-down-button">
-                <ThumbDownIcon></ThumbDownIcon>
-              </div>
-              <div className="downvote-total">
-                {getVotes(reactions).down_votes}
-              </div>
-            </div>
-          </div>
 
-          <div className="ans-container">
-            <div className="ans-body-and-user-con">
-              <div className="ans-detail-con">{answer.answer} </div>
+        <div className="answer_container">
+          <div className="answer">{answer?.answer}</div>
+        </div>
+      </div>
+      {/* end of answer and vote div */}
 
-              <div className="ans-user-details">
-                <div className="ans-timestamp">Posted on {dateCreated}</div>
-                <div className="ans-user-pfp">profile pic</div>
-                <div className="ans-username"> by {answer.user.username} </div>
-              </div>
-            </div>
-            {answer.user.username === user.username && (
-              <div className="ans-crud-options">
-                <button
-                  className="edit-button"
-                  onClick={() => {
-                    setEditAnswer(true);
-                  }}
-                >
-                  edit
-                </button>
-                <button
-                  className="delete-button"
-                  onClick={() => {
-                    dispatch(
-                      answerActions.deleteTheAnswer(id, question_id)
-                    ).then(() => {
-                      setAnswerDetail("");
-                      setEditAnswer(false);
-                    });
-                    // .then(() => {
-                    //   console.log(" it worked");
-                    // })
-                    // .catch(async (res) => {
-                    //   console.log("unauthorized bro");
-                    // });
-                  }}
-                >
-                  delete
-                </button>
-              </div>
-            )}
-          </div>
+      <p className="posted_date">
+        <small>posted on: {dateCreated}</small>
+      </p>
+
+      {answer?.user?.username === user?.username && (
+        <div className="ans-crud-options">
+          <button
+            className="indivdual_edit_button"
+            onClick={() => {
+              setEditAnswer(true);
+            }}
+          >
+            edit
+          </button>
+          <button className="delete-button">delete</button>
         </div>
       )}
-    </>
+    </div>
   );
 }
 

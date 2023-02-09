@@ -1,4 +1,4 @@
-.question-title {
+/* .question-title {
   display: grid;
   grid-template-columns: 80px 370px 100px 200px 200px;
   height: 50px;
@@ -7,20 +7,20 @@
   color: white;
   font-size: 18px;
   font-weight: 500;
-}
+} */
 
-.ans-vote-container {
+/* .ans-vote-container { */
   /* side by side */
-  display: flex;
-}
+  /* display: flex;
+} */
 
-.vote-container {
+/* .vote-container { */
   /* split horizontally */
-  display: flex;
+  /* display: flex;
   flex-direction: column;
   width: 100px;
-}
-.upvote-con {
+} */
+/* .upvote-con {
 
 }
 .thumbs-up-button{
@@ -57,17 +57,17 @@
 .ans-crud-options{
   display: flex;
   justify-content: flex-end;
-}
+} */
 
-.ans-crud-options {
+/* .ans-crud-options {
   display: flex;
   justify-content: flex-end;
   align-items: flex-end;
-}
+} */
 
 /* make height = to height of vote-container */
-.ans-user-details{
-  display: flex;
+/* .ans-user-details{ */
+  /* display: flex;
   justify-content: flex-end;
 
 }
@@ -79,4 +79,82 @@
 }
 .ans-username {
 
+} */
+
+.reply_container{
+  margin-bottom: 15px;
+  background-color: #8bc34ab4;
 }
+
+.vote_container{
+  display: flex;
+  width: 100px;
+  border: 2px solid black;
+  border-radius: 999px;
+  padding-bottom: 15px;
+  height: 10px;
+}
+
+.upvotes{
+  display: flex;
+  color: green;
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 10px;
+  padding-left: 5px;
+  padding-top: 1px;
+
+}
+
+.up_icon{
+  margin-left: 5px;
+  cursor: pointer;
+}
+
+.downvote{
+  display: flex;
+  color: red;
+  font-size: 20px;
+  font-weight: bold;
+  padding-right: 2px;
+  margin-left: 2px;
+  padding-top: 1px;
+}
+
+.down_icon{
+  margin-left:5px;
+  cursor: pointer;
+}
+
+.answer_and_vote{
+  display: flex;
+  align-items: center;
+}
+
+.answer{
+  padding-left: 10px;
+  font-weight: bold;
+}
+
+.posted_date{
+  font-size: 12px;
+}
+
+.answer_user_info{
+  display: flex;
+  align-items: center;
+  font-weight: 800;
+  padding-bottom: 10px;
+}
+
+
+.indivdual_edit_button{
+  color:white;
+  font-weight: bolder;
+  background-color: rgba(64, 174, 14, 0.564);
+  cursor: pointer;
+  border: 2px groove white;
+  border-radius: 10px;
+}
+
+

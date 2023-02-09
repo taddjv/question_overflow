@@ -56,15 +56,20 @@ export const getTheQuestion = (id) => async (dispatch) => {
   }
 };
 export const postTheQuestion = (questionData) => async (dispatch) => {
+  const { question, detail, url } = questionData;
   const response = await fetch("/api/questions/", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
 
-    body: JSON.stringify(questionData),
+    body: JSON.stringify({
+      question,
+      detail,
+      url,
+    }),
   });
-
+  // console.log(response, ' <------');
   if (response.ok) {
     const data = await response.json();
     console.log(data);

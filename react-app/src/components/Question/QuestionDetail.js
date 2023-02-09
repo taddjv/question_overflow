@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { UserContext, useUser } from "../../context/userContext";
+// import { UserContext, useUser } from "../../context/userContext";
 import * as answerActions from "../../store/answer";
 import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
@@ -84,7 +84,7 @@ function QuestionDetail() {
     dispatch(questionActions.getTheQuestion(id));
     dispatch(answerActions.getTheAnswers(id));
     dispatch(sessionActions.authenticate());
-  }, [questionTitle, questionUrl, questionDetail]);
+  }, [dispatch, questionTitle, questionUrl, questionDetail, id]);
 
   return (
     <>
@@ -156,7 +156,7 @@ function QuestionDetail() {
                   <div className="user-timestamp-question-con">
                     <div className="username-timestamp">
                       <div className="ind-ques-username">
-                        {question.user.username} asks
+                        {question?.user?.username} asks
                       </div>
                       <div className="ind-ques-timestamp">
                         Posted on {question.dateCreated}
@@ -166,10 +166,10 @@ function QuestionDetail() {
                     <div className="ind-ques-title">{question.question}</div>
                     <div className="ind-ques-body">{question.detail}</div>
                     <div className="ind-ques-image">
-                      {question?.url ? <img src={question.url} /> : null}
+                      {question?.url ? <img src={question.url} alt="" /> : null}
                     </div>
                   </div>
-                  {question?.user.username === user.username && (
+                  {question?.user?.username === user?.username && (
                     <>
                       <div className="ind-ques-cruds">
                         <button
@@ -189,7 +189,9 @@ function QuestionDetail() {
                                 history.push("/");
                               })
                               .catch(async (res) => {
-                                console.log("unauthorized bro");
+
+
+
                               });
                           }}
                         >

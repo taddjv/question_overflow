@@ -1,16 +1,22 @@
 import * as React from "react";
 import * as sessionActions from "../../../store/session";
-import { useDispatch } from "react-redux";
-import { useUser } from "../../../context/userContext";
+import { useDispatch, useSelector } from "react-redux";
+// import { useUser } from "../../../context/userContext";
 import Button from "@mui/material/Button";
 import Menu from "@mui/material/Menu";
 import MenuItem from "@mui/material/MenuItem";
 import { Avatar } from "@mui/material";
+import './LoginMenu.css'
 
 export default function LoginMenu() {
   const dispatch = useDispatch();
-  const { user } = useUser();
+  // const { user } = useUser();
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const currUser = useSelector((state) => state.session.user);
+
+
+
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -32,7 +38,8 @@ export default function LoginMenu() {
         aria-expanded={open ? "true" : undefined}
         onClick={handleClick}
       >
-        <Avatar />
+
+        <Avatar/>
       </Button>
       <Menu
         id="basic-menu"
@@ -43,8 +50,13 @@ export default function LoginMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={logout}>Log Out</MenuItem>
+        <MenuItem className='dropdown_item' onClick={handleClose}>Profile</MenuItem>
+        <ul>
+          <li>{currUser.username}</li>
+          <li>{currUser.email}</li>
+        </ul>
+        {!currUser && <MenuItem className='dropdown_item' onClick={handleClose}>Login</MenuItem>}
+        {currUser && <MenuItem className='dropdown_item' onClick={logout}>Logout</MenuItem>}
       </Menu>
     </div>
   );

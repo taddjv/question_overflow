@@ -99,13 +99,15 @@ def get_all_questions():
 @questions_routes.route("/", methods=["POST"])
 @login_required
 def post_question():
-
+    # print(current_user.id, ' <--------')
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
+
     if form.validate_on_submit():
         desired_question = Question(
             question=form.data['question'], detail=form.data['detail'], url=form.data["url"], user_id=current_user.id)
+        # print(current_user.id, ' <------')
         db.session.add(desired_question)
         db.session.commit()
         return desired_question.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}
