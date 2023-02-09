@@ -124,7 +124,7 @@ function QuestionDetail() {
                     <div className="ind-ques-title">{question.question}</div>
                     <div className="ind-ques-body">{question.detail}</div>
                     <div className="ind-ques-image">
-                      {question?.url ? <img src={question.url} /> : null}
+                      {question?.url ? <img src={question.url} alt="" /> : null}
                     </div>
                   </div>
                   {question?.user?.username === user?.username && (
