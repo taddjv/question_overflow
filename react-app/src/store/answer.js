@@ -25,11 +25,10 @@ const getAnswersCount = () => {
   };
 };
 
-const postAnswer = (answer, id, questionId) => {
+const postAnswer = (answer, questionId) => {
   return {
     type: POST_ANSWER,
     payload: answer,
-    id: id,
     questionId: questionId,
   };
 };
@@ -77,23 +76,24 @@ export const getTheAnswersCount = () => async (dispatch) => {
     return data;
   }
 };
-export const postTheAnswer = (answerData, questionId) => async (dispatch) => {
-  const response = await fetch(`/api/answers/questions/${questionId}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const postTheAnswer =
+  (answerData, questionId, user) => async (dispatch) => {
+    const response = await fetch(`/api/answers/questions/${questionId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    body: JSON.stringify(answerData),
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    ///!need id and question Id
-    dispatch(postAnswer(data));
-    return data;
-  }
-};
+      body: JSON.stringify(answerData),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      data["reactions"] = [];
+      data["user"] = user;
+      dispatch(postAnswer(data, questionId));
+      return data;
+    }
+  };
 export const putTheAnswer =
   (answerData, id, questionId) => async (dispatch) => {
     const response = await fetch(`/api/answers/${id}`, {
@@ -147,7 +147,8 @@ const answersReducer = (state = initialState, action) => {
 
     case POST_ANSWER:
       newState = Object.assign({}, state);
-      //! newState[`question-${action.questionId}`][action.id] = payload.id
+      newState[`question-${action.questionId}`][action.payload.id] =
+        action.payload;
       return newState;
     case PUT_ANSWER:
       newState = Object.assign({}, state);
