@@ -42,58 +42,181 @@ function IndividualAnswers({
         console.log("not working");
       });
   };
-
   return (
-    <div className="reply_container">
-      <div className="answer_user_info">
-        <Avatar />
-        <div className="ans-username">{answer?.user?.username} </div>
-      </div>
-
-      <div className="answer_and_vote">
-        <div className="vote_container">
-          <div className="upvotes">
-            {getVotes(reactions).up_votes}
-            <div className="up_icon">
-              <i class="fa-solid fa-thumbs-up" />
-            </div>
-            {/* end of upvote div */}
+    <>
+      {editAnswer ? (
+        <div className="ans-vote-container-REPLACE-LATER">
+          <div className="a-v-c-profile">
+            <img src={user.profile_url} />
           </div>
-
-          <div className="downvote">
-            {getVotes(reactions).down_votes}
-            <div className="down_icon">
-              <i class="fa-solid fa-thumbs-down" />
+          <div className="a-v-c-content">
+            <div className="ans-container">
+              <div className="ans-body-and-user-con">
+                <div className="ans-user-details">
+                  <div className="ans-username">by {answer.user.username} </div>
+                  <div className="ans-timestamp">Posted on {dateCreated}</div>
+                </div>
+                <div className="ans-detail-con">
+                  <input
+                    className={null}
+                    type="text"
+                    value={answerDetail || answer.answer}
+                    onChange={(e) => {
+                      setAnswerDetail(e.target.value);
+                    }}
+                  ></input>
+                </div>
+              </div>
+              {answer.user.username === user.username && (
+                <form onSubmit={editTheAnswer} className="ans-crud-options">
+                  <button
+                    className="edit-button"
+                    onClick={() => {
+                      setEditAnswer(false);
+                    }}
+                  >
+                    cancel
+                  </button>
+                  <button className="delete-button">Apply changes</button>
+                </form>
+              )}
+            </div>
+            <div className="vote-container">
+              <div className="upvote-con">
+                <div className="thumbs-up-button">
+                  <ThumbUpIcon></ThumbUpIcon>
+                </div>
+                <div className="upvote-total">
+                  <div>{getVotes(reactions).up_votes}</div>
+                </div>
+              </div>
+              <div className="downvote-con">
+                <div className="thumbs-down-button">
+                  <ThumbDownIcon></ThumbDownIcon>
+                </div>
+                <div className="downvote-total">
+                  <div>{getVotes(reactions).down_votes}</div>
+                </div>
+              </div>
             </div>
           </div>
-          {/* end of downvote div */}
         </div>
+      ) : (
+        <div className="ans-vote-container-REPLACE-LATER">
+          <div className="a-v-c-profile">
+            <img src={user.profile_url} />
+          </div>
+          <div className="a-v-c-content">
+            <div className="ans-container">
+              <div className="ans-body-and-user-con">
+                <div className="ans-user-details">
+                  <div className="ans-username">by {answer.user.username}</div>
+                  <div className="ans-timestamp">Posted on {dateCreated}</div>
+                </div>
+                <div className="ans-detail-con">{answer.answer} </div>
+              </div>
+              {answer.user.username === user.username && (
+                <div className="ans-crud-options">
+                  <button
+                    className="edit-button"
+                    onClick={() => {
+                      setEditAnswer(true);
+                    }}
+                  >
+                    edit
+                  </button>
 
-        <div className="answer_container">
-          <div className="answer">{answer?.answer}</div>
-        </div>
-      </div>
-      {/* end of answer and vote div */}
-
-      <p className="posted_date">
-        <small>posted on: {dateCreated}</small>
-      </p>
-
-      {answer?.user?.username === user?.username && (
-        <div className="ans-crud-options">
-          <button
-            className="indivdual_edit_button"
-            onClick={() => {
-              setEditAnswer(true);
-            }}
-          >
-            edit
-          </button>
-          <button className="delete-button">delete</button>
+                  <button
+                    className="delete-button"
+                    onClick={() => {
+                      dispatch(
+                        answerActions.deleteTheAnswer(id, question_id)
+                      ).then(() => {
+                        setAnswerDetail("g");
+                        // setEditAnswer(false);
+                      });
+                    }}
+                  >
+                    delete
+                  </button>
+                </div>
+              )}
+            </div>
+            <div className="vote-container">
+              <div className="upvote-con">
+                <div className="thumbs-up-button">
+                  <ThumbUpIcon></ThumbUpIcon>
+                </div>
+                <div className="upvote-total">
+                  <div>{getVotes(reactions).up_votes}</div>
+                </div>
+              </div>
+              <div className="downvote-con">
+                <div className="thumbs-down-button">
+                  <ThumbDownIcon></ThumbDownIcon>
+                </div>
+                <div className="downvote-total">
+                  <div>{getVotes(reactions).down_votes}</div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       )}
-    </div>
+    </>
   );
+
+  // return (
+  //   <div className="reply_container">
+  //     <div className="answer_user_info">
+  //       <Avatar />
+  //       <div className="ans-username">{answer?.user?.username} </div>
+  //     </div>
+
+  //     <div className="answer_and_vote">
+  //       <div className="vote_container">
+  //         <div className="upvotes">
+  //           {getVotes(reactions).up_votes}
+  //           <div className="up_icon">
+  //             <i class="fa-solid fa-thumbs-up" />
+  //           </div>
+  //           {/* end of upvote div */}
+  //         </div>
+
+  //         <div className="downvote">
+  //           {getVotes(reactions).down_votes}
+  //           <div className="down_icon">
+  //             <i class="fa-solid fa-thumbs-down" />
+  //           </div>
+  //         </div>
+  //         {/* end of downvote div */}
+  //       </div>
+
+  //       <div className="answer_container">
+  //         <div className="answer">{answer?.answer}</div>
+  //       </div>
+  //     </div>
+  //     {/* end of answer and vote div */}
+
+  //     <p className="posted_date">
+  //       <small>posted on: {dateCreated}</small>
+  //     </p>
+
+  //     {answer?.user?.username === user?.username && (
+  //       <div className="ans-crud-options">
+  //         <button
+  //           className="indivdual_edit_button"
+  //           onClick={() => {
+  //             setEditAnswer(true);
+  //           }}
+  //         >
+  //           edit
+  //         </button>
+  //         <button className="delete-button">delete</button>
+  //       </div>
+  //     )}
+  //   </div>
+  // );
 }
 
 export default IndividualAnswers;
