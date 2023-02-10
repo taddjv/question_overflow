@@ -69,7 +69,7 @@ function QuestionDetail() {
       url: newAnswerUrl,
     };
 
-    dispatch(answerActions.postTheAnswer(data, id))
+    dispatch(answerActions.postTheAnswer(data, id, user))
       .then(() => {
         setNewAnswer("");
         setNewAnswerUrl("");
@@ -188,11 +188,7 @@ function QuestionDetail() {
                               .then(() => {
                                 history.push("/");
                               })
-                              .catch(async (res) => {
-
-
-
-                              });
+                              .catch(async (res) => {});
                           }}
                         >
                           delete
@@ -215,8 +211,7 @@ function QuestionDetail() {
               <input
                 value={newAnswerUrl}
                 onChange={(e) => {
-                  setNewAnswer(e.target.value);
-                  console.log("typing");
+                  setNewAnswerUrl(e.target.value);
                 }}
               />
               <button type="submit">add answer</button>

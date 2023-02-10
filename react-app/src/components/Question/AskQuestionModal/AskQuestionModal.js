@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as questionActions from "../../../store/question";
 
-const AskQuestionForm = ({ setShowModal }) => {
+const AskQuestionForm = ({ setShowModal, user }) => {
   const dispatch = useDispatch();
   const history = useHistory();
   const [question, setQuestion] = useState("");
@@ -21,14 +21,15 @@ const AskQuestionForm = ({ setShowModal }) => {
         question,
         detail,
         url,
+        user,
       })
     )
       .then(() => history.push("/"))
-      .then(() => setShowModal(false));
-    // .catch(async (res) => {
-    //   const data = await res.json();
-    //   if (data && data.error) setErrors(data.errors);
-    // });
+      .then(() => setShowModal(false))
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.error) setErrors(data.errors);
+      });
   };
 
   return (
