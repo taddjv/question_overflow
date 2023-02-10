@@ -16,21 +16,23 @@ const getQuestion = (question) => {
     payload: question,
   };
 };
-const postQuestion = (question) => {
+const postQuestion = (question, id) => {
   return {
     type: POST_QUESTION,
     payload: question,
   };
 };
-const putQuestion = (question) => {
+const putQuestion = (question, id) => {
   return {
     type: PUT_QUESTION,
     payload: question,
+    id: id,
   };
 };
-const deleteQuestion = () => {
+const deleteQuestion = (id) => {
   return {
     type: DELETE_QUESTION,
+    id: id,
   };
 };
 
@@ -86,7 +88,7 @@ export const putTheQuestion = (questionData, id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(putQuestion(data));
+    dispatch(putQuestion(data, id));
     return data;
   }
 };
@@ -97,7 +99,7 @@ export const deleteTheQuestion = (id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(deleteQuestion);
+    dispatch(deleteQuestion(id));
     return data;
   }
 };
@@ -110,6 +112,10 @@ const questionsReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_QUESTIONS:
       newState = Object.assign({}, state);
+      newState["allQuestions"] = {};
+      action.payload.questions.forEach((ele) => {
+        newState["allQuestions"][ele.id] = ele;
+      });
       newState.question = action.payload;
       return newState;
 
@@ -120,16 +126,21 @@ const questionsReducer = (state = initialState, action) => {
 
     case POST_QUESTION:
       newState = Object.assign({}, state);
-      newState.question.questions.push(action.payload);
+      console.log(newState);
+      console.log(action.payload.id);
+      newState[action.payload.id] = action.payload;
       return newState;
 
     case PUT_QUESTION:
       newState = Object.assign({}, state);
-      newState.question = action.payload;
+      newState["question"].question = action.payload.question;
+      newState["question"].detail = action.payload.detail;
+      newState["question"].url = action.payload.url;
       return newState;
 
     case DELETE_QUESTION:
       newState = Object.assign({}, state);
+      delete newState["question"];
       return newState;
 
     default:
