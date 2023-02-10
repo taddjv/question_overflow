@@ -71,7 +71,8 @@ const SignUpForm = () => {
           name='username'
           size='30'
           onChange={updateUsername}
-          value={username}/>
+          value={username}
+          required={true}/>
         </label>
 
 
@@ -85,7 +86,8 @@ const SignUpForm = () => {
           name='email'
           size='30'
           onChange={updateEmail}
-          value={email}/>
+          value={email}
+          required={true}/>
         </label>
 
 
@@ -99,7 +101,8 @@ const SignUpForm = () => {
           name='password'
           size='30'
           onChange={updatePassword}
-          value={password}/>
+          value={password}
+          required={true}/>
         </label>
 
 

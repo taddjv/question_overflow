@@ -84,4 +84,7 @@ width:250px;
   color:black;
  }
 
-
+.login_error{
+  color: black;
+  font-weight: bold;
+}
