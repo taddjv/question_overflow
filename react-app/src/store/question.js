@@ -56,7 +56,7 @@ export const getTheQuestion = (id) => async (dispatch) => {
   }
 };
 export const postTheQuestion = (questionData) => async (dispatch) => {
-  const { question, detail, url } = questionData;
+  const { question, detail, url, user } = questionData;
   const response = await fetch("/api/questions/", {
     method: "POST",
     headers: {
@@ -72,6 +72,8 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
   // console.log(response, ' <------');
   if (response.ok) {
     const data = await response.json();
+    data["answers"] = [];
+    data["user"] = user;
     dispatch(postQuestion(data));
     return data;
   }
@@ -126,9 +128,9 @@ const questionsReducer = (state = initialState, action) => {
 
     case POST_QUESTION:
       newState = Object.assign({}, state);
-      console.log(newState);
-      console.log(action.payload.id);
-      newState[action.payload.id] = action.payload;
+      // console.log(newState["allQuestions"]);
+      // console.log(action.payload.id);
+      newState["allQuestions"][`${action.payload.id}`] = action.payload;
       return newState;
 
     case PUT_QUESTION:
