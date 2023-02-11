@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import './PopularQuestions.css'
 import { renderQuestions } from '../../../../helper/questionHelper'
 import * as questionActions from '../../../../store/question'
-import popularQuestion from ''
+
 
 function PopularQuestions() {
   const dispatch = useDispatch()
