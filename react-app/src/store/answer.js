@@ -92,6 +92,9 @@ export const postTheAnswer =
       data["user"] = user;
       dispatch(postAnswer(data, questionId));
       return data;
+    } else if (response) {
+      const data = await response.json();
+      return data;
     }
   };
 export const putTheAnswer =
@@ -108,6 +111,10 @@ export const putTheAnswer =
     if (response.ok) {
       const data = await response.json();
       dispatch(putAnswer(data, id, questionId));
+      return data;
+    } else if (response) {
+      const data = await response.json();
+
       return data;
     }
   };

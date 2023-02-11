@@ -27,20 +27,30 @@ function IndividualAnswers({
   const [editAnswer, setEditAnswer] = useState(false);
   const [answerDetail, setAnswerDetail] = useState("");
   const [answerUrl, setAnswerUrl] = useState("");
+  const [errors, setErrors] = useState([]);
 
   const editTheAnswer = (e) => {
     e.preventDefault();
     const editedAnswer = {
       answer: answerDetail,
     };
-    dispatch(answerActions.putTheAnswer(editedAnswer, id, question_id))
-      .then(() => {
-        setAnswerDetail("");
-        setEditAnswer(false);
-      })
-      .catch(() => {
-        console.log("not working");
-      });
+    dispatch(answerActions.putTheAnswer(editedAnswer, id, question_id)).then(
+      async (res) => {
+        const data = await res;
+
+        if (data.errors) {
+          const newErrors = res.errors.map((ele) => {
+            return (
+              ele.slice(0, ele.indexOf(":")) + ele.slice(ele.indexOf(":") + 7)
+            );
+          });
+          setErrors(newErrors);
+        } else {
+          setAnswerDetail("");
+          setEditAnswer(false);
+        }
+      }
+    );
   };
   return (
     <>
@@ -60,12 +70,17 @@ function IndividualAnswers({
                   <input
                     className={null}
                     type="text"
-                    value={answerDetail || answer.answer}
+                    value={answerDetail}
                     onChange={(e) => {
                       setAnswerDetail(e.target.value);
                     }}
                   ></input>
                 </div>
+                <ul className="answer-error">
+                  {errors.map((ele) => (
+                    <li>{ele}</li>
+                  ))}
+                </ul>
               </div>
               {answer.user.username === user.username && (
                 <form onSubmit={editTheAnswer} className="ans-crud-options">
@@ -73,6 +88,7 @@ function IndividualAnswers({
                     className="edit-button"
                     onClick={() => {
                       setEditAnswer(false);
+                      setErrors([]);
                     }}
                   >
                     cancel
@@ -121,6 +137,7 @@ function IndividualAnswers({
                     className="edit-button"
                     onClick={() => {
                       setEditAnswer(true);
+                      setAnswerDetail(answer.answer);
                     }}
                   >
                     edit

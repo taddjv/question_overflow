@@ -3,12 +3,13 @@
   flex-direction: column;
   gap: 4px;
   border-radius: 5px;
-  background-color: #f1ecea;
+  background-color: var(--background1);
 }
 
 .ans-vote-container-REPLACE-LATER {
   display: flex;
-  background: white;
+  color: inherit;
+  background: var(--background2);
 }
 .ans-vote-container-REPLACE-LATER:last-child {
   border-bottom-left-radius: 5px;
@@ -105,4 +106,21 @@
   left: 50%;
   transform: translate(-50%, -50%);
   font-size: 18px;
+}
+.edit-button {
+  margin-right: 5px;
+}
+
+.ans-username,
+.ans-timestamp,
+.ans-detail-con,
+.upvote-total > div,
+.downvote-total > div {
+  color: var(--text1);
+}
+
+.answer-error {
+  padding: 5px 0;
+  list-style-type: none;
+  color: red;
 }

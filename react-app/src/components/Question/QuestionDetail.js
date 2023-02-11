@@ -24,10 +24,11 @@ function QuestionDetail() {
   const [questionUrl, setQuestionUrl] = useState("");
   const [newAnswer, setNewAnswer] = useState("");
   const [newAnswerUrl, setNewAnswerUrl] = useState("");
+  const [errors, setErrors] = useState([]);
+  const [errors2, setErrors2] = useState([]);
 
   const renderAnswers = (answerObj) => {
     const answers = [];
-    console.log("hello");
     for (let answer in answerObj) {
       answers.push(
         <IndividualAnswer
@@ -48,16 +49,32 @@ function QuestionDetail() {
   const editSubmit = (e) => {
     e.preventDefault();
     const editedQuestion = {
-      question: questionTitle || question.question,
-      detail: questionDetail || question.detail,
-      url: questionUrl || question.url,
+      question: questionTitle,
+      detail: questionDetail,
+      url: questionUrl,
     };
-    dispatch(questionActions.putTheQuestion(editedQuestion, id)).then(() => {
-      setQuestionDetail("");
-      setQuestionTitle("");
-      setQuestionUrl("");
-      setEditQuestion(false);
-    });
+    dispatch(questionActions.putTheQuestion(editedQuestion, id)).then(
+      async (res) => {
+        const data = await res;
+
+        if (data.errors) {
+          const newErrors = res.errors.map((ele) => {
+            if (ele.includes("url")) {
+              return "Not a valid image.";
+            }
+            return (
+              ele.slice(0, ele.indexOf(":")) + ele.slice(ele.indexOf(":") + 7)
+            );
+          });
+          setErrors(newErrors);
+        } else {
+          setQuestionDetail("");
+          setQuestionTitle("");
+          setQuestionUrl("");
+          setEditQuestion(false);
+        }
+      }
+    );
   };
 
   const addAnswer = (e) => {
@@ -68,17 +85,25 @@ function QuestionDetail() {
       url: newAnswerUrl,
     };
 
-    dispatch(answerActions.postTheAnswer(data, id, user))
-      .then(() => {
+    dispatch(answerActions.postTheAnswer(data, id, user)).then(async (res) => {
+      const data = await res;
+      if (data.errors) {
+        const newErrors = data.errors.map((ele) => {
+          if (ele.includes("url")) {
+            return "Not a valid image.";
+          }
+          return (
+            ele.slice(0, ele.indexOf(":")) + ele.slice(ele.indexOf(":") + 7)
+          );
+        });
+        setErrors2(newErrors);
+      } else {
         setNewAnswer("");
         setNewAnswerUrl("");
-        console.log("it works");
-      })
-      .catch(() => {
-        console.log("did not work");
-      });
+        setErrors([]);
+      }
+    });
   };
-
   useEffect(() => {
     dispatch(questionActions.getTheQuestion(id));
     dispatch(answerActions.getTheAnswers(id));
@@ -109,7 +134,8 @@ function QuestionDetail() {
                     <input
                       className="edit-ques-title"
                       type="text"
-                      value={questionTitle || question.question}
+                      placeholder=""
+                      value={questionTitle}
                       onChange={(e) => {
                         setQuestionTitle(e.target.value);
                       }}
@@ -117,7 +143,7 @@ function QuestionDetail() {
                     <textarea
                       className="edit-ques-body"
                       type="text"
-                      value={questionDetail || question.detail}
+                      value={questionDetail}
                       onChange={(e) => {
                         setQuestionDetail(e.target.value);
                       }}
@@ -127,7 +153,7 @@ function QuestionDetail() {
                     <input
                       className="edit-ques-url"
                       type="text"
-                      value={questionUrl || question.url}
+                      value={questionUrl}
                       onChange={(e) => {
                         setQuestionUrl(e.target.value);
                       }}
@@ -149,6 +175,11 @@ function QuestionDetail() {
                       Apply Changes
                     </button>
                   </div>
+                  <ul className="error">
+                    {errors.map((ele) => (
+                      <li>{ele}</li>
+                    ))}
+                  </ul>
                 </form>
               ) : (
                 <>
@@ -178,6 +209,9 @@ function QuestionDetail() {
                             className="edit-button"
                             onClick={() => {
                               setEditQuestion(true);
+                              setQuestionTitle(question.question);
+                              setQuestionDetail(question.detail);
+                              setQuestionUrl(question.url);
                             }}
                           >
                             edit
@@ -224,8 +258,15 @@ function QuestionDetail() {
                   />
                 </div>
 
-                <button type="submit">add answer</button>
+                <button className="a-a-button" type="submit">
+                  add answer
+                </button>
               </form>
+              <ul className="error">
+                {errors2.map((ele) => (
+                  <li>{ele}</li>
+                ))}
+              </ul>
             </div>
 
             <div className="all-answer-container">

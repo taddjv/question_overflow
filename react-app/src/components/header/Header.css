@@ -1,82 +1,69 @@
-.header{
-display:flex;
-align-items: center;
-justify-content: space-between;
-background-color: white;
-border-top: 3px solid rgba(64, 174, 14, 0.564);
-border-bottom: 1px solid lightgray;
-z-index: 100;
-width: 100%;
-height: 50px;
-position: sticky;
-top:0;
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--background2);
+  border-top: 3px solid var(--main);
+  border-bottom: 1px solid lightgray;
+  z-index: 100;
+  width: 100%;
+  height: 50px;
+  position: sticky;
+  top: 0;
 }
 
-.header_question{
-  color:rgb(57, 138, 19);
+.header_question {
+  color: rgb(57, 138, 19);
 }
 
-.header_center{
-display: flex;
-flex:1;
-align-items: center;
-max-width: fit-content;
-padding: 10px;
-height: 20px;
-border: 1px solid lightgray;
-border-radius: 99px;
-background-color: rgba(194, 255, 166, 0.47);
+.header_center {
+  display: flex;
+  flex: 1;
+  align-items: center;
+  max-width: fit-content;
+  padding: 10px;
+  height: 20px;
+  border: 1px solid lightgray;
+  border-radius: 99px;
+  /* background-color: rgba(194, 255, 166, 0.47); */
+  background: #f9f8f7;
 }
 
-.header_center > input{
-border:none;
-padding: 10px;
-outline-width: 0;
-width: 250px;
-background-color: rgba(194, 255, 166, 0.47);
+.header_center > input {
+  border: none;
+  padding: 10px;
+  outline-width: 0;
+  width: 250px;
+  /* background-color: rgba(194, 255, 166, 0.47); */
+  background: #f9f8f7;
 }
 
-.header_left{
+.header_left {
   display: flex;
 }
 
-.header_homeLink{
-  display:flex;
+.header_homeLink {
+  display: flex;
   text-decoration: none;
-  color:black;
+  color: black;
 }
 
-.demo_login_button{
-  color:white;
+.demo_login_button {
+  color: var(--text2);
   font-weight: bolder;
-  background-color: rgba(64, 174, 14, 0.564);
+  background-color: var(--main);
   cursor: pointer;
   border: 2px groove white;
   border-radius: 10px;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.demo_login_button:hover{
-  box-shadow: 0 0 11px rgba(0,0,0,.2);
-  transform: scale(.95);
+.demo_login_button:hover {
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
 }
 
-.header_search_button{
-  color:white;
-  font-weight: bolder;
-  background-color: rgba(64, 174, 14, 0.564);
-  cursor: pointer;
-  border: 2px groove white;
-  border-radius: 10px;
-  transition: all .2s ease-in-out;
-}
-
-.header_search_button:hover{
-  box-shadow: 0 0 11px rgba(0,0,0,.2);
-  transform: scale(.95);
-}
-
-.header_right{
+.header_right {
   display: flex;
   align-items: center;
   font-weight: 800;

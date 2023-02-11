@@ -66,18 +66,19 @@ def edit_answer(id):
 
     form = AnswerForm()
 
-    if (form.data):
+    form['csrf_token'].data = request.cookies['csrf_token']
+    if form.validate_on_submit():
         desired_answer = Answer.query.get(id)
         if desired_answer.user_id == current_user.id:
-            desired_answer.answer = form.data["answer"] or desired_answer.answer
-            desired_answer.url = form.data["url"] or desired_answer.url
+            desired_answer.answer = form.data["answer"]
+            desired_answer.url = form.data["url"]
 
             db.session.commit()
 
             return desired_answer.to_dict()
         else:
             return {"message": "You are not the author of this answer"}
-    return "no data (error)"
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @answer_routes.route("/<int:id>", methods=["DELETE"])
