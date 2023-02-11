@@ -14,6 +14,9 @@ import SideBar from "./components/sideBar/SideBar";
 import "./App.css";
 import QuestionDetail from "./components/Question/QuestionDetail";
 import { useUser } from "./context/userContext";
+import PopularQuestions from "./components/sideBar/SidebarLinks/PopularQuestions/PopularQuestions";
+import NewestQuestion from "./components/sideBar/SidebarLinks/NewestQuestion/NewestQuestion";
+import MostHated from "./components/sideBar/SidebarLinks/MostHated/MostHated";
 // import Search from "./components/Search";
 
 function App() {
@@ -34,43 +37,96 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Header />
+<BrowserRouter>
+  <div className="app">
+    <Header/>
 
-      <Switch>
-        <Route path="/login" exact={true}>
-          <LoginForm />
+    <Switch>
+
+      <Route exact="exact" path='/login'>
+        <LoginForm/>
+      </Route>
+
+      <Route exact="exact" path='/sign-up'>
+        <SignUpForm/>
+      </Route>
+
+      <div className="app_body">
+        <SideBar/>
+
+        <Route exact="exact" path='/'>
+          <HomeComponent type='home'/>
         </Route>
-            <Route path="/sign-up" exact={true}>
-              <SignUpForm />
-            </Route>
 
-        <div className="app_body">
-          <div className="sidebar_body">
-            <SideBar />
-          </div>
-          <Route path="/" exact={true}>
-            <HomeComponent type="home" />
-          </Route>
-          <Route path="/questions/:id">
-            <QuestionDetail />
-          </Route>
+        <Route path="/questions/:id">
+          <QuestionDetail/>
+        </Route>
 
-          <div className="inner_body">
-            <ProtectedRoute path="/users" exact={true}>
-              <UsersList />
-            </ProtectedRoute>
-            <ProtectedRoute path="/users/:userId" exact={true}>
-              <User />
-            </ProtectedRoute>
-            <Route path="/search/questions/:searchQuery" exact={true}>
-              <HomeComponent type="search" />
-            </Route>
-          </div>
-        </div>
-      </Switch>
-    </BrowserRouter>
+        <Route exact path='/questions/popular'>
+          <PopularQuestions/>
+        </Route>
+
+        <Route exact path='/questions/newest'>
+          <NewestQuestion/>
+        </Route>
+
+        <Route exact path='/questions/hated'>
+          <MostHated/>
+        </Route>
+
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true}>
+          <User/>
+        </ProtectedRoute>
+        <Route path="/search/questions/:searchQuery" exact={true}>
+          <HomeComponent type="search"/>
+        </Route>
+
+      </div>
+
+    </Switch>
+  </div>
+</BrowserRouter>
+
+
   );
 }
 
 export default App;
+
+  {/*
+  <Switch>
+    <Route path="/login" exact={true}>
+      <LoginForm/>
+    </Route>
+    <Route path="/sign-up" exact={true}>
+      <SignUpForm/>
+    </Route>
+
+    <div className="app_body">
+      <div className="sidebar_body">
+        <SideBar/>
+      </div>
+      <Route path="/" exact={true}>
+        <HomeComponent type="home"/>
+      </Route>
+      <Route path="/questions/:id">
+        <QuestionDetail/>
+      </Route>
+
+      <div className="inner_body">
+        <ProtectedRoute path="/users" exact={true}>
+          <UsersList/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true}>
+          <User/>
+        </ProtectedRoute>
+        <Route path="/search/questions/:searchQuery" exact={true}>
+          <HomeComponent type="search"/>
+        </Route>
+      </div>
+    </div>
+  </Switch>
+  */}
