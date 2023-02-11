@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import * as questionActions from "../../../store/question";
+import './AskQuestionModal.css'
+
 
 const AskQuestionForm = ({ setShowModal, user }) => {
   const dispatch = useDispatch();
@@ -33,7 +35,10 @@ const AskQuestionForm = ({ setShowModal, user }) => {
   };
 
   return (
-    <form className="ask-question-form" onSubmit={handleSubmit}>
+
+  <div className="askQuestionBody">
+
+   <form className="ask-question-form" onSubmit={handleSubmit}>
       <div className="form-container">
         <ul>
           {errors.map((error, idx) => (
@@ -41,29 +46,54 @@ const AskQuestionForm = ({ setShowModal, user }) => {
           ))}
         </ul>
       </div>
+
+
+      <div className="askQuestion_logo">
+        <h1 className="askQuestion_ask">Ask</h1>
+        <h1 className="askQuestion_question"><em>Question</em></h1>
+      </div>
+
       <div className="ask-question-elements">
         <label>
+          <div className="askQuestion_ele">
           Question
+          </div>
           <input
+          className="input_ele"
             type="text"
+            size='30'
+            placeholder='Question...'
             value={question}
             onChange={(e) => setQuestion(e.target.value)}
             required
           />
         </label>
+
+
         <label>
+        <div className="askQuestion_ele">
           Detail
+        </div>
           <input
+            className="input_ele"
+            placeholder="Detail..."
             type="text"
+            size='30'
             value={detail}
             onChange={(e) => setDetail(e.target.value)}
             required
           />
         </label>
+
         <label>
+        <div className="askQuestion_ele">
           Profile-URL
+        </div>
           <input
+            className="input_ele"
+            size='30'
             type="text"
+            placeholder='Add an image...'
             value={url}
             onChange={(e) => setUrl(e.target.value)}
             required
@@ -77,6 +107,7 @@ const AskQuestionForm = ({ setShowModal, user }) => {
         </div>
       </div>
     </form>
+  </div>
   );
 };
 

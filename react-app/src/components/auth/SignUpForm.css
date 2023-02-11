@@ -96,3 +96,8 @@
   box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);
   transform: scale(0.95);
 }
+
+.signup_error{
+  color:black;
+  font-weight: bolder;
+}

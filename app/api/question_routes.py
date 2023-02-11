@@ -111,3 +111,11 @@ def post_question():
         db.session.commit()
         return desired_question.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}
+
+
+@questions_routes.route("/popular", methods=["GET"])
+def get_popular_questions():
+    questions = Question.query.filter(
+        Answer.question_id).order_by(Answer.count())
+    print(questions, ' <--- popular')
+    return quest_ans_formatter(questions)
