@@ -61,20 +61,21 @@ def get_question(id):
 def edit_question(id):
 
     form = QuestionForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-    if form.data:
+    if form.validate_on_submit():
         desired_question = Question.query.get(id)
         if desired_question.user_id == current_user.id:
-            desired_question.question = form.data["question"] or desired_question.question
-            desired_question.detail = form.data["detail"] or desired_question.detail
-            desired_question.url = form.data["url"] or desired_question.url
+            desired_question.question = form.data["question"]
+            desired_question.detail = form.data["detail"]
+            desired_question.url = form.data["url"]
 
             db.session.commit()
 
             return desired_question.to_dict()
         else:
             return {"message": "You are not allowed to edit this question"}
-    return "no data (error)"
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @questions_routes.route("/<int:id>", methods=["DELETE"])
@@ -99,7 +100,6 @@ def get_all_questions():
 @questions_routes.route("/", methods=["POST"])
 @login_required
 def post_question():
-    # print(current_user.id, ' <--------')
     form = QuestionForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
