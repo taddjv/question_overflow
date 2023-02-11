@@ -4,7 +4,7 @@ This web app uses the following API routes to dynamically update the page to cre
 
 ## Questions
 
-- A logged in user may delete, edit or create one of their own Question, however every users can view all questions or a specific question.
+- A logged in user may delete, edit or create their own Question, however every user can view all questions or a specific question, logged in or not.
 
   - `GET /api/questions/:id`
   - `GET /api/questions`
@@ -14,31 +14,29 @@ This web app uses the following API routes to dynamically update the page to cre
 
 ## Answers
 
-- A logged in user may delete, edit or create one of their own answer to a question, however every users can view all answers of a specific question.
+- A logged in user may delete, edit or create their own Answers to a Question, however every user can view all answers of a specific question, logged in or not.
 
   - `GET /api/answers/:id`
-  - `GET /api/answers`
-  - `POST /api/answers`
+  - `GET /api/answers/questions/:id`
+  - `POST /api/answers/questions/:id`
   - `PUT /api/answers/:id`
   - `DELETE /api/answers/:id`
 
 ## Search
 
-- A logged in user may search for questions through a search bar.
+- A logged in user may search for questions through a search bar with the use of pythons '.like', users can search for questions in database with keywords from the search bar. Questions whose title or body match the included the keywords will return the questions' I.D and render all the question results on browser.
 
-(use .like to search for questions in database with keywords from the search bar, for those questions that includes the keywords, we'll return the question ids and render all the questions on browser.)
+
 
 - `GET /api/questions/search`
 
-## Up-votes / Down-votes to an Answer
+## Reactions (Up-votes / Down-votes to an Answer)
 
-- A logged in user may up-vote or down-vote and delete the vote from an answer.
+- A logged in user may up-vote, down-vote, switch between or completely undo their vote from an answer using the two provided icons which fetch data from an association attached to the answerId and userId.
 
-(use association table with answerId and userId)
-
-- `GET /api/votes/:id`
-- `POST /api/votes`
-- `DELETE /api/votes/:id`
+- `GET /api/reactions/:id`
+- `POST /api/reactions/:id/up-vote`
+- `POST /api/reactions/:id/down-vote`
 
 <!-- ## Bonus - Categories to Questions
 
