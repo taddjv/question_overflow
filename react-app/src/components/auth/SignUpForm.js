@@ -15,13 +15,45 @@ const SignUpForm = () => {
 
   const onSignUp = async (e) => {
     e.preventDefault();
-    if (password === repeatPassword) {
-      const data = await dispatch(signUp(username, email, password));
-      if (data) {
-        setErrors(data)
-      }
+    if (password !== repeatPassword) {
+      // const data = await dispatch(signUp(username, email, password));
+      return setErrors(['Confirm Password field must be the same as the Password field'])
+    }
+    else{
+       const data = await dispatch(signUp(username, email, password));
     }
   };
+
+  // const onSignUp = async (e) => {
+  //   e.preventDefault();
+  //   if (password === repeatPassword) {
+  //     const data = await dispatch(signUp(username, email, password));
+  //     if (data) {
+  //       setErrors([data])
+  //     }
+  //   }
+  // };
+
+
+  // const onSignUp = (e) => {
+  //   e.preventDefault();
+  //   if (password === repeatPassword) {
+  //     setErrors([])
+  //     return dispatch(signUp({email,password,username}))
+  //     .catch(async (res) =>{
+  //       const data = await res.json()
+  //       const err = []
+
+  //       if(data && data.errors){
+  //         for(let error in data.errors){
+  //           err.push(data.errors[error])
+  //         }
+  //         setErrors([err])
+  //       }
+  //     })
+  //   }
+  //   return setErrors(['Confirm Password field must be the same as the Password field']);
+  // }
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
@@ -47,10 +79,6 @@ const SignUpForm = () => {
     <div className='signUpBody'>
 
       <form className='signUp_form' onSubmit={onSignUp}>
-          {errors.map((error, ind) => (
-            <div key={ind}>
-              {error}</div>
-          ))}
 
 
 
@@ -59,6 +87,10 @@ const SignUpForm = () => {
           <h1 className='signup_overflow'><em>overflow</em></h1>
         </div>
         <h1 className='signup_signupform'>SignUp</h1>
+          {errors.map((error, ind) => (
+            <div className='signup_error'key={ind}>
+              {error}</div>
+          ))}
 
 
         <label>

@@ -130,3 +130,8 @@
   color: red;
 
 }
+
+.thumbs-down-button,
+.thumbs-up-button{
+  cursor:pointer;
+}

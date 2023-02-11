@@ -24,6 +24,7 @@ function IndividualAnswers({
 }) {
   const dispatch = useDispatch();
 
+
   const [editAnswer, setEditAnswer] = useState(false);
   const [answerDetail, setAnswerDetail] = useState("");
   const [answerUrl, setAnswerUrl] = useState("");
@@ -88,12 +89,13 @@ function IndividualAnswers({
     });
   };
 
+
   return (
     <>
       {editAnswer ? (
         <div className="ans-vote-container-REPLACE-LATER">
           <div className="a-v-c-profile">
-            <img src={user.profile_url} />
+          <Avatar src={answer.user.profile_url}/>
           </div>
           <div className="a-v-c-content">
             <div className="ans-container">
@@ -158,7 +160,7 @@ function IndividualAnswers({
       ) : (
         <div className="ans-vote-container-REPLACE-LATER">
           <div className="a-v-c-profile">
-            <img src={user.profile_url} />
+            <Avatar src={answer.user.profile_url}/>
           </div>
           <div className="a-v-c-content">
             <div className="ans-container">
@@ -169,7 +171,7 @@ function IndividualAnswers({
                 </div>
                 <div className="ans-detail-con">{answer.answer} </div>
               </div>
-              {answer.user.username === user.username && (
+              {answer.user?.username === user?.username && (
                 <div className="ans-crud-options">
                   <button
                     className="edit-button"
