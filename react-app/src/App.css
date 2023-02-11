@@ -1,9 +1,10 @@
-.app_body{
+.app_body {
   display: flex;
   justify-content: space-between;
 
 }
 
-.sidebar_body{
+.sidebar_body {
   border-right: 1px solid black;
+  background: var(--background2);
 }

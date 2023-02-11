@@ -53,24 +53,25 @@ export const getTheDownvotes = (id) => async (dispatch) => {
 };
 
 export const postTheUpvote = (id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}/up-vote`, {
+  const response = await fetch(`/api/reactions/answers/${id}/up-vote`, {
     method: "POST",
   });
-
+  // console.log(response, " <--- response from thunk");
   if (response.ok) {
     const data = await response.json();
-    dispatch(postUpvote);
+    dispatch(postUpvote(id));
     return data;
   }
 };
+
 export const postTheDownvote = (id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}/down-vote`, {
+  const response = await fetch(`/api/reactions/answers/${id}/down-vote`, {
     method: "POST",
   });
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(postDownvote);
+    dispatch(postDownvote(id));
     return data;
   }
 };
@@ -78,13 +79,13 @@ export const postTheDownvote = (id) => async (dispatch) => {
 let initialState = {};
 const reactionsReducer = (state = initialState, action) => {
   let newState;
-
   switch (action.type) {
-    case GET_UPVOTES:
-      newState = Object.assign({}, state);
+    case GET_UPVOTES: {
+      const newState = Object.assign({}, state);
       //?   newState.reaction.up_vote = action.payload;
       newState.reaction = action.payload;
       return newState;
+    }
 
     case GET_DOWNVOTES:
       newState = Object.assign({}, state);
@@ -92,11 +93,12 @@ const reactionsReducer = (state = initialState, action) => {
       newState.reaction = action.payload;
       return newState;
 
-    case POST_UPVOTE:
-      newState = Object.assign({}, state);
+    case POST_UPVOTE: {
+      const newState = Object.assign({}, state);
       //?   newState.reaction.up_vote = action.payload;
       newState.reaction = action.payload;
       return newState;
+    }
 
     case POST_DOWNVOTE:
       newState = Object.assign({}, state);

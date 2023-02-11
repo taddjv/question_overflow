@@ -1,4 +1,4 @@
-from flask import Blueprint, request
+from flask import Blueprint, request, redirect
 from app.models import Answer, Question, Reaction, db
 from flask_login import current_user, login_user, logout_user, login_required
 
@@ -31,25 +31,28 @@ def post_upvote_reaction(id):
         # Reaction.user_id == 1
 
     ).first()
-
+    # return 'hello from backend'
     if reaction_check:
         if reaction_check.up_vote == True:
             reaction_check.up_vote = False
             # reaction_check.down_vote = True
             db.session.delete(reaction_check)
             db.session.commit()
-            return "deleted upVote from db"
+            # print("deleted upVote from db")
+            return {"message": "deleted upVote from db"}
         elif reaction_check.up_vote == False:
             reaction_check.up_vote = True
             reaction_check.down_vote = False
             db.session.commit()
-            return "upVoted"
+            # print("upVoted")
+            return {"message": "upVoted"}
     else:
         new_vote = Reaction(answer_id=id,
                             user_id=current_user.id, up_vote=True, down_vote=False)
         db.session.add(new_vote)
         db.session.commit()
-        return "added upVote reaction to db"
+        # print("added upVote reaction to db")
+        return {"message": "added upVote reaction to db"}
 
 
 @reaction_routes.route("/answers/<int:id>/down-vote", methods=["POST"])
@@ -67,18 +70,19 @@ def post_downvote_reaction(id):
             # reaction_check.up_vote = True
             db.session.delete(reaction_check)
             db.session.commit()
-            return "deleted downVote from db"
+
+            return {"message": "deleted downVote from db"}
         elif reaction_check.down_vote == False:
             reaction_check.down_vote = True
             reaction_check.up_vote = False
             db.session.commit()
-            return "downVoted"
+            return {"message": "downVoted"}
     else:
         new_vote = Reaction(answer_id=id,
                             user_id=current_user.id, up_vote=False, down_vote=True)
         db.session.add(new_vote)
         db.session.commit()
-        return "added downVote reaction to db"
+        return {"message": "added downVote reaction to db"}
 
 
 @reaction_routes.route('/answers/<int:id>/up-votes')
