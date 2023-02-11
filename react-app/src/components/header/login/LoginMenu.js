@@ -14,6 +14,7 @@ export default function LoginMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const currUser = useSelector((state) => state.session.user);
+ 
 
 
 
@@ -39,7 +40,7 @@ export default function LoginMenu() {
         onClick={handleClick}
       >
 
-        <Avatar/>
+        <Avatar src={currUser.profile_url}/>
       </Button>
       <Menu
         id="basic-menu"

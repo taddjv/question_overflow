@@ -62,6 +62,18 @@ function App() {
           <QuestionDetail/>
         </Route>
 
+
+        {/* <ProtectedRoute path="/users" exact={true}>
+          <UsersList/>
+        </ProtectedRoute>
+        <ProtectedRoute path="/users/:userId" exact={true}>
+          <User/>
+        </ProtectedRoute> */}
+
+        <Route path="/search/questions/:searchQuery" exact={true}>
+          <HomeComponent type="search"/>
+        </Route>
+
         <Route exact path='/questions/popular'>
           <PopularQuestions/>
         </Route>
@@ -72,16 +84,6 @@ function App() {
 
         <Route exact path='/questions/hated'>
           <MostHated/>
-        </Route>
-
-        <ProtectedRoute path="/users" exact={true}>
-          <UsersList/>
-        </ProtectedRoute>
-        <ProtectedRoute path="/users/:userId" exact={true}>
-          <User/>
-        </ProtectedRoute>
-        <Route path="/search/questions/:searchQuery" exact={true}>
-          <HomeComponent type="search"/>
         </Route>
 
       </div>

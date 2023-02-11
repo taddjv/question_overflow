@@ -8,14 +8,14 @@ import * as questionActions from '../../../../store/question'
 function PopularQuestions() {
   const dispatch = useDispatch()
   const allquestions = useSelector((state) => state.questionsReducer.question.questions)
-  // console.log(allquestions.length)
-  console.log(allquestions[0].answers)
+
+
   let orderQuestions = []
 
   for(let i = 0; i < allquestions.length; i++){
 
    for (let j = 0; j < (allquestions.length - i - 1); j++){
-    console.log(allquestions[j].answers.length)
+
     if(allquestions[j].answers.length > allquestions[j+1].answers.length){
       let temp = allquestions[j]
       allquestions[j] = allquestions[j + 1]
@@ -26,7 +26,7 @@ function PopularQuestions() {
 
   }
 
-  console.log(orderQuestions)
+
 
   useEffect(() => {
     dispatch(questionActions.getTheQuestions())
