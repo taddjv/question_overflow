@@ -2,6 +2,7 @@
   text-decoration: none;
   cursor: pointer;
   color: inherit;
+  background: var(--background2);
 }
 
 .question-container {
@@ -20,7 +21,7 @@
   grid-template-columns: 80px 370px 100px 200px 200px;
   height: 50px;
   width: 100%;
-  background: rgba(64, 174, 14, 0.564);
+  background: var(--main);
   color: white;
   font-size: 18px;
   font-weight: 500;
@@ -33,7 +34,6 @@
   display: grid;
   grid-template-columns: 80px 370px 100px 200px 200px;
   grid-template-rows: 80px;
-  background: white;
 }
 .question-body > a:last-child > div {
   border-bottom-left-radius: 5px;
@@ -57,6 +57,7 @@
 .q-c-a-user {
   font-size: 18px;
   font-weight: 500;
+  color: var(--text1);
 }
 
 .q-c-a-user1 {

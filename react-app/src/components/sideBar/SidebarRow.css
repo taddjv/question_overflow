@@ -1,4 +1,4 @@
-.sidebar_container{
+.sidebar_container {
   display: flex;
   align-items: center;
   padding: 10px;
@@ -7,11 +7,14 @@
 }
 
 /* .sidebar_container:hover{
-  background-color: var(--theme);
+  background-color: var(--main);
   border-radius: 10px;
 } */
 
-.sidebar_container > h4{
-margin-left:20px;
-font-weight: 600;
+.sidebar_container > h4 {
+  margin-left: 20px;
+  font-weight: 600;
+}
+.row_title {
+  color: var(--text1);
 }
