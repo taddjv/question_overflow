@@ -47,6 +47,7 @@ export const getTheDownvotes = (id) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+
     dispatch(getDownvotes);
     return data;
   }

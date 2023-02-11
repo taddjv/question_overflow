@@ -28,6 +28,8 @@ function IndividualAnswers({
   const [answerDetail, setAnswerDetail] = useState("");
   const [answerUrl, setAnswerUrl] = useState("");
   const [errors, setErrors] = useState([]);
+  const [tempUpVote, setTempUpVote] = useState(0);
+  const [tempDownVote, setTempDownVote] = useState(0);
 
   const editTheAnswer = (e) => {
     e.preventDefault();
@@ -52,17 +54,38 @@ function IndividualAnswers({
         }
       }
     );
-
   };
 
   const handleUpvote = (e) => {
     e.preventDefault();
-    dispatch(reactionActions.postTheUpvote(id));
+    dispatch(reactionActions.postTheUpvote(id)).then(async (res) => {
+      const data = await res;
+
+      if (data.message.includes("added")) {
+        setTempUpVote(tempUpVote + 1);
+      } else if (data.message.includes("deleted")) {
+        setTempUpVote(tempUpVote - 1);
+      } else if (data.message === "upVoted") {
+        setTempDownVote(tempDownVote - 1);
+        setTempUpVote(tempUpVote + 1);
+      }
+    });
   };
 
   const handleDownvote = (e) => {
     e.preventDefault();
-    dispatch(reactionActions.postTheDownvote(id));
+    dispatch(reactionActions.postTheDownvote(id)).then(async (res) => {
+      const data = await res;
+
+      if (data.message.includes("added")) {
+        setTempDownVote(tempDownVote + 1);
+      } else if (data.message.includes("deleted")) {
+        setTempDownVote(tempDownVote - 1);
+      } else if (data.message === "downVoted") {
+        setTempDownVote(tempDownVote + 1);
+        setTempUpVote(tempUpVote - 1);
+      }
+    });
   };
 
   return (
@@ -83,9 +106,7 @@ function IndividualAnswers({
                   <input
                     className={null}
                     type="text"
-
                     value={answerDetail}
-
                     onChange={(e) => {
                       setAnswerDetail(e.target.value);
                     }}
@@ -97,7 +118,6 @@ function IndividualAnswers({
                     <li>{ele}</li>
                   ))}
                 </ul>
-
               </div>
               {answer.user.username === user.username && (
                 <form onSubmit={editTheAnswer} className="ans-crud-options">
@@ -107,7 +127,6 @@ function IndividualAnswers({
                       setEditAnswer(false);
 
                       setErrors([]);
-
                     }}
                   >
                     cancel
@@ -158,7 +177,6 @@ function IndividualAnswers({
                       setEditAnswer(true);
 
                       setAnswerDetail(answer.answer);
-
                     }}
                   >
                     edit
@@ -186,7 +204,7 @@ function IndividualAnswers({
                   <ThumbUpIcon onClick={handleUpvote}></ThumbUpIcon>
                 </div>
                 <div className="upvote-total">
-                  <div>{getVotes(reactions).up_votes}</div>
+                  <div>{getVotes(reactions).up_votes + tempUpVote}</div>
                 </div>
               </div>
               <div className="downvote-con">
@@ -194,7 +212,7 @@ function IndividualAnswers({
                   <ThumbDownIcon onClick={handleDownvote}></ThumbDownIcon>
                 </div>
                 <div className="downvote-total">
-                  <div>{getVotes(reactions).down_votes}</div>
+                  <div>{getVotes(reactions).down_votes + tempDownVote}</div>
                 </div>
               </div>
             </div>
