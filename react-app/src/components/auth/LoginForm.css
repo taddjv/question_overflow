@@ -1,87 +1,89 @@
-.loginBody{
+.loginBody {
   display: grid;
   place-items: center;
   height: 100vh;
-  color: white;
-  background: linear-gradient(to bottom, white,  rgba(66, 194, 7, 0.564), rgba(0, 0, 0, 0.568));
+  color: var(--text2);
+  background: linear-gradient(
+    to bottom,
+    white,
+    rgba(66, 194, 7, 0.564),
+    rgba(0, 0, 0, 0.568)
+  );
 }
 
-.email{
+.email {
   font-weight: 800;
   font-size: 18px;
-  color:  black;
+  color: black;
 }
 
-.password{
+.password {
   font-weight: 800;
   font-size: 18px;
-  color:  black;
+  color: black;
 }
 
-
-.login_form{
+.login_form {
   display: flex;
   flex-direction: column;
   padding-bottom: 100px;
 }
 
-.login_logo{
+.login_logo {
   display: flex;
   align-items: center;
 }
 
-.login_question{
+.login_question {
   color: rgb(57, 138, 19);
 }
 
-.login_overflow{
-  color:black;
+.login_overflow {
+  color: black;
 }
 
-.login_button_div{
-padding-top: 20px;
-width:250px;
+.login_button_div {
+  padding-top: 20px;
+  width: 250px;
 }
 
-.login_button{
-  color:white;
+.login_button {
+  color: var(--text2);
   font-weight: bolder;
-  background-color: rgba(64, 174, 14, 0.564);
+  background-color: var(--main);
   cursor: pointer;
   border: 2px groove white;
   border-radius: 10px;
   height: 40px;
   width: 100%;
-  transition: all .2s ease-in-out;
+  transition: all 0.2s ease-in-out;
 }
 
-.login_button:hover{
-  box-shadow: 0 0 11px rgba(0,0,0,.2);
-  transform: scale(.95);
+.login_button:hover {
+  box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);
+  transform: scale(0.95);
 }
 
- .login_form > input[type=text],[type=password]{
+.login_form > input[type="text"],
+[type="password"] {
   display: block;
-  color:black;
+  color: black;
   font-weight: bold;
-  border:2px solid  black;
+  border: 2px solid black;
   background-color: transparent;
- }
+}
 
-
- .email_input{
+.email_input {
   display: block;
-  background-color:transparent;
-  color:black;
+  background-color: transparent;
+  color: black;
   font-weight: bold;
-  border:2px solid  black;
- }
+  border: 2px solid black;
+}
 
- .login_loginform{
-  padding-top:10px;
+.login_loginform {
+  padding-top: 10px;
   padding-bottom: 20px;
   padding-left: 70px;
-  color:black;
- }
-
-
+  color: black;
+}
