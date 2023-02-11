@@ -29,6 +29,7 @@ function QuestionDetail() {
 
   const renderAnswers = (answerObj) => {
     const answers = [];
+    console.log("hello");
     for (let answer in answerObj) {
       answers.push(
         <IndividualAnswer
@@ -128,6 +129,7 @@ function QuestionDetail() {
                     <div className="ind-ques-timestamp">
                       Posted on {question.dateCreated}
                     </div>
+
                   </div>
 
                   <div className="ques-input-con">
@@ -180,6 +182,7 @@ function QuestionDetail() {
                       <li>{ele}</li>
                     ))}
                   </ul>
+
                 </form>
               ) : (
                 <>
@@ -209,9 +212,11 @@ function QuestionDetail() {
                             className="edit-button"
                             onClick={() => {
                               setEditQuestion(true);
+
                               setQuestionTitle(question.question);
                               setQuestionDetail(question.detail);
                               setQuestionUrl(question.url);
+
                             }}
                           >
                             edit
@@ -258,6 +263,7 @@ function QuestionDetail() {
                   />
                 </div>
 
+
                 <button className="a-a-button" type="submit">
                   add answer
                 </button>
@@ -267,6 +273,7 @@ function QuestionDetail() {
                   <li>{ele}</li>
                 ))}
               </ul>
+
             </div>
 
             <div className="all-answer-container">
