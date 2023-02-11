@@ -57,7 +57,7 @@ export const postTheUpvote = (id) => async (dispatch) => {
   const response = await fetch(`/api/reactions/answers/${id}/up-vote`, {
     method: "POST",
   });
-  // console.log(response, " <--- response from thunk");
+ 
   if (response.ok) {
     const data = await response.json();
     dispatch(postUpvote(id));

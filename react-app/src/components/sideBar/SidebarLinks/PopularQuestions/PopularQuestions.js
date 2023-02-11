@@ -9,23 +9,25 @@ import * as sessionActions from "../../../../store/session";
 import IndividualAnswer from "../../../answer/IndividualAnswer";
 
 function PopularQuestions() {
-  return <h1>popular questions - under construction</h1>;
-  // const { id } = useParams();
-  // const dispatch = useDispatch();
-  // const history = useHistory();
+  const dispatch = useDispatch()
+  const allquestions = useSelector((state) => state.questionsReducer.question.questions)
+
+
+  let orderQuestions = []
 
   // const answers = useSelector((state) => state.answersReducer);
   // const question = useSelector((state) => state.questionsReducer.question);
   // const user = useSelector((state) => state.session?.user);
 
-  // const [editQuestion, setEditQuestion] = useState(false);
-  // const [questionTitle, setQuestionTitle] = useState("");
-  // const [questionDetail, setQuestionDetail] = useState("");
-  // const [questionUrl, setQuestionUrl] = useState("");
-  // const [newAnswer, setNewAnswer] = useState("");
-  // const [newAnswerUrl, setNewAnswerUrl] = useState("");
-  // const [errors, setErrors] = useState([]);
-  // const [errors2, setErrors2] = useState([]);
+   for (let j = 0; j < (allquestions.length - i - 1); j++){
+
+    if(allquestions[j].answers.length > allquestions[j+1].answers.length){
+      let temp = allquestions[j]
+      allquestions[j] = allquestions[j + 1]
+      allquestions[j + 1] = temp
+      orderQuestions.push(temp)
+    }
+   }
 
   // const renderAnswers = (answerObj) => {
   //   const answers = [];
@@ -47,16 +49,6 @@ function PopularQuestions() {
   //   return answers;
   // };
 
-  // const editSubmit = (e) => {
-  //   e.preventDefault();
-  //   const editedQuestion = {
-  //     question: questionTitle,
-  //     detail: questionDetail,
-  //     url: questionUrl,
-  //   };
-  //   dispatch(questionActions.putTheQuestion(editedQuestion, id)).then(
-  //     async (res) => {
-  //       const data = await res;
 
   //       if (data.errors) {
   //         const newErrors = res.errors.map((ele) => {

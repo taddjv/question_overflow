@@ -69,7 +69,7 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
       url,
     }),
   });
-  // console.log(response, ' <------');
+
   if (response.ok) {
     const data = await response.json();
     data["answers"] = [];
@@ -130,8 +130,7 @@ const questionsReducer = (state = initialState, action) => {
 
     case POST_QUESTION:
       newState = Object.assign({}, state);
-      // console.log(newState["allQuestions"]);
-      // console.log(action.payload.id);
+
       newState["allQuestions"][`${action.payload.id}`] = action.payload;
       return newState;
 

@@ -18,6 +18,7 @@ function QuestionDetail() {
   const question = useSelector((state) => state.questionsReducer.question);
   const user = useSelector((state) => state.session?.user);
 
+
   const [editQuestion, setEditQuestion] = useState(false);
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionDetail, setQuestionDetail] = useState("");
@@ -29,7 +30,7 @@ function QuestionDetail() {
 
   const renderAnswers = (answerObj) => {
     const answers = [];
-    console.log("hello");
+
     for (let answer in answerObj) {
       answers.push(
         <IndividualAnswer
@@ -242,7 +243,7 @@ function QuestionDetail() {
               )}
               <form onSubmit={addAnswer} className="add-answer">
                 <div className="a-a-left">
-                  <img src={user.profile_url} />
+                  <img src={user?.profile_url} />
                 </div>
                 <div className="a-a-middle">
                   <input
@@ -265,7 +266,7 @@ function QuestionDetail() {
 
 
                 <button className="a-a-button" type="submit">
-                  add answer
+                  Add answer
                 </button>
               </form>
               <ul className="error">
