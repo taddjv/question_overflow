@@ -49,6 +49,9 @@ function IndividualAnswers({
     dispatch(reactionActions.postTheUpvote(answer.id));
   };
   useEffect(() => {}, [answer.id]);
+  const handleDownvote = () => {
+    dispatch(reactionActions.postTheDownvote(answer.id));
+  };
 
   return (
     <div className="reply_container">
@@ -70,7 +73,7 @@ function IndividualAnswers({
           <div className="downvote">
             {getVotes(reactions).down_votes}
             <div className="down_icon">
-              <i class="fa-solid fa-thumbs-down" />
+              <i class="fa-solid fa-thumbs-down" onClick={handleDownvote} />
             </div>
           </div>
           {/* end of downvote div */}
