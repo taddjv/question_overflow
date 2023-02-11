@@ -1,31 +1,30 @@
-.sidebar_link{
+.sidebar_link {
   display: flex;
   align-items: center;
   text-decoration: none;
-  border-bottom: 1px solid var(--theme);
+  border-bottom: 1px solid var(--main);
 }
 
-.sidebar_link:hover{
-  background-color: var(--theme2);
+.sidebar_link:hover {
+  background-color: var(--main2);
 }
 
-.icon{
-  color: var(--theme)
+.icon {
+  color: var(--main);
 }
 
-.sidebar_items{
+.sidebar_items {
   display: flex;
   align-items: center;
   text-decoration: none;
-  border-bottom: 1px solid var(--theme);
+  border-bottom: 1px solid var(--main);
 }
 
-.sidebar_items:hover{
+.sidebar_items:hover {
   background-color: var(--theme2);
-
 }
 
-.sidebar{
+.sidebar {
   width: 200px;
   height: 200px;
   padding-right: 20px;

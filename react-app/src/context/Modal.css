@@ -6,7 +6,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  color: white;
+  color: var(--text2);
 }
 
 #modal-background {
@@ -24,7 +24,6 @@
   height: 0px;
 }
 
-#ask-question-elements{
+#ask-question-elements {
   background-color: white;
-
 }

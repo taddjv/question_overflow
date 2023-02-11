@@ -6,7 +6,7 @@ def seed_questions():
         user_id=1, question="how do i bathe", detail="people say i stink and say that i should bathe", url="https://health.clevelandclinic.org/wp-content/uploads/sites/3/2020/11/bathReasons-1143723436-770x533-1.jpg"
     )
     demo1 = Question(
-        user_id=2, question="how to what", detail="people say i stink and say that i should bathe", url="https://health.clevelandclinic.org/wp-content/uploads/sites/3/2020/11/bathReasons-1143723436-770x533-1.jpg"
+        user_id=2, question="how to what", detail="dont know what to do most of the time", url="https://health.clevelandclinic.org/wp-content/uploads/sites/3/2020/11/bathReasons-1143723436-770x533-1.jpg"
     )
     demo2 = Question(
         user_id=3, question="how to when", detail="people say i have no concept of time, it's true", url="https://health.clevelandclinic.org/wp-content/uploads/sites/3/2020/11/bathReasons-1143723436-770x533-1.jpg"
@@ -42,7 +42,6 @@ def seed_questions():
     db.session.add(demo6)
     db.session.add(demo7)
     db.session.add(demo8)
-
 
     db.session.commit()
 

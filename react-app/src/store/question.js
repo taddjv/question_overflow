@@ -75,6 +75,7 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
     data["answers"] = [];
     data["user"] = user;
     dispatch(postQuestion(data));
+
     return data;
   }
 };
@@ -91,6 +92,7 @@ export const putTheQuestion = (questionData, id) => async (dispatch) => {
   if (response.ok) {
     const data = await response.json();
     dispatch(putQuestion(data, id));
+
     return data;
   }
 };
