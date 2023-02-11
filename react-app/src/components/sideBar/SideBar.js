@@ -17,21 +17,27 @@ function SideBar() {
       </NavLink>
       <hr/>
 
+      <NavLink className='sidebar_link' to='/questions/popular'>
       <div className='sidebar_items'>
         <div className='icon'>
           <i className="fa-solid fa-thumbs-up"/>
         </div>
         <SideBarComponent title={'Popular Questions'}/>
       </div>
+      </NavLink>
       <hr/>
 
-      <div className='sidebar_items'>
+      <NavLink className='sidebar_link' to='/questions/newest'>
+      <div  className='sidebar_items'>
         <div className='icon'>
           <i className="fa-solid fa-clock"/>
         </div>
         <SideBarComponent title={'Newest Questions'}/>
       </div>
+      </NavLink>
       <hr/>
+
+      <NavLink className='sidebar_link' to='/questions/hated'>
 
       <div className='sidebar_items'>
 
@@ -40,6 +46,8 @@ function SideBar() {
         </div>
         <SideBarComponent title={'Most Hated'}/>
       </div>
+      </NavLink>
+      <hr/>
 
     </div>
   )

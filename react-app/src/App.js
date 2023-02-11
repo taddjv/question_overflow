@@ -14,6 +14,9 @@ import SideBar from "./components/sideBar/SideBar";
 import "./App.css";
 import QuestionDetail from "./components/Question/QuestionDetail";
 import { useUser } from "./context/userContext";
+import PopularQuestions from "./components/sideBar/SidebarLinks/PopularQuestions/PopularQuestions";
+import NewestQuestion from "./components/sideBar/SidebarLinks/NewestQuestion/NewestQuestion";
+import MostHated from "./components/sideBar/SidebarLinks/MostHated/MostHated";
 // import Search from "./components/Search";
 
 function App() {
@@ -57,6 +60,18 @@ function App() {
 
         <Route path="/questions/:id">
           <QuestionDetail/>
+        </Route>
+
+        <Route exact path='/questions/popular'>
+          <PopularQuestions/>
+        </Route>
+
+        <Route exact path='/questions/newest'>
+          <NewestQuestion/>
+        </Route>
+
+        <Route exact path='/questions/hated'>
+          <MostHated/>
         </Route>
 
         <ProtectedRoute path="/users" exact={true}>
