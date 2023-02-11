@@ -71,18 +71,18 @@ def post_downvote_reaction(id):
             db.session.delete(reaction_check)
             db.session.commit()
 
-            return "deleted downVote from db"
+            return {"message": "deleted downVote from db"}
         elif reaction_check.down_vote == False:
             reaction_check.down_vote = True
             reaction_check.up_vote = False
             db.session.commit()
-            return "downVoted"
+            return {"message": "downVoted"}
     else:
         new_vote = Reaction(answer_id=id,
                             user_id=current_user.id, up_vote=False, down_vote=True)
         db.session.add(new_vote)
         db.session.commit()
-        return "added downVote reaction to db"
+        return {"message": "added downVote reaction to db"}
 
 
 @reaction_routes.route('/answers/<int:id>/up-votes')

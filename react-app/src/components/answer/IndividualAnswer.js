@@ -42,6 +42,17 @@ function IndividualAnswers({
         console.log("not working");
       });
   };
+
+  const handleUpvote = (e) => {
+    e.preventDefault();
+    dispatch(reactionActions.postTheUpvote(id));
+  };
+
+  const handleDownvote = (e) => {
+    e.preventDefault();
+    dispatch(reactionActions.postTheDownvote(id));
+  };
+
   return (
     <>
       {editAnswer ? (
@@ -84,7 +95,7 @@ function IndividualAnswers({
             <div className="vote-container">
               <div className="upvote-con">
                 <div className="thumbs-up-button">
-                  <ThumbUpIcon></ThumbUpIcon>
+                  <ThumbUpIcon onClick={handleUpvote}></ThumbUpIcon>
                 </div>
                 <div className="upvote-total">
                   <div>{getVotes(reactions).up_votes}</div>
@@ -92,7 +103,7 @@ function IndividualAnswers({
               </div>
               <div className="downvote-con">
                 <div className="thumbs-down-button">
-                  <ThumbDownIcon></ThumbDownIcon>
+                  <ThumbDownIcon onClick={handleDownvote}></ThumbDownIcon>
                 </div>
                 <div className="downvote-total">
                   <div>{getVotes(reactions).down_votes}</div>
@@ -145,7 +156,7 @@ function IndividualAnswers({
             <div className="vote-container">
               <div className="upvote-con">
                 <div className="thumbs-up-button">
-                  <ThumbUpIcon></ThumbUpIcon>
+                  <ThumbUpIcon onClick={handleUpvote}></ThumbUpIcon>
                 </div>
                 <div className="upvote-total">
                   <div>{getVotes(reactions).up_votes}</div>
@@ -153,7 +164,7 @@ function IndividualAnswers({
               </div>
               <div className="downvote-con">
                 <div className="thumbs-down-button">
-                  <ThumbDownIcon></ThumbDownIcon>
+                  <ThumbDownIcon onClick={handleDownvote}></ThumbDownIcon>
                 </div>
                 <div className="downvote-total">
                   <div>{getVotes(reactions).down_votes}</div>

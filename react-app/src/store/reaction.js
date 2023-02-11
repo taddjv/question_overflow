@@ -59,19 +59,19 @@ export const postTheUpvote = (id) => async (dispatch) => {
   // console.log(response, " <--- response from thunk");
   if (response.ok) {
     const data = await response.json();
-    dispatch(postUpvote);
+    dispatch(postUpvote(id));
     return data;
   }
 };
 
 export const postTheDownvote = (id) => async (dispatch) => {
-  const response = await fetch(`/api/answers/${id}/down-vote`, {
+  const response = await fetch(`/api/reactions/answers/${id}/down-vote`, {
     method: "POST",
   });
 
   if (response.ok) {
     const data = await response.json();
-    dispatch(postDownvote);
+    dispatch(postDownvote(id));
     return data;
   }
 };
