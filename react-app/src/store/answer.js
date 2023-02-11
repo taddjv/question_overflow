@@ -25,11 +25,10 @@ const getAnswersCount = () => {
   };
 };
 
-const postAnswer = (answer, id, questionId) => {
+const postAnswer = (answer, questionId) => {
   return {
     type: POST_ANSWER,
     payload: answer,
-    id: id,
     questionId: questionId,
   };
 };
@@ -77,23 +76,24 @@ export const getTheAnswersCount = () => async (dispatch) => {
     return data;
   }
 };
-export const postTheAnswer = (answerData, questionId) => async (dispatch) => {
-  const response = await fetch(`/api/answers/questions/${questionId}`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
+export const postTheAnswer =
+  (answerData, questionId, user) => async (dispatch) => {
+    const response = await fetch(`/api/answers/questions/${questionId}`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
 
-    body: JSON.stringify(answerData),
-  });
-
-  if (response.ok) {
-    const data = await response.json();
-    ///!need id and question Id
-    dispatch(postAnswer(data));
-    return data;
-  }
-};
+      body: JSON.stringify(answerData),
+    });
+    if (response.ok) {
+      const data = await response.json();
+      data["reactions"] = [];
+      data["user"] = user;
+      dispatch(postAnswer(data, questionId));
+      return data;
+    }
+  };
 export const putTheAnswer =
   (answerData, id, questionId) => async (dispatch) => {
     const response = await fetch(`/api/answers/${id}`, {
@@ -125,39 +125,44 @@ export const deleteTheAnswer = (id, questionId) => async (dispatch) => {
 
 let initialState = {};
 const answersReducer = (state = initialState, action) => {
-  let newState;
+  // let newState;
   switch (action.type) {
-    case GET_ANSWERS:
-      newState = Object.assign({}, state);
-      newState[`question-${action.id}`] = {};
-      action.payload.answers.forEach((ele) => {
-        newState[`question-${action.id}`][ele.id] = ele;
-      });
+    case GET_ANSWERS: {
+      const newState = {};
 
+      action.payload.answers.forEach((ele) => {
+        newState[ele.id] = ele;
+      });
       return newState;
-    case GET_ANSWER:
-      newState = Object.assign({}, state);
+    }
+
+    case GET_ANSWER: {
+      const newState = Object.assign({}, state);
       newState.answer = action.payload;
       return newState;
+    }
 
-    case GET_ANSWERS_COUNT:
-      newState = Object.assign({}, state);
+    case GET_ANSWERS_COUNT: {
+      const newState = Object.assign({}, state);
       // newState.answer = action.payload;
       return newState;
+    }
 
-    case POST_ANSWER:
-      newState = Object.assign({}, state);
-      //! newState[`question-${action.questionId}`][action.id] = payload.id
+    case POST_ANSWER: {
+      const newState = Object.assign({}, state);
+      newState[action.payload.id] = action.payload;
       return newState;
-    case PUT_ANSWER:
-      newState = Object.assign({}, state);
-      newState[`question-${action.questionId}`][action.id].answer =
-        action.payload.answer;
+    }
+    case PUT_ANSWER: {
+      const newState = { ...state };
+      newState[action.id].answer = action.payload.answer;
       return newState;
-    case DELETE_ANSWER:
-      newState = Object.assign({}, state);
-      delete newState[`question-${action.questionId}`][action.id];
+    }
+    case DELETE_ANSWER: {
+      const newState = { ...state };
+      delete newState[action.id];
       return newState;
+    }
     default:
       return state;
   }
