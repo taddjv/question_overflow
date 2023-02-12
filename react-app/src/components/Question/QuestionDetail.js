@@ -247,7 +247,7 @@ function QuestionDetail() {
                 <>
                   <form onSubmit={addAnswer} className="add-answer">
                     <div className="a-a-left">
-                      <img src={user?.profile_url} />
+                      <img src={user?.profile_url} alt='' />
                     </div>
                     <div className="a-a-middle">
                       <input

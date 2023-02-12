@@ -8,3 +8,7 @@
 
 #basic-button{
 }
+
+ul > li {
+  padding-right: 15px;
+}
