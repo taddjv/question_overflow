@@ -43,18 +43,18 @@ function App() {
 
     <Switch>
 
-      <Route exact="exact" path='/login'>
+      <Route exact path='/login'>
         <LoginForm/>
       </Route>
 
-      <Route exact="exact" path='/sign-up'>
+      <Route exact path='/sign-up'>
         <SignUpForm/>
       </Route>
 
       <div className="app_body">
         <SideBar/>
 
-        <Route exact="exact" path='/'>
+        <Route exact path='/'>
           <HomeComponent type='home'/>
         </Route>
 
