@@ -14,7 +14,7 @@ const LoginForm = () => {
   const onLogin = async (e) => {
     e.preventDefault();
     const data = await dispatch(login(email, password)).then(async (res) => {
-      const newErrors = res.map((ele) => {
+      const newErrors = res?.map((ele) => {
         if (!ele.includes("No such")) {
           if (ele.includes("required")) {
             return (
