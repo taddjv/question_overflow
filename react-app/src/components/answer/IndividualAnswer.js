@@ -24,7 +24,6 @@ function IndividualAnswers({
 }) {
   const dispatch = useDispatch();
 
-
   const [editAnswer, setEditAnswer] = useState(false);
   const [answerDetail, setAnswerDetail] = useState("");
   const [answerUrl, setAnswerUrl] = useState("");
@@ -59,43 +58,46 @@ function IndividualAnswers({
 
   const handleUpvote = (e) => {
     e.preventDefault();
-    dispatch(reactionActions.postTheUpvote(id)).then(async (res) => {
-      const data = await res;
+    if (user) {
+      dispatch(reactionActions.postTheUpvote(id)).then(async (res) => {
+        const data = await res;
 
-      if (data.message.includes("added")) {
-        setTempUpVote(tempUpVote + 1);
-      } else if (data.message.includes("deleted")) {
-        setTempUpVote(tempUpVote - 1);
-      } else if (data.message === "upVoted") {
-        setTempDownVote(tempDownVote - 1);
-        setTempUpVote(tempUpVote + 1);
-      }
-    });
+        if (data.message.includes("added")) {
+          setTempUpVote(tempUpVote + 1);
+        } else if (data.message.includes("deleted")) {
+          setTempUpVote(tempUpVote - 1);
+        } else if (data.message === "upVoted") {
+          setTempDownVote(tempDownVote - 1);
+          setTempUpVote(tempUpVote + 1);
+        }
+      });
+    }
   };
 
   const handleDownvote = (e) => {
     e.preventDefault();
-    dispatch(reactionActions.postTheDownvote(id)).then(async (res) => {
-      const data = await res;
+    if (user) {
+      dispatch(reactionActions.postTheDownvote(id)).then(async (res) => {
+        const data = await res;
 
-      if (data.message.includes("added")) {
-        setTempDownVote(tempDownVote + 1);
-      } else if (data.message.includes("deleted")) {
-        setTempDownVote(tempDownVote - 1);
-      } else if (data.message === "downVoted") {
-        setTempDownVote(tempDownVote + 1);
-        setTempUpVote(tempUpVote - 1);
-      }
-    });
+        if (data.message.includes("added")) {
+          setTempDownVote(tempDownVote + 1);
+        } else if (data.message.includes("deleted")) {
+          setTempDownVote(tempDownVote - 1);
+        } else if (data.message === "downVoted") {
+          setTempDownVote(tempDownVote + 1);
+          setTempUpVote(tempUpVote - 1);
+        }
+      });
+    }
   };
-
 
   return (
     <>
       {editAnswer ? (
         <div className="ans-vote-container-REPLACE-LATER">
           <div className="a-v-c-profile">
-          <Avatar src={answer.user.profile_url}/>
+            <Avatar src={answer.user.profile_url} />
           </div>
           <div className="a-v-c-content">
             <div className="ans-container">
@@ -160,7 +162,7 @@ function IndividualAnswers({
       ) : (
         <div className="ans-vote-container-REPLACE-LATER">
           <div className="a-v-c-profile">
-            <Avatar src={answer.user.profile_url}/>
+            <Avatar src={answer.user.profile_url} />
           </div>
           <div className="a-v-c-content">
             <div className="ans-container">

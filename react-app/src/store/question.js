@@ -57,6 +57,7 @@ export const getTheQuestion = (id) => async (dispatch) => {
 };
 export const postTheQuestion = (questionData) => async (dispatch) => {
   const { question, detail, url, user } = questionData;
+
   const response = await fetch("/api/questions/", {
     method: "POST",
     headers: {
@@ -69,13 +70,15 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
       url,
     }),
   });
-
+  const data = await response.json();
+  console.log(data);
   if (response.ok) {
-    const data = await response.json();
     data["answers"] = [];
     data["user"] = user;
     dispatch(postQuestion(data));
 
+    return data;
+  } else {
     return data;
   }
 };

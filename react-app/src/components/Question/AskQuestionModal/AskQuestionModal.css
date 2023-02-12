@@ -1,5 +1,5 @@
-.askQuestionBody{
-  display:grid;
+.askQuestionBody {
+  display: grid;
   place-items: center;
   height: 100vh;
   width: 1000px;
@@ -12,26 +12,26 @@
   );
 }
 
-.askQuestion_logo{
+.askQuestion_logo {
   display: flex;
   padding-bottom: 20px;
 }
 
-.askQuestion_ask{
+.askQuestion_ask {
   color: rgb(77, 230, 7);
 }
 
-.askQuestion_question{
-  color:black
+.askQuestion_question {
+  color: black;
 }
 
-.askQuestion_ele{
+.askQuestion_ele {
   font-weight: 800;
   font-size: 18px;
   color: black;
 }
 
-.input_ele{
+.input_ele {
   display: block;
   background-color: transparent;
   color: black;
@@ -39,29 +39,33 @@
   border: 2px solid black;
 }
 
-.post-btn-section{
+.post-btn-section {
   padding-top: 20px;
   width: 250px;
 }
 
-
-.post-button{
+.post-button {
   color: var(--text2);
   font-weight: bolder;
   background-color: var(--main);
-  cursor:pointer;
-  border:2px groove white;
+  cursor: pointer;
+  border: 2px groove white;
   border-radius: 10px;
   height: 40px;
-  width:100%;
+  width: 100%;
   transition: all 0.2s ease-in-out;
 }
 
-.post-button:hover{
+.post-button:hover {
   box-shadow: 0 0 11px rgba(0, 0, 0, 0.2);
   transform: scale(0.95);
 }
 
-::placeholder{
+::placeholder {
+  color: black;
+}
+
+.modal-error {
+  list-style-type: none;
   color: black;
 }

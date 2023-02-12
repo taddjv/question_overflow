@@ -18,7 +18,6 @@ function QuestionDetail() {
   const question = useSelector((state) => state.questionsReducer.question);
   const user = useSelector((state) => state.session?.user);
 
-
   const [editQuestion, setEditQuestion] = useState(false);
   const [questionTitle, setQuestionTitle] = useState("");
   const [questionDetail, setQuestionDetail] = useState("");
@@ -130,7 +129,6 @@ function QuestionDetail() {
                     <div className="ind-ques-timestamp">
                       Posted on {question.dateCreated}
                     </div>
-
                   </div>
 
                   <div className="ques-input-con">
@@ -164,13 +162,19 @@ function QuestionDetail() {
                   </div>
                   <div className="ques-edit-crud-buttons">
                     <div className="edit-button">
-                      <span
-                        className="edit-button"
-                        onClick={() => {
-                          setEditQuestion(false);
-                        }}
-                      >
-                        <button className="cancel-button">cancel</button>
+                      <span className="edit-button">
+                        <button
+                          className="cancel-button"
+                          onClick={(e) => {
+                            e.preventDefault();
+                            setEditQuestion(false);
+                            setQuestionUrl(question.url);
+                            setQuestionDetail(question.detail);
+                            setQuestionTitle(question.question);
+                          }}
+                        >
+                          cancel
+                        </button>
                       </span>
                     </div>
                     {/* the submit button has tbe outside of the div. It needs to be a direct child of form */}
@@ -183,7 +187,6 @@ function QuestionDetail() {
                       <li>{ele}</li>
                     ))}
                   </ul>
-
                 </form>
               ) : (
                 <>
@@ -217,7 +220,6 @@ function QuestionDetail() {
                               setQuestionTitle(question.question);
                               setQuestionDetail(question.detail);
                               setQuestionUrl(question.url);
-
                             }}
                           >
                             edit
@@ -241,40 +243,42 @@ function QuestionDetail() {
                   </div>
                 </>
               )}
-              <form onSubmit={addAnswer} className="add-answer">
-                <div className="a-a-left">
-                  <img src={user?.profile_url} />
-                </div>
-                <div className="a-a-middle">
-                  <input
-                    id="a-a-middle1"
-                    placeholder="Answer here"
-                    value={newAnswer}
-                    onChange={(e) => {
-                      setNewAnswer(e.target.value);
-                    }}
-                  />
-                  <input
-                    id="a-a-middle2"
-                    value={newAnswerUrl}
-                    placeholder="Add a picture"
-                    onChange={(e) => {
-                      setNewAnswerUrl(e.target.value);
-                    }}
-                  />
-                </div>
+              {user && (
+                <>
+                  <form onSubmit={addAnswer} className="add-answer">
+                    <div className="a-a-left">
+                      <img src={user?.profile_url} />
+                    </div>
+                    <div className="a-a-middle">
+                      <input
+                        id="a-a-middle1"
+                        placeholder="Answer here"
+                        value={newAnswer}
+                        onChange={(e) => {
+                          setNewAnswer(e.target.value);
+                        }}
+                      />
+                      <input
+                        id="a-a-middle2"
+                        value={newAnswerUrl}
+                        placeholder="Add a picture"
+                        onChange={(e) => {
+                          setNewAnswerUrl(e.target.value);
+                        }}
+                      />
+                    </div>
 
-
-                <button className="a-a-button" type="submit">
-                  Add answer
-                </button>
-              </form>
-              <ul className="error">
-                {errors2.map((ele) => (
-                  <li>{ele}</li>
-                ))}
-              </ul>
-
+                    <button className="a-a-button" type="submit">
+                      Add answer
+                    </button>
+                  </form>
+                  <ul className="error">
+                    {errors2.map((ele) => (
+                      <li>{ele}</li>
+                    ))}
+                  </ul>
+                </>
+              )}
             </div>
 
             <div className="all-answer-container">
