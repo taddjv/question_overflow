@@ -24,6 +24,7 @@ const LoginForm = () => {
             return ele.slice(ele.indexOf(":") + 2);
           }
         }
+        
       });
       setErrors(newErrors);
     });
