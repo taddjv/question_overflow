@@ -1,10 +1,8 @@
-import React from 'react'
-import './NewestQuestion.css'
+import React from "react";
+import "./NewestQuestion.css";
 
 function NewestQuestion() {
-  return (
-    <div>NewestQuestion</div>
-  )
+  return <div>Newest question under construction</div>;
 }
 
-export default NewestQuestion
+export default NewestQuestion;

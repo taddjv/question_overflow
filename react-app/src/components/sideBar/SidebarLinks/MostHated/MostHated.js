@@ -1,10 +1,8 @@
-import React from 'react'
-import './MostHated.css'
+import React from "react";
+import "./MostHated.css";
 
 function MostHated() {
-  return (
-    <div>MostHated</div>
-  )
+  return <div>Most hated question under construction</div>;
 }
 
-export default MostHated
+export default MostHated;
