@@ -19,15 +19,15 @@ function PopularQuestions() {
   // const question = useSelector((state) => state.questionsReducer.question);
   // const user = useSelector((state) => state.session?.user);
 
-   for (let j = 0; j < (allquestions.length - i - 1); j++){
+  //  for (let j = 0; j < (allquestions.length - i - 1); j++){
 
-    if(allquestions[j].answers.length > allquestions[j+1].answers.length){
-      let temp = allquestions[j]
-      allquestions[j] = allquestions[j + 1]
-      allquestions[j + 1] = temp
-      orderQuestions.push(temp)
-    }
-   }
+  //   if(allquestions[j].answers.length > allquestions[j+1].answers.length){
+  //     let temp = allquestions[j]
+  //     allquestions[j] = allquestions[j + 1]
+  //     allquestions[j + 1] = temp
+  //     orderQuestions.push(temp)
+  //   }
+  //  }
 
   // const renderAnswers = (answerObj) => {
   //   const answers = [];
