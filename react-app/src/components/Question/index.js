@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import IndividualQuestion from "./IndividualQuestion";
+// import IndividualQuestion from "./IndividualQuestion";
 import { useDispatch, useSelector } from "react-redux";
-import { useUser } from "../../context/userContext";
+// import { useUser } from "../../context/userContext";
 import { renderQuestions } from "../../helper/questionHelper";
 import * as questionActions from "../../store/question";
 import "./Question.css";

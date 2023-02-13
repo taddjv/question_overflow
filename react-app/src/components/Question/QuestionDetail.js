@@ -6,7 +6,7 @@ import * as answerActions from "../../store/answer";
 import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
 import IndividualAnswer from "../answer/IndividualAnswer";
-import { renderQuestions } from "../../helper/questionHelper";
+// import { renderQuestions } from "../../helper/questionHelper";
 import "./QuestionDetail.css";
 
 function QuestionDetail() {
