@@ -29,6 +29,10 @@ function IndividualAnswers({
   const [answerUrl, setAnswerUrl] = useState("");
   const [errors, setErrors] = useState([]);
 
+  // useEffect(() => {
+  //   dispatch(reactionActions.getTheVotes(id));
+  // }, [dispatch, id]);
+
   const editTheAnswer = (e) => {
     e.preventDefault();
     const editedAnswer = {
