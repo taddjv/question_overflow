@@ -90,11 +90,11 @@ npm start
 # CRUD Features
 
 ## User
-    Allows you to:
-        - Log in
-        - Sign up
-        - Explore restaurants
-        - Use the DEMO USER login
+Allows you to:
+   - Log in
+   - Sign up
+   - Explore restaurants
+   - Use the DEMO USER login
 
 ## Questions
    - All users can view a sampling of the most recent questions.
@@ -122,21 +122,22 @@ A logged in user can:
 
 ## Reactions
 A logged in user can:
- - up-vote and down-vote an answer
- - remove their own up-vote and down-vote an answer
+ - Up-vote and down-vote an answer
+ - Remove their own reaction
+ - Update their reaction
 
- ## Favorites
-    A logged in user can:
-        - Favorite a restaurant
-        - Unfavorite a restaurant
-        - View a list of their favorite restaurants via user profile
 
 # Future Features
 
-This clone is a work in progress, these features will be available in the future...
+## This clone is a work in progress, these features will be available in the future...
 
--  CRUD actions for Restaurants (add a restaurant and delete a restaurant)
--  Image Gallery (viewed via restaurant details page)
--  Google Map + directions to restaurant
--  Second step to confirm reservation cancellation
--  Email or Text reservation confirmation
+- ## Popular Questions Page
+   -Dedicated to the Questions with the most replies
+- ## Newest Questions Page
+   -See the latest posted Questions
+- ## Most Hated Page
+   -Take a trip back to Middle School and explore the most disliked Answers
+
+   -80s cliche bad egg graffitii wall included
+- ## Explore Category Page
+   -Questions will be organized by tags which all users can use to explore categories
