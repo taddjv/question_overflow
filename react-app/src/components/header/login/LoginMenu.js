@@ -14,7 +14,7 @@ export default function LoginMenu() {
   const [anchorEl, setAnchorEl] = React.useState(null);
 
   const currUser = useSelector((state) => state.session.user);
- 
+
 
 
 
@@ -51,7 +51,7 @@ export default function LoginMenu() {
           "aria-labelledby": "basic-button",
         }}
       >
-        <MenuItem className='dropdown_item' onClick={handleClose}>Profile</MenuItem>
+        {/* <MenuItem className='dropdown_item' onClick={handleClose}>Profile</MenuItem> */}
         <ul>
           <li>{currUser.username}</li>
           <li>{currUser.email}</li>

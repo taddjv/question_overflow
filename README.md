@@ -4,7 +4,20 @@
 
 Question Overflow, a StackOverflow clone, is a website for users to share brief questions, engage in light discussion, where they and users can vote on posted answers.
 
-## Getting started
+# Images
+
+## Homepage
+![homepage](react-app/src/imageAssets/READMEimages/:homepage.png)
+## Sign Up
+![signup](react-app/src/imageAssets/READMEimages/signUp.png)
+## Log In
+![login](react-app/src/imageAssets/READMEimages/logIn.png)
+## Question Page
+![question_details](react-app/src/imageAssets/READMEimages/questionDetails.png)
+## Search Feature
+![search_feature](react-app/src/imageAssets/READMEimages/searchFeature.png)
+
+# Getting started
 1. Clone this repository
 
 2. Install backend dependencies
@@ -60,17 +73,70 @@ npm start
    - This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 
-## This project uses the following technologies
+### This project uses the following technologies
+### Frontend
+* Javascript
+* React
+* Redux
+* FontAwesome
+### Backend
+* Python
+* Flask
+* SQLAlchemy
+* Alembic
+* SQLite3 (development)
+* PostgreSQL (production)
 
-First, refer to your Render.com deployment articles for more detailed
-instructions about getting started with [Render.com], creating a production
-database, and deployment debugging tips.
+# CRUD Features
 
-From the [Dashboard], click on the "New +" button in the navigation bar, and
-click on "Web Service" to create the application that will be deployed.
+## User
+    Allows you to:
+        - Log in
+        - Sign up
+        - Explore restaurants
+        - Use the DEMO USER login
 
-Look for the name of the application you want to deploy, and click the "Connect"
-button to the right of the name.
+## Questions
+   - All users can view a sampling of the most recent questions.
 
-Now, fill out the form to configure the build and start commands, as well as add
-the environment variables to properly deploy the application.
+As a non-logged in user you can:
+   - Explore Question Threads
+   - View Replies and Reactions
+
+As a logged in user you can:
+   - Post questions
+   - Edit and Delete your own questions
+
+## Answers
+   - All users can view a sampling of the most recent answers to questions.
+
+A logged in user can:
+ - Post answers to questions
+ - Edit and delete their own answers
+ - Change upcoming Reservations
+ - Cancel a Reservation
+
+ ## 3. Search for Questions
+
+- All users can search for questions
+
+## Reactions
+A logged in user can:
+ - up-vote and down-vote an answer
+ - remove their own up-vote and down-vote an answer
+
+ ## Favorites
+    A logged in user can:
+        - Favorite a restaurant
+        - Unfavorite a restaurant
+        - View a list of their favorite restaurants via user profile
+
+# Future Features
+
+This clone is a work in progress, these features will be available in the future...
+
+-  CRUD actions for Restaurants (add a restaurant and delete a restaurant)
+-  Image Gallery (viewed via restaurant details page)
+-  Google Map + directions to restaurant
+-  Second step to confirm reservation cancellation
+-  Email or Text reservation confirmation
