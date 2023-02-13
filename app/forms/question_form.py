@@ -8,14 +8,8 @@ def valid_picture(form, field):
     # checks if the picture is in correct format
     picture_url = field.data
     if len(picture_url):
-        if picture_url.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tif', '.tiff')):
-            return {'message': 'image added successfully'}
-        else:
+        if not picture_url.lower().endswith(('.png', '.jpg', '.jpeg', '.gif', '.bmp', '.tif', '.tiff')):
             raise ValidationError("Not a valid image.")
-    else:
-        pass
-
-
 
 
 class QuestionForm(FlaskForm):
