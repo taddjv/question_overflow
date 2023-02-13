@@ -1,4 +1,4 @@
-import IndividualAnswer from "../components/answer/IndividualAnswer";
+// import IndividualAnswer from "../components/answer/IndividualAnswer";
 import IndividualQuestion from "../components/Question/IndividualQuestion";
 
 export const getVotes = (reactionArray) => {

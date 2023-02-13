@@ -20,6 +20,8 @@ const SignUpForm = () => {
       return setErrors([
         "Confirm Password field must be the same as the Password field",
       ]);
+    } else if (!username || !email || !password) {
+      return setErrors(["Username, Email and Password fields are required"]);
     } else {
       const data = await dispatch(signUp(username, email, password)).then(
         async (res) => {
@@ -109,7 +111,7 @@ const SignUpForm = () => {
         </label>
 
         <label>
-          <div className="signup_label">Repeat Password</div>
+          <div className="signup_label">Confirm Password</div>
           <input
             className="signup_repeate_password"
             type="password"
