@@ -110,7 +110,7 @@ def post_question():
         db.session.add(desired_question)
         db.session.commit()
         return desired_question.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @questions_routes.route("/popular", methods=["GET"])

@@ -7,7 +7,7 @@ import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
 import * as reactionActions from "../../store/reaction";
 import IndividualAnswer from "../answer/IndividualAnswer";
-import { renderQuestions } from "../../helper/questionHelper";
+// import { renderQuestions } from "../../helper/questionHelper";
 import "./QuestionDetail.css";
 
 function QuestionDetail() {
@@ -248,7 +248,7 @@ function QuestionDetail() {
                 <>
                   <form onSubmit={addAnswer} className="add-answer">
                     <div className="a-a-left">
-                      <img src={user?.profile_url} />
+                      <img src={user?.profile_url} alt='' />
                     </div>
                     <div className="a-a-middle">
                       <input

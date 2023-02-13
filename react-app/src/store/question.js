@@ -71,7 +71,7 @@ export const postTheQuestion = (questionData) => async (dispatch) => {
     }),
   });
   const data = await response.json();
-  console.log(data);
+  // console.log(data);
   if (response.ok) {
     data["answers"] = [];
     data["user"] = user;

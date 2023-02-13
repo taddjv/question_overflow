@@ -16,6 +16,9 @@ const AskQuestionForm = ({ setShowModal, user }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setErrors([]);
+    if (!question) {
+      return setErrors(["Please enter a question"]);
+    }
 
     dispatch(
       questionActions.postTheQuestion({
@@ -46,19 +49,18 @@ const AskQuestionForm = ({ setShowModal, user }) => {
   return (
     <div className="askQuestionBody">
       <form className="ask-question-form" onSubmit={handleSubmit}>
+        <div className="askQuestion_logo">
+          <h1 className="askQuestion_ask">Ask</h1>
+          <h1 className="askQuestion_question">
+            <em>_Question</em>
+          </h1>
+        </div>
         <div className="form-container">
           <ul className="modal-error">
             {errors.map((error, idx) => (
               <li key={idx}>{error}</li>
             ))}
           </ul>
-        </div>
-
-        <div className="askQuestion_logo">
-          <h1 className="askQuestion_ask">Ask</h1>
-          <h1 className="askQuestion_question">
-            <em>Question</em>
-          </h1>
         </div>
 
         <div className="ask-question-elements">
@@ -75,7 +77,7 @@ const AskQuestionForm = ({ setShowModal, user }) => {
           </label>
 
           <label>
-            <div className="askQuestion_ele">Detail</div>
+            <div className="askQuestion_ele">Question Detail</div>
             <input
               className="input_ele"
               placeholder="Detail..."
@@ -87,7 +89,7 @@ const AskQuestionForm = ({ setShowModal, user }) => {
           </label>
 
           <label>
-            <div className="askQuestion_ele">Profile-URL</div>
+            <div className="askQuestion_ele">Image-URL</div>
             <input
               className="input_ele"
               size="30"

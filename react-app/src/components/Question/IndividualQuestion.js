@@ -17,7 +17,11 @@ function IndividualQuestion({
       <NavLink className="question-nav" to={`/questions/${id}`}>
         <div className="question-content">
           <div className="q-c-logo">
-            <QuizIcon fontSize="large" className="q-c-logo-icon"></QuizIcon>
+            {(
+              <img src={user.profile_url} alt="" className="profile-logo-icon" />
+            ) || (
+              <QuizIcon fontSize="large" className="q-c-logo-icon"></QuizIcon>
+            )}
           </div>
           <div className="q-c-title">
             <div className="q-c-t-q">{questionTitle}</div>

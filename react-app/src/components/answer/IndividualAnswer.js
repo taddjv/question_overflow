@@ -1,11 +1,7 @@
+import * as answerActions from "../../store/answer";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
-import { useUser } from "../../context/userContext";
-import * as answerActions from "../../store/answer";
-import * as sessionActions from "../../store/session";
-import reactionsReducer, * as reactionActions from "../../store/reaction";
-import usersReducer, * as userActions from "../../store/user";
+import * as reactionActions from "../../store/reaction";
 import { getVotes, userVotes } from "../../helper/questionHelper";
 import "./IndividualAnswer.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
@@ -26,7 +22,7 @@ function IndividualAnswers({
 
   const [editAnswer, setEditAnswer] = useState(false);
   const [answerDetail, setAnswerDetail] = useState("");
-  const [answerUrl, setAnswerUrl] = useState("");
+  // const [answerUrl, setAnswerUrl] = useState("");
   const [errors, setErrors] = useState([]);
   const [tempUpVote, setTempUpVote] = useState(0);
   const [tempDownVote, setTempDownVote] = useState(0);
@@ -116,6 +112,8 @@ function IndividualAnswers({
           setUserDownvote(false);
         }
       });
+    } else {
+      alert("Please login to vote");
     }
   };
 
@@ -139,6 +137,8 @@ function IndividualAnswers({
           setUserUpvote(false);
         }
       });
+    } else {
+      alert("Please login to vote");
     }
   };
 
