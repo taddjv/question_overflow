@@ -245,6 +245,9 @@ function QuestionDetail() {
               )}
               {user && (
                 <>
+                <div className="add-answer-banner">
+                  Add your answer {user.username}
+                  </div>
                   <form onSubmit={addAnswer} className="add-answer">
                     <div className="a-a-left">
                       <img src={user?.profile_url} alt='' />
@@ -277,6 +280,7 @@ function QuestionDetail() {
                       <li>{ele}</li>
                     ))}
                   </ul>
+
                 </>
               )}
             </div>
