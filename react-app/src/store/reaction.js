@@ -4,6 +4,7 @@ const GET_DOWNVOTES = "reactions/GET_DOWNVOTES";
 const POST_UPVOTE = "reactions/POST_UPVOTE";
 const POST_DOWNVOTE = "reactions/POST_DOWNVOTE";
 
+
 const getUpvotes = (reactions, answerId) => {
   return {
     type: GET_UPVOTES,
@@ -84,6 +85,7 @@ let initialState = {};
 const reactionsReducer = (state = initialState, action) => {
   let newState;
   switch (action.type) {
+
     case GET_UPVOTES: {
       const newState = Object.assign({}, state);
       //?   newState.reaction.up_vote = action.payload;

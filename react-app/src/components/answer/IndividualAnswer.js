@@ -68,6 +68,7 @@ function IndividualAnswers({
     }
   };
 
+
   const editTheAnswer = (e) => {
     e.preventDefault();
     const editedAnswer = {
@@ -268,8 +269,9 @@ function IndividualAnswers({
                 <div className="thumbs-down-button">
                   <ThumbDownIcon
                     className={`thumbs-up-button-icon ${
-                      downVoted(votes) && "thumbs-up-button-icon-red"
-                    } ${userDownvote && "thumbs-up-button-icon-red"}`}
+                      downVoted(votes)
+                    }
+                    `}
                     onClick={handleDownvote}
                   ></ThumbDownIcon>
                 </div>

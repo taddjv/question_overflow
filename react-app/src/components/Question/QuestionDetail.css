@@ -104,6 +104,7 @@
   display: flex;
   justify-content: flex-end;
   padding: 0 20px;
+  padding-bottom: 15px;
 }
 
 .all-answer-container {
@@ -137,6 +138,20 @@
   justify-content: flex-end;
   padding: 0 20px;
   margin: 10px 0;
+}
+
+.add-answer-banner{
+    background: #618833;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+   height: 35px;
+  font-size: large;
+  font-weight: 600;
+  color: var(--text2);
+  /* display: flex; */
+  /* justify-content: space-between; */
+  /* align-items: center; */
+  padding: 4px 20px;
 }
 
 .add-answer {
