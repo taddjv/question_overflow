@@ -1,12 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch } from "react-redux";
-// import { NavLink, Redirect, useParams, useHistory } from "react-router-dom";
-// import { useUser } from "../../context/userContext";
 import * as answerActions from "../../store/answer";
-// import * as sessionActions from "../../store/session";
+import React, { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import * as reactionActions from "../../store/reaction";
-// import usersReducer, * as userActions from "../../store/user";
-import { getVotes } from "../../helper/questionHelper";
+import { getVotes, userVotes } from "../../helper/questionHelper";
 import "./IndividualAnswer.css";
 import ThumbUpIcon from "@mui/icons-material/ThumbUp";
 import ThumbDownIcon from "@mui/icons-material/ThumbDown";
@@ -30,6 +26,47 @@ function IndividualAnswers({
   const [errors, setErrors] = useState([]);
   const [tempUpVote, setTempUpVote] = useState(0);
   const [tempDownVote, setTempDownVote] = useState(0);
+  const [userUpvote, setUserUpvote] = useState(false);
+  const [userDownvote, setUserDownvote] = useState(false);
+
+  const reactionUsers = useSelector((state) => state?.reactionsReducer);
+
+  useEffect(() => {
+    dispatch(reactionActions.getTheUpvotes(id)).then(async (res) => {});
+    dispatch(reactionActions.getTheDownvotes(id)).then(async (res) => {});
+  }, []);
+
+  const votes = userVotes(reactionUsers, id, user.id);
+  const upVoted = (votes) => {
+    let dataVoted = false;
+    if (votes.up === 1) {
+      dataVoted = true;
+    }
+    if (dataVoted && !tempUpVote) {
+      return "thumbs-up-button-icon-green";
+    } else if (dataVoted && tempUpVote) {
+      return null;
+    } else if (!dataVoted && !tempUpVote) {
+      return null;
+    } else if (!dataVoted && tempUpVote) {
+      return "thumbs-up-button-icon-green";
+    }
+  };
+  const downVoted = (votes) => {
+    let dataVoted = false;
+    if (votes.down === 1) {
+      dataVoted = true;
+    }
+    if (dataVoted && tempDownVote) {
+      return null;
+    } else if (dataVoted && !tempDownVote) {
+      return "thumbs-up-button-icon-red";
+    } else if (!dataVoted && tempDownVote) {
+      return "thumbs-up-button-icon-red";
+    } else if (!dataVoted && !tempDownVote) {
+      return null;
+    }
+  };
 
   const editTheAnswer = (e) => {
     e.preventDefault();
@@ -64,11 +101,15 @@ function IndividualAnswers({
 
         if (data.message.includes("added")) {
           setTempUpVote(tempUpVote + 1);
+          setUserUpvote(true);
         } else if (data.message.includes("deleted")) {
           setTempUpVote(tempUpVote - 1);
+          setUserUpvote(false);
         } else if (data.message === "upVoted") {
           setTempDownVote(tempDownVote - 1);
           setTempUpVote(tempUpVote + 1);
+          setUserUpvote(true);
+          setUserDownvote(false);
         }
       });
     } else {
@@ -84,11 +125,16 @@ function IndividualAnswers({
 
         if (data.message.includes("added")) {
           setTempDownVote(tempDownVote + 1);
+          setUserDownvote(true);
         } else if (data.message.includes("deleted")) {
           setTempDownVote(tempDownVote - 1);
+          setUserDownvote(false);
         } else if (data.message === "downVoted") {
           setTempDownVote(tempDownVote + 1);
           setTempUpVote(tempUpVote - 1);
+          setUserUpvote(true);
+          setUserDownvote(true);
+          setUserUpvote(false);
         }
       });
     } else {
@@ -149,7 +195,7 @@ function IndividualAnswers({
                   <ThumbUpIcon onClick={handleUpvote}></ThumbUpIcon>
                 </div>
                 <div className="upvote-total">
-                  <div>{getVotes(reactions).up_votes}</div>
+                  <div>{getVotes(reactions).up_votes + tempUpVote}</div>
                 </div>
               </div>
               <div className="downvote-con">
@@ -157,7 +203,7 @@ function IndividualAnswers({
                   <ThumbDownIcon onClick={handleDownvote}></ThumbDownIcon>
                 </div>
                 <div className="downvote-total">
-                  <div>{getVotes(reactions).down_votes}</div>
+                  <div>{getVotes(reactions).down_votes + tempDownVote}</div>
                 </div>
               </div>
             </div>
@@ -208,8 +254,11 @@ function IndividualAnswers({
             </div>
             <div className="vote-container">
               <div className="upvote-con">
-                <div className="thumbs-up-button">
-                  <ThumbUpIcon onClick={handleUpvote}></ThumbUpIcon>
+                <div className={`thumbs-up-button `}>
+                  <ThumbUpIcon
+                    className={`thumbs-up-button-icon ${upVoted(votes)} `}
+                    onClick={handleUpvote}
+                  ></ThumbUpIcon>
                 </div>
                 <div className="upvote-total">
                   <div>{getVotes(reactions).up_votes + tempUpVote}</div>
@@ -217,7 +266,12 @@ function IndividualAnswers({
               </div>
               <div className="downvote-con">
                 <div className="thumbs-down-button">
-                  <ThumbDownIcon onClick={handleDownvote}></ThumbDownIcon>
+                  <ThumbDownIcon
+                    className={`thumbs-up-button-icon ${
+                      downVoted(votes) && "thumbs-up-button-icon-red"
+                    } ${userDownvote && "thumbs-up-button-icon-red"}`}
+                    onClick={handleDownvote}
+                  ></ThumbDownIcon>
                 </div>
                 <div className="downvote-total">
                   <div>{getVotes(reactions).down_votes + tempDownVote}</div>
