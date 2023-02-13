@@ -136,7 +136,7 @@ function QuestionDetail() {
                     <input
                       className="edit-ques-title"
                       type="text"
-                      placeholder=""
+                      placeholder="Ask question here..."
                       value={questionTitle}
                       onChange={(e) => {
                         setQuestionTitle(e.target.value);
@@ -145,6 +145,7 @@ function QuestionDetail() {
                     <textarea
                       className="edit-ques-body"
                       type="text"
+                      placeholder="Add details here..."
                       value={questionDetail}
                       onChange={(e) => {
                         setQuestionDetail(e.target.value);
@@ -155,6 +156,7 @@ function QuestionDetail() {
                     <input
                       className="edit-ques-url"
                       type="text"
+                      placeholder="Add Image here..."
                       value={questionUrl}
                       onChange={(e) => {
                         setQuestionUrl(e.target.value);
@@ -223,7 +225,7 @@ function QuestionDetail() {
                               setQuestionUrl(question.url);
                             }}
                           >
-                            edit
+                            Edit question
                           </button>
 
                           <button
@@ -236,7 +238,7 @@ function QuestionDetail() {
                                 .catch(async (res) => {});
                             }}
                           >
-                            delete
+                            Delete question
                           </button>
                         </div>
                       </>

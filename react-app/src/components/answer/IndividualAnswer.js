@@ -138,8 +138,6 @@ function IndividualAnswers({
           setUserUpvote(false);
         }
       });
-    } else {
-      alert("Please login to vote");
     }
   };
 
