@@ -31,6 +31,10 @@ function IndividualAnswers({
   const [tempUpVote, setTempUpVote] = useState(0);
   const [tempDownVote, setTempDownVote] = useState(0);
 
+  // useEffect(() => {
+  //   dispatch(reactionActions.getTheVotes(id));
+  // }, [dispatch, id]);
+
   const editTheAnswer = (e) => {
     e.preventDefault();
     const editedAnswer = {
