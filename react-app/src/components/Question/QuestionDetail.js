@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import * as answerActions from "../../store/answer";
 import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
+import * as reactionActions from "../../store/reaction";
 import IndividualAnswer from "../answer/IndividualAnswer";
 // import { renderQuestions } from "../../helper/questionHelper";
 import "./QuestionDetail.css";
