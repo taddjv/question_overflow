@@ -68,9 +68,6 @@ function IndividualAnswers({
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(reactionActions.getTheVotes(id));
-  // }, [dispatch, id]);
 
   const editTheAnswer = (e) => {
     e.preventDefault();
@@ -272,8 +269,9 @@ function IndividualAnswers({
                 <div className="thumbs-down-button">
                   <ThumbDownIcon
                     className={`thumbs-up-button-icon ${
-                      downVoted(votes) && "thumbs-up-button-icon-red"
-                    } ${userDownvote && "thumbs-up-button-icon-red"}`}
+                      downVoted(votes)
+                    }
+                    `}
                     onClick={handleDownvote}
                   ></ThumbDownIcon>
                 </div>

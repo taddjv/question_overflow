@@ -36,7 +36,7 @@ def quest_ans_formatter(inputs):
         final["reactions"].append(final_input)
 
     return final
-    
+
 @reaction_routes.route('/answers/<int:id>', methods=['GET'])
 @login_required
 def get_answer_reactions(id):
@@ -122,18 +122,15 @@ def get_all_up_votes(id):
     reaction_check = Reaction.query.filter(
         Reaction.answer_id == id,
         Reaction.up_vote == True
-    ).count()
-
-    return str(reaction_check)
-
+    )
+    return {"reactions":[object_as_dict(reaction) for reaction in reaction_check]}
 
 @reaction_routes.route('/answers/<int:id>/down-votes')
 @login_required
 def get_all_down_votes(id):
-
     reaction_check = Reaction.query.filter(
         Reaction.answer_id == id,
         Reaction.down_vote == True
-    ).count()
+    )
 
-    return str(reaction_check)
+    return {"reactions":[object_as_dict(reaction) for reaction in reaction_check]}
