@@ -37,44 +37,42 @@ function App() {
   }
 
   return (
-<BrowserRouter>
-  <div className="app">
-    <Header/>
+    <BrowserRouter>
+      <div className="app">
+        <Header />
 
-    <Switch>
+        <Switch>
+          <Route exact path="/login">
+            <LoginForm />
+          </Route>
 
-      <Route exact path='/login'>
-        <LoginForm/>
-      </Route>
+          <Route exact path="/sign-up">
+            <SignUpForm />
+          </Route>
 
-      <Route exact path='/sign-up'>
-        <SignUpForm/>
-      </Route>
+          <div className="app_body">
+            {/* <SideBar/> */}
 
-      <div className="app_body">
-        <SideBar/>
+            <Route exact path="/">
+              <HomeComponent type="home" />
+            </Route>
 
-        <Route exact path='/'>
-          <HomeComponent type='home'/>
-        </Route>
+            <Route path="/questions/:id">
+              <QuestionDetail />
+            </Route>
 
-        <Route path="/questions/:id">
-          <QuestionDetail/>
-        </Route>
-
-
-        {/* <ProtectedRoute path="/users" exact={true}>
+            {/* <ProtectedRoute path="/users" exact={true}>
           <UsersList/>
         </ProtectedRoute>
         <ProtectedRoute path="/users/:userId" exact={true}>
           <User/>
         </ProtectedRoute> */}
 
-        <Route path="/search/questions/:searchQuery" exact={true}>
-          <HomeComponent type="search"/>
-        </Route>
+            <Route path="/search/questions/:searchQuery" exact={true}>
+              <HomeComponent type="search" />
+            </Route>
 
-        <Route exact path='/questions/popular'>
+            {/* <Route exact path='/questions/popular'>
           <PopularQuestions/>
         </Route>
 
@@ -84,15 +82,11 @@ function App() {
 
         <Route exact path='/questions/hated'>
           <MostHated/>
-        </Route>
-
+        </Route> */}
+          </div>
+        </Switch>
       </div>
-
-    </Switch>
-  </div>
-</BrowserRouter>
-
-
+    </BrowserRouter>
   );
 }
 
