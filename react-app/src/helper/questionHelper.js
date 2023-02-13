@@ -57,3 +57,27 @@ export const renderQuestions = (questionObj) => {
   }
   return questions;
 };
+
+export const userVotes = (answerVotes, id, user_id) => {
+  let upvotes = 0;
+  let downvotes = 0;
+  for (let vote in answerVotes) {
+    if (vote.includes("Up") && vote.includes(id.toString())) {
+      const reactions = answerVotes[vote].reactions;
+      reactions.forEach((ele) => {
+        if (ele?.user_id == user_id) {
+          upvotes++;
+        }
+      });
+    }
+    if (vote.includes("Down") && vote.includes(id.toString())) {
+      const reactions = answerVotes[vote].reactions;
+      reactions.forEach((ele) => {
+        if (ele?.user_id == user_id) {
+          downvotes++;
+        }
+      });
+    }
+  }
+  return { up: upvotes, down: downvotes };
+};
