@@ -71,6 +71,8 @@ function IndividualAnswers({
           setTempUpVote(tempUpVote + 1);
         }
       });
+    }else{
+      alert('must be signed in to vote')
     }
   };
 
@@ -89,6 +91,8 @@ function IndividualAnswers({
           setTempUpVote(tempUpVote - 1);
         }
       });
+    }else{
+      alert('must be signed in to vote')
     }
   };
 

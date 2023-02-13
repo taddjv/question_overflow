@@ -14,7 +14,6 @@ function PopularQuestions() {
     (state) => state.questionsReducer.question.questions
   );
 
-<<<<<<< HEAD
 
   let orderQuestions = []
 
@@ -277,10 +276,6 @@ function PopularQuestions() {
   //     )}
   //   </>
   // );
-=======
-  let orderQuestions = [];
-  return <>Popular question under construction</>;
->>>>>>> jackz
 }
 
 export default PopularQuestions;
