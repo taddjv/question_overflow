@@ -5,7 +5,6 @@
   border-radius: 5px;
 
   background-color: var(--background1);
-
 }
 
 .ans-vote-container-REPLACE-LATER {
@@ -13,7 +12,6 @@
 
   color: inherit;
   background: var(--background2);
-
 }
 .ans-vote-container-REPLACE-LATER:last-child {
   border-bottom-left-radius: 5px;
@@ -70,7 +68,6 @@
   display: flex;
   justify-content: space-between;
   margin: 5px 0;
-
 }
 
 .ans-username {
@@ -128,10 +125,18 @@
   padding: 5px 0;
   list-style-type: none;
   color: red;
-
 }
 
 .thumbs-down-button,
-.thumbs-up-button{
-  cursor:pointer;
+.thumbs-up-button {
+  cursor: pointer;
+}
+.thumbs-up-button-icon {
+  color: grey;
+}
+.thumbs-up-button-icon-green {
+  color: green;
+}
+.thumbs-up-button-icon-red {
+  color: red;
 }

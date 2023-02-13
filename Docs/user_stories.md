@@ -37,7 +37,7 @@
     - I can log out of my account and be redirected to a page displaying recent Questions.
       - So that I can easily log out to keep my information secure.
 
-## Questions
+# Questions
 
 ### Create Questions
 
@@ -66,7 +66,8 @@
     - I can click "Delete" to permanently delete a Question that I have posted and all answers associated with this question.
       - So that when I realize I shouldn't have publicly ask something, I can easily remove it.
 
-## Answers
+# Answers
+
 
 ### Create Answer
 

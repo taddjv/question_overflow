@@ -1,6 +1,7 @@
 from flask import Blueprint, request, redirect
 from app.models import Answer, Question, Reaction, db
 from flask_login import current_user, login_user, logout_user, login_required
+from sqlalchemy import inspect
 
 
 reaction_routes = Blueprint("reactions", __name__)
@@ -16,6 +17,35 @@ def validation_errors_to_error_messages(validation_errors):
             errorMessages.append(f'{field} : {error}')
     return errorMessages
 
+def object_as_dict(obj):
+    return {c.key: getattr(obj, c.key)
+            for c in inspect(obj).mapper.column_attrs}
+
+def quest_ans_formatter(inputs):
+    final = {"reactions": []}
+
+    for input in inputs:
+        final_input = object_as_dict(input)
+        reactions = []
+        user = object_as_dict(input.user)
+
+        for reaction in input.reaction:
+            reactions.append(object_as_dict(reaction))
+        final_input["answer_id"] = reactions
+        final_input["user_id"] = user
+        final["reactions"].append(final_input)
+
+    return final
+
+@reaction_routes.route('/answers/<int:id>', methods=['GET'])
+@login_required
+def get_answer_reactions(id):
+    print('hit the routes')
+    answer_reactions = Reaction.query.filter(
+        Reaction.answer_id == id
+    ).all()
+    print(answer_reactions, ' <--- from the reaction routes')
+    return quest_ans_formatter(answer_reactions)
 
 @reaction_routes.route("/answers/<int:id>/up-vote", methods=["POST"])
 @login_required
@@ -92,18 +122,15 @@ def get_all_up_votes(id):
     reaction_check = Reaction.query.filter(
         Reaction.answer_id == id,
         Reaction.up_vote == True
-    ).count()
-
-    return str(reaction_check)
-
+    )
+    return {"reactions":[object_as_dict(reaction) for reaction in reaction_check]}
 
 @reaction_routes.route('/answers/<int:id>/down-votes')
 @login_required
 def get_all_down_votes(id):
-
     reaction_check = Reaction.query.filter(
         Reaction.answer_id == id,
         Reaction.down_vote == True
-    ).count()
+    )
 
-    return str(reaction_check)
+    return {"reactions":[object_as_dict(reaction) for reaction in reaction_check]}

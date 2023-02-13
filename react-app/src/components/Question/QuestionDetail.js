@@ -5,6 +5,7 @@ import { useHistory, useParams } from "react-router-dom";
 import * as answerActions from "../../store/answer";
 import * as questionActions from "../../store/question";
 import * as sessionActions from "../../store/session";
+import * as reactionActions from "../../store/reaction";
 import IndividualAnswer from "../answer/IndividualAnswer";
 // import { renderQuestions } from "../../helper/questionHelper";
 import "./QuestionDetail.css";
@@ -247,6 +248,9 @@ function QuestionDetail() {
               )}
               {user && (
                 <>
+                <div className="add-answer-banner">
+                  Add your answer {user.username}
+                  </div>
                   <form onSubmit={addAnswer} className="add-answer">
                     <div className="a-a-left">
                       <img src={user?.profile_url} alt='' />
@@ -279,6 +283,7 @@ function QuestionDetail() {
                       <li>{ele}</li>
                     ))}
                   </ul>
+
                 </>
               )}
             </div>
