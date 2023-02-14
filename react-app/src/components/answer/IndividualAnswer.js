@@ -38,7 +38,7 @@ function IndividualAnswers({
     }
   }, []);
 
-  const votes = userVotes(reactionUsers, id, user.id);
+  const votes = user ? userVotes(reactionUsers, id, user.id) : null;
   const upVoted = (votes) => {
     if (votes) {
       let dataVoted = false;
