@@ -32,45 +32,48 @@ function IndividualAnswers({
   const reactionUsers = useSelector((state) => state?.reactionsReducer);
 
   useEffect(() => {
-    dispatch(reactionActions.getTheUpvotes(id)).then(async (res) => {});
-    dispatch(reactionActions.getTheDownvotes(id)).then(async (res) => {});
+    if (user) {
+      dispatch(reactionActions.getTheUpvotes(id)).then(async (res) => {});
+      dispatch(reactionActions.getTheDownvotes(id)).then(async (res) => {});
+    }
   }, []);
 
-  const votes = userVotes(reactionUsers, id, user.id);
+  const votes = user ? userVotes(reactionUsers, id, user.id) : null;
   const upVoted = (votes) => {
-    let dataVoted = false;
-    if (votes.up === 1) {
-      dataVoted = true;
-    }
-    if (dataVoted && !tempUpVote) {
-      return "thumbs-up-button-icon-green";
-    } else if (dataVoted && tempUpVote) {
-      return null;
-    } else if (!dataVoted && !tempUpVote) {
-      return null;
-    } else if (!dataVoted && tempUpVote) {
-      return "thumbs-up-button-icon-green";
+    if (votes) {
+      let dataVoted = false;
+      if (votes.up === 1) {
+        dataVoted = true;
+      }
+      if (dataVoted && !tempUpVote) {
+        return "thumbs-up-button-icon-green";
+      } else if (dataVoted && tempUpVote) {
+        return null;
+      } else if (!dataVoted && !tempUpVote) {
+        return null;
+      } else if (!dataVoted && tempUpVote) {
+        return "thumbs-up-button-icon-green";
+      }
     }
   };
   const downVoted = (votes) => {
-    let dataVoted = false;
-    if (votes.down === 1) {
-      dataVoted = true;
-    }
-    if (dataVoted && tempDownVote) {
-      return null;
-    } else if (dataVoted && !tempDownVote) {
-      return "thumbs-up-button-icon-red";
-    } else if (!dataVoted && tempDownVote) {
-      return "thumbs-up-button-icon-red";
-    } else if (!dataVoted && !tempDownVote) {
-      return null;
+    if (votes) {
+      let dataVoted = false;
+      if (votes.down === 1) {
+        dataVoted = true;
+      }
+      if (dataVoted && tempDownVote) {
+        return null;
+      } else if (dataVoted && !tempDownVote) {
+        return "thumbs-up-button-icon-red";
+      } else if (!dataVoted && tempDownVote) {
+        return "thumbs-up-button-icon-red";
+      } else if (!dataVoted && !tempDownVote) {
+        return null;
+      }
     }
   };
 
-  // useEffect(() => {
-  //   dispatch(reactionActions.getTheVotes(id));
-  // }, [dispatch, id]);
 
   const editTheAnswer = (e) => {
     e.preventDefault();
@@ -141,8 +144,6 @@ function IndividualAnswers({
           setUserUpvote(false);
         }
       });
-    } else {
-      alert("Please login to vote");
     }
   };
 
@@ -272,8 +273,9 @@ function IndividualAnswers({
                 <div className="thumbs-down-button">
                   <ThumbDownIcon
                     className={`thumbs-up-button-icon ${
-                      downVoted(votes) && "thumbs-up-button-icon-red"
-                    } ${userDownvote && "thumbs-up-button-icon-red"}`}
+                      downVoted(votes)
+                    }
+                    `}
                     onClick={handleDownvote}
                   ></ThumbDownIcon>
                 </div>

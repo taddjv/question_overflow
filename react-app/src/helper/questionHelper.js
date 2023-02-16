@@ -64,7 +64,7 @@ export const userVotes = (answerVotes, id, user_id) => {
   for (let vote in answerVotes) {
     if (vote.includes("Up") && vote.includes(id.toString())) {
       const reactions = answerVotes[vote].reactions;
-      reactions.forEach((ele) => {
+      reactions?.forEach((ele) => {
         if (ele?.user_id == user_id) {
           upvotes++;
         }
@@ -72,7 +72,7 @@ export const userVotes = (answerVotes, id, user_id) => {
     }
     if (vote.includes("Down") && vote.includes(id.toString())) {
       const reactions = answerVotes[vote].reactions;
-      reactions.forEach((ele) => {
+      reactions?.forEach((ele) => {
         if (ele?.user_id == user_id) {
           downvotes++;
         }
